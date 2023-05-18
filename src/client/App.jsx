@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import Header from './components/Header'
 import Welcome from './components/Welcome';
+import CompThree from "./components/CompThree";
+import CompFour from "./components/CompFour";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,6 +12,8 @@ function App() {
     <div className="App">
       <Header />
       <Welcome />
+      <CompThree />
+      <CompFour />
     </div>
   );
 }
