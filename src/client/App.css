@@ -66,6 +66,11 @@ a {
   background-color: #1e2b3a;
 }
 
+.orange-btn {
+  background-color: #c3965f;
+  margin-top: 30px;
+}
+
 .welcome {
   min-height: 86vh;
   width: 100vw;
@@ -99,25 +104,55 @@ a {
   font-weight: 100;
   font-size: 16pt;
   width: 75%;
-  line-height: 1.5;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  /* line-height: 1.5; */
 }
 
 .comp-three-title {
   display: flex;
-  /* align-items: center; */
+  text-align: center;
+  align-items: center;
 }
 
 .compFour {
   min-height: 95vh;
   width: 100vw;
   background-color: #364a60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comp-Four {
+  display: flex;
+  width: 75vw;
+  align-items: center;
+  height: 100%;
+}
+
+
+.fourTitle {
+  color: #f2ebe0;
+  height: 100%;
+  /* background-color: orange; */
+}
+
+.hierarchy {
+  /* scale: 75%; */
+}
+
+.fourPar {
+  margin-top: 15px;
 }
 
 h3 {
   text-align: center;
   font-weight: 100;
   width: 90%;
+  line-height: 1.5;
 }
+
 
 h2 {
   margin-bottom: 20px;
@@ -128,9 +163,12 @@ h2 {
 h1 {
   font-size: 73px;
   font-weight: 200;
-  text-align: center;
 }
 
-/* h4 {
-  color: #c3965f;
-} */
+.compFour-text {
+  width: 75%;
+  color: #f2ebe0;
+  height: 100%;
+  text-align: left;
+  /* background-color: red; */
+}
