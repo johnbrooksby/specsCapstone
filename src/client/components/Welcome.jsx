@@ -10,7 +10,7 @@ const Welcome = () => {
 
         </div>
         <h2>Let’s work together to bring back that spark into your life!</h2>
-        <a href="https://calendly.com/suresparkcoaching/30min?month=2023-05"
+        <a className='btn' href="https://calendly.com/suresparkcoaching/30min?month=2023-05"
             target="_blank">Schedule A Call To Learn More</a>
     </div>
   )

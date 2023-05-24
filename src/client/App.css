@@ -35,19 +35,19 @@
 
 .sub-header {
   display: flex;
-  width: 70vw;
+  width: 75vw;
   justify-content: space-between;
 }
 
 .header-text {
   display: flex;
-  width: 35vw;
-  justify-content: end;
+  width: 50vw;
+  justify-content: flex-end;
   padding-right: 10vw;
-  align-items: center;
+  align-items: flex-end;
 }
 
-a {
+.blue-btn, .orange-btn, .btn  {
   border-radius: 6px;
   padding: 18px;
   font-size: 15pt;
@@ -131,15 +131,37 @@ a {
   height: 100%;
 }
 
-
 .fourTitle {
   color: #f2ebe0;
   height: 100%;
   /* background-color: orange; */
 }
 
-.hierarchy {
-  /* scale: 75%; */
+.navbar {
+  display: flex;
+  width: 100vw;
+  min-height: 30px;
+  background-color: #cad1ce;
+  justify-content: center;
+}
+
+.navUl {
+  width: 75vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
+.li {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fourPar {
