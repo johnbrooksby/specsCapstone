@@ -19,24 +19,24 @@ module.exports = {
         },
         admin: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            // allowNull: false
         },
         email_address: DataTypes.STRING,
         street_address: {
             type: DataTypes.STRING,
-            allowNull: false
+            // allowNull: false
         },
         city: {
             type: DataTypes.STRING,
-            allowNull: false
+            // allowNull: false
         },
         state: {
             type: DataTypes.STRING,
-            allowNull: false
+            // allowNull: false
         },
         zip: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            // allowNull: false
         }
     })
 }

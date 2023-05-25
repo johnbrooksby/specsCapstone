@@ -11,11 +11,11 @@ module.exports = {
         },
         charge_explanation: {
             type: DataTypes.TEXT,
-            allowNull: false
+            // allowNull: false
         },
         amount_due: {
             type: DataTypes.STRING,
-            allowNull: false
+            // allowNull: false
         }
     })
 }
