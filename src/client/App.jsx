@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Testimonials from "./components/Testimonials";
 import Account from "./components/Account";
+import Footer from "./components/footer";
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
         <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' /> } />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      
+      <Footer />
     </div>
   );
 }

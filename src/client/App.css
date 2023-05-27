@@ -36,6 +36,7 @@
   display: flex;
   width: 75vw;
   justify-content: space-between;
+  padding-right: 5px;
 }
 
 .header-text {
@@ -91,6 +92,10 @@
   gap: 20px;
 }
 
+.welcome_img {
+  min-height: 550px;
+}
+
 .compthree {
   width: 100vw;
   background-color: #cad1ce;
@@ -110,8 +115,9 @@
   font-weight: 100;
   font-size: 16pt;
   width: 75%;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding:25px;
   /* line-height: 1.5; */
 }
 
@@ -140,7 +146,6 @@
 .fourTitle {
   color: #f2ebe0;
   height: 100%;
-  /* background-color: orange; */
 }
 
 .navbar {
@@ -194,10 +199,11 @@ h1 {
 }
 
 .compFour-text {
-  width: 75%;
+  width: 77%;
   color: #f2ebe0;
   height: 100%;
   text-align: left;
+  padding-left: 15px;
 }
 
 .page {
@@ -237,9 +243,18 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  scale: 1.01;
+}
+
+a:active {
+  scale: 1;
+}
+
 li a:hover {
   cursor: pointer;
   border-bottom: 1px solid black;
+  scale:1;
 }
 
 .testimonial {
@@ -287,4 +302,36 @@ li a:hover {
 
 .two {
   color:#1e2b3a
+}
+
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 10vh;
+  background-color: #1e2b3a;
+}
+
+.footerIcons {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+}
+
+.footerLinks {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #cad1ce;
+}
+
+.spacer {
+  width: 15vw;
+}
+
+.footer-text {
+  color:#cad1ce
 }
