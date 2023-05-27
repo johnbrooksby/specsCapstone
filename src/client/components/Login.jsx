@@ -38,23 +38,26 @@ const Login = () => {
   };
 
   return (
-    <main>
+    <main className="loginPage">
       {/* <h1>Welcome!</h1> */}
       <form className="form auth-form" onSubmit={submitHandler}>
         <input
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="form-input"
-        />
+          />
         <input
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="form-input"
-        />
-        <button className="form-btn" >{register ? "Sign Up" : "Login"} </button>
+          />
+        <button className="orange-btn" >{register ? "Sign Up" : "Login"} </button>
       </form>
-      <button className="form-btn" onClick={() => setRegister(!register)}>
+          {/* {authCtx.token && <h2>Hello, {username}</h2>} */}
+      <button className="inactive-btn" onClick={() => setRegister(!register)}>
         Need to {register ? "Login" : "Sign Up"}?
       </button>
     </main>

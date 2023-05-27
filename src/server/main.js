@@ -21,8 +21,8 @@ billingInfo.belongsTo(User)
 app.post('/register', register)
 app.post('/login', login)
 
-sequelize.sync({force:true})
-// sequelize.sync()
+// sequelize.sync({force:true})
+sequelize.sync()
 
 ViteExpress.listen(app, PORT, () =>
   console.log(`Server is listening on port ${PORT}...`)
