@@ -9,7 +9,6 @@ const CompFour = () => {
           src="https://drive.google.com/uc?export=view&id=1-iH9Ey68Ml9FKc88TcLOvjOSt47y_CUp"
           alt="hierarchy of needs"
         />
-        {/* <div> */}
         <div className="compFour-text">
           <h1 className="fourTitle">Safety and Ownership</h1>
           <h2 className="fourPar">
@@ -31,7 +30,6 @@ const CompFour = () => {
           </a>
         </div>
       </div>
-      {/* </div> */}
     </div>
   );
 };

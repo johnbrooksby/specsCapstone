@@ -25,7 +25,6 @@
   min-height: 14vh;
   width: 100vw;
   background-color: #cad1ce;
-  /* position: absolute; */
   top: 0px;
   font-size: 22pt;
   display: flex;
@@ -52,7 +51,7 @@
   padding: 18px;
   font-size: 15pt;
   width: 350px;
-  height: 62px;
+  height: 63px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -199,10 +198,9 @@ h1 {
   color: #f2ebe0;
   height: 100%;
   text-align: left;
-  /* background-color: red; */
 }
 
-.loginPage {
+.page {
   width: 100vw;
   height: 79vh;
   background-color: #364a60;
@@ -220,10 +218,6 @@ h1 {
   margin-top: 25px;
   border-radius: 5px;
   box-shadow: 0px 0px 2px 3px grey;
-}
-
-.li {
-  text-decoration: none;
 }
 
 .form-input {
@@ -246,4 +240,51 @@ a {
 li a:hover {
   cursor: pointer;
   border-bottom: 1px solid black;
+}
+
+.testimonial {
+  min-height: 79vh;
+  display: flex;
+  width: 100vw;
+  background-color:#364a60;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.testimonial2 {
+  background-color: #cad1ce;
+  /* padding-top: 50px;
+  padding-bottom: 50px; */
+}
+
+.heart-puzzle {
+  max-width: 40%;
+  /* height: auto; */
+}
+
+.img_textHolder {
+  display: flex;
+  width: 100vw;
+  padding: 30px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.text-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: #cad1ce;
+  margin-top: 0px;
+  width: 37%;
+}
+
+.text {
+  color:#cad1ce;
+  margin-top: 5px;
+}
+
+.two {
+  color:#1e2b3a
 }

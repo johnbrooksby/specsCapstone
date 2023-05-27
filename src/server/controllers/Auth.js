@@ -45,7 +45,7 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("You got a freakin' error, dude");
+      console.log("You got an error");
       console.error(error);
       res.sendStatus(400);
     }

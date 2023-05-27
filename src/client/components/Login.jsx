@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <main className="loginPage">
+    <main className="page">
       {/* <h1>Welcome!</h1> */}
       <form className="form auth-form" onSubmit={submitHandler}>
         <input
@@ -54,11 +54,11 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="form-input"
           />
-        <button className="orange-btn" >{register ? "Sign Up" : "Login"} </button>
+        <button className="orange-btn" >{register ? "Create Account" : "Login"} </button>
       </form>
           {/* {authCtx.token && <h2>Hello, {username}</h2>} */}
       <button className="inactive-btn" onClick={() => setRegister(!register)}>
-        Need to {register ? "Login" : "Sign Up"}?
+        Need to {register ? "Login" : "Create an Account"}?
       </button>
     </main>
   );

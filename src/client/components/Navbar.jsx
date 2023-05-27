@@ -21,7 +21,7 @@ const Navbar = () => {
             </li>
             {/* <li className={styles.li}> */}
             <li className="li">
-              <NavLink to="about">About</NavLink>
+              <NavLink to="about">Account</NavLink>
             </li>
             {/* <li className={styles.li}> */}
             <li className="li">
@@ -36,9 +36,9 @@ const Navbar = () => {
             <li className="li">
               <NavLink to="testimonials">Testimonials</NavLink>
             </li>
-            <li className="li">
+            {/* <li className="li">
               <NavLink to="about">About</NavLink>
-            </li>
+            </li> */}
             <li  className="li">
               <NavLink to="login">Login or Sign Up</NavLink>
             </li>

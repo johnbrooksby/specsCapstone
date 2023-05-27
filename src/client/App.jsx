@@ -4,18 +4,14 @@ import "./App.css";
 
 import Header from './components/Header'
 import Navbar from "./components/Navbar";
-import Welcome from './components/Welcome';
-import CompThree from "./components/CompThree";
-import CompFour from "./components/CompFour";
 import AuthContext from './store/authContext';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Testimonials from "./components/Testimonials";
-import About from "./components/About";
+import Account from "./components/Account";
 
 
 function App() {
-  const [count, setCount] = useState(0);
   const authCtx = useContext(AuthContext)
 
   return (
@@ -24,9 +20,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={!authCtx.token ? <Login /> : <Navigate to='/' />} />
         <Route path="testimonials" element={<Testimonials />} />
-        <Route path="about" element={<About />} />
+        <Route path="about" element={authCtx.token ? <Account /> : <Navigate to='/' />} />
+        {/* <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' />} /> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       
