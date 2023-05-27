@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import {Routes, Route, Navigate} from 'react-router-dom'
 import "./App.css";
 
@@ -22,8 +22,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={!authCtx.token ? <Login /> : <Navigate to='/' />} />
         <Route path="testimonials" element={<Testimonials />} />
-        <Route path="about" element={authCtx.token ? <Account /> : <Navigate to='/' />} />
-        {/* <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' />} /> */}
+        {/* <Route path="about" element={authCtx.token ? <Account /> : <Navigate to='/' />} /> */}
+        <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' /> } />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       

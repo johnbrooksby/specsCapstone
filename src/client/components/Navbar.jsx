@@ -21,7 +21,7 @@ const Navbar = () => {
             </li>
             {/* <li className={styles.li}> */}
             <li className="li">
-              <NavLink to="about">Account</NavLink>
+              <NavLink to="account">Account</NavLink>
             </li>
             {/* <li className={styles.li}> */}
             <li className="li">
