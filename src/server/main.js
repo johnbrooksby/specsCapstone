@@ -14,6 +14,7 @@ const {register, login} = require("./controllers/Auth")
 const app = express();
 
 app.use(express.json())
+app.use(cors())
 
 User.hasMany(billingInfo)
 billingInfo.belongsTo(User)

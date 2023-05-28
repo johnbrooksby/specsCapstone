@@ -13,6 +13,10 @@ module.exports = {
             type: DataTypes.STRING,
             allowNull: false
         },
+        name: {
+            type: DataTypes.STRING,
+            // allowNull: false
+        },
         hashedPass: {
             type: DataTypes.STRING,
             allowNull: false
@@ -35,7 +39,7 @@ module.exports = {
             // allowNull: false
         },
         zip: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT,
             // allowNull: false
         }
     })

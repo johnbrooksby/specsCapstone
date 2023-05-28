@@ -20,7 +20,7 @@ const createToken = (username, id) => {
 module.exports = {
   register: async (req, res) => {
     try {
-      const { username, password } = req.body;
+      const { username, name, password, email_address, street_address, city, state, zip  } = req.body;
       let foundUser = await User.findOne({ where: { username: username } });
       if (foundUser) {
         res.status(400).send("That username is already in use");
@@ -29,7 +29,13 @@ module.exports = {
         const hash = bcrypt.hashSync(password, salt);
         const newUser = await User.create({
           username: username,
-          hashedPass: hash
+          hashedPass: hash,
+          name: name,
+          email_address: email_address,
+          street_address: street_address,
+          city: city,
+          state: state,
+          zip: zip,
         });
         console.log(newUser);
         const token = createToken(

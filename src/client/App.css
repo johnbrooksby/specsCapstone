@@ -210,7 +210,7 @@ h1 {
 
 .page {
   width: 100vw;
-  height: 79vh;
+  min-height: 79vh;
   background-color: #364a60;
   display: flex;
   justify-content: flex-start;
@@ -218,8 +218,9 @@ h1 {
   flex-direction: column;
 }
 
-.auth-form {
+.auth-form, .reg-form {
   display: flex;
+  /* min-height: fit-content; */
   flex-direction: column;
   border: 2px solid grey;
   padding: 25px;
@@ -228,7 +229,16 @@ h1 {
   box-shadow: 0px 0px 2px 3px grey;
 }
 
-.form-input {
+.reg-form {
+  width: 50%;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.form-input, .reg-form-input {
   min-height: 30px;
   margin: 15px;
   background-color: #364a60;
@@ -237,11 +247,16 @@ h1 {
   padding: 3px;
 }
 
-.form-input:focus {
+.reg-form-input {
+  width: 35%;
+ 
+}
+
+.form-input:focus, .reg-form-input:focus {
   outline-color:grey;
 }
 
-.form-input::placeholder {
+.form-input::placeholder, .reg-form-input::placeholder {
   color:#cad1ce;
 }
 
