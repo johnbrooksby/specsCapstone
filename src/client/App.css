@@ -28,7 +28,7 @@
   top: 0px;
   font-size: 22pt;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -39,11 +39,13 @@
   padding-right: 5px;
 }
 
+.head-spacer {
+  width: 350px
+}
+
 .header-text {
   display: flex;
-  width: 50vw;
-  justify-content: flex-end;
-  padding-right: 10vw;
+  justify-content: center;
   align-items: flex-end;
 }
 
@@ -227,16 +229,20 @@ h1 {
 }
 
 .form-input {
-  height: 30px;
+  min-height: 30px;
   margin: 15px;
   background-color: #364a60;
-  color:#c3965f;
+  color:#f2ebe0;
   font-size: 15pt;
   padding: 3px;
 }
 
 .form-input:focus {
-  border: 1px solid black;
+  outline-color:grey;
+}
+
+.form-input::placeholder {
+  color:#cad1ce;
 }
 
 a {
