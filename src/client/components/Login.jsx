@@ -14,6 +14,8 @@ const Login = () => {
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [register, setRegister] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
@@ -54,6 +56,11 @@ const Login = () => {
     console.log("submitHandler called");
   };
 
+  // useEffect(() => {
+  //   setPasswordMatch(password === verifyPassword && passwordTouched)
+  // }, [verifyPassword])
+ 
+
   return (
     <main className="page">
       {!register ? (
@@ -63,6 +70,7 @@ const Login = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="form-input"
+            required
           />
           <input
             placeholder="Password"
@@ -70,6 +78,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="form-input"
+            required
           />
           <button className="orange-btn">
             {register ? "Create Account" : "Login"}{" "}
@@ -82,12 +91,14 @@ const Login = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="reg-form-input"
+            // required
           />
           <input
             placeholder="First & Last Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="reg-form-input"
+            // required
           />
           <input
             placeholder="Password"
@@ -95,6 +106,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="reg-form-input"
+            // required
           />
           <input
             placeholder="Verify Password"
@@ -102,36 +114,42 @@ const Login = () => {
             value={verifyPassword}
             onChange={(e) => setVerifyPassword(e.target.value)}
             className="reg-form-input"
+            // required
           />
           <input
             placeholder="Street Address"
             value={street_address}
             onChange={(e) => setAddress(e.target.value)}
             className="reg-form-input"
+            // required
           />
           <input
             placeholder="City"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             className="reg-form-input"
+            // required
           />
           <input
             placeholder="State"
             value={state}
             onChange={(e) => setState(e.target.value)}
             className="reg-form-input"
+            // required
           />
           <input
             placeholder="Zip"
             value={zip}
             onChange={(e) => setZip(e.target.value)}
             className="reg-form-input"
+            // required
           />
           <input
             placeholder="Email Address"
+            type="email"
             value={email_address}
             onChange={(e) => setEmail(e.target.value)}
-            className="reg-form-input"
+            className="reg-form-input email"
           />
           <div>
             <button className="orange-btn">
