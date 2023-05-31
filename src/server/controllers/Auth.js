@@ -17,6 +17,8 @@ const createToken = (username, id) => {
   );
 };
 
+let admin = false
+
 module.exports = {
   register: async (req, res) => {
     try {
@@ -31,6 +33,7 @@ module.exports = {
           username: username,
           hashedPass: hash,
           name: name,
+          admin: false,
           email_address: email_address,
           street_address: street_address,
           city: city,
@@ -66,18 +69,20 @@ module.exports = {
           password,
           foundUser.hashedPass
         );
-
         if (isAuthenticated) {
+          console.log("datavalues",foundUser.dataValues)
           const token = createToken(
             foundUser.dataValues.username,
             foundUser.dataValues.id
           );
+          admin = foundUser.dataValues.admin
           const exp = Date.now() + 1000 * 60 * 60 * 24 * 14;
           res.status(200).send({
             username: foundUser.dataValues.username,
             userId: foundUser.dataValues.id,
+            admin: foundUser.dataValues.admin,
             token,
-            exp
+            exp,
           });
         } else {
           res.status(400).send("cannot log in");
@@ -91,4 +96,20 @@ module.exports = {
       res.sendStatus(400);
     }
   },
+
+  users: async (req,res) => {
+    if(admin){
+      try{
+        let userList = await User.findAll()
+        res.status(200).send(userList)
+      }
+      catch(error) {
+        console.log('Error getting users')
+        console.log(error)
+        res.sendStatus(400)
+      }
+    } else {
+      res.status(500).send('not an admin: no access')
+    }
+  }
 };

@@ -6,10 +6,8 @@ const cors = require("cors")
 const {sequelize} = require('./util/database')
 const {User} = require('./models/user')
 const {billingInfo} = require('./models/billing')
-
-// const {getAllPosts, getCurrentUserPosts, addPost, editPost, deletePost} = require("./controllers/Posts")
-// const {isAuthenticated} = require("./middleware/isAuthenticated")
-const {register, login} = require("./controllers/Auth")
+const {isAuthenticated} = require("./middleware/isAuthenticated")
+const {register, login, users} = require("./controllers/Auth")
 
 const app = express();
 
@@ -21,6 +19,7 @@ billingInfo.belongsTo(User)
 
 app.post('/register', register)
 app.post('/login', login)
+app.get('/admin', users)
 
 // sequelize.sync({force:true})
 sequelize.sync()

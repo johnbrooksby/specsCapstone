@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 import AuthContext from "../store/authContext";
@@ -14,13 +14,16 @@ const Login = () => {
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [register, setRegister] = useState(false);
-  const [passwordMatch, setPasswordMatch] = useState(false);
-  const [passwordTouched, setPasswordTouched] = useState(false);
+  const [login, setLogin] = useState(true);
 
   const authCtx = useContext(AuthContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if (register && (password !== verifyPassword)){
+      alert('Passwords do not match')
+      return;
+    }
 
     const Body = {
       username,
@@ -41,25 +44,20 @@ const Login = () => {
     axios
       .post(register ? "/register" : "/login", register ? RegBody : Body)
       .then((res) => {
-        console.log(res.data);
+        console.log("res.data", res.data.admin);
         setRegister(res);
+        authCtx.setAdmin(res.data.admin)
         authCtx.login(res.data.token, res.data.exp, res.data.userId);
         setUsername("");
         setPassword("");
       })
       .catch((err) => {
         console.error(err);
-        setUsername("");
-        setPassword("");
+        setLogin(false);
       });
 
     console.log("submitHandler called");
   };
-
-  // useEffect(() => {
-  //   setPasswordMatch(password === verifyPassword && passwordTouched)
-  // }, [verifyPassword])
- 
 
   return (
     <main className="page">
@@ -80,6 +78,9 @@ const Login = () => {
             className="form-input"
             required
           />
+          {!login && (
+            <p className="badlogin">Username and/or password incorrect</p>
+          )}
           <button className="orange-btn">
             {register ? "Create Account" : "Login"}{" "}
           </button>
@@ -91,14 +92,14 @@ const Login = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="reg-form-input"
-            // required
+            required
           />
           <input
             placeholder="First & Last Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="reg-form-input"
-            // required
+            required
           />
           <input
             placeholder="Password"
@@ -106,7 +107,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="reg-form-input"
-            // required
+            required
           />
           <input
             placeholder="Verify Password"
@@ -114,35 +115,35 @@ const Login = () => {
             value={verifyPassword}
             onChange={(e) => setVerifyPassword(e.target.value)}
             className="reg-form-input"
-            // required
+            required
           />
           <input
             placeholder="Street Address"
             value={street_address}
             onChange={(e) => setAddress(e.target.value)}
             className="reg-form-input"
-            // required
+            required
           />
           <input
             placeholder="City"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             className="reg-form-input"
-            // required
+            required
           />
           <input
             placeholder="State"
             value={state}
             onChange={(e) => setState(e.target.value)}
             className="reg-form-input"
-            // required
+            required
           />
           <input
             placeholder="Zip"
             value={zip}
             onChange={(e) => setZip(e.target.value)}
             className="reg-form-input"
-            // required
+            required
           />
           <input
             placeholder="Email Address"
@@ -158,7 +159,12 @@ const Login = () => {
           </div>
         </form>
       )}
-      <button className="inactive-btn" onClick={() => setRegister(!register)}>
+      <button className="inactive-btn" onClick={() => {
+        setRegister(!register)
+        setLogin('')
+        setPassword('')
+      }
+      }>
         Need to {register ? "Login" : "Create an Account"}?
       </button>
     </main>

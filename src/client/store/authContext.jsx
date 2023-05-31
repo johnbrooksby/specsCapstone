@@ -2,12 +2,16 @@ import { useState, createContext } from 'react'
 
 let logoutTimer
 
+
 const AuthContext = createContext({
   token: '',
   login: () => {},
   logout: () => {},
-  userId: null
+  userId: null,
+  admin: null,
+  setAdmin: () => {}
 })
+
 
 const calculateRemainingTime = (exp) => {
   const currentTime = new Date().getTime()
@@ -20,24 +24,27 @@ const getLocalData = () => {
   const storedToken = localStorage.getItem('token')
   const storedExp = localStorage.getItem('exp')
   const storeId = localStorage.getItem('userId')
-
+  const storedAdmin = localStorage.getItem('admin')
+  
+  
   const remainingTime = calculateRemainingTime(storedExp)
-
+  
   if (remainingTime <= 1000 * 60 * 30) {
     localStorage.removeItem('token')
     localStorage.removeItem('exp')
     localStorage.removeItem('userId')
+    localStorage.removeItem('admin')
     return null
   }
-
-
+  
+  
   return {
     token: storedToken,
     duration: remainingTime,
-    userId: +storeId
+    userId: +storeId,
+    admin: storedAdmin
   }
 }
-
 
 
 export const AuthContextProvider = (props) => {
@@ -49,26 +56,30 @@ export const AuthContextProvider = (props) => {
     initialToken = localData.token
     initialId = localData.userId
   }
-
+  
   const [token, setToken] = useState(initialToken)
   const [userId, setUserId] = useState(initialId)
+  const [admin, setAdmin] = useState(false);
 
 
   const logout = () => {
     setToken(null)
     setUserId(null)
+    setAdmin(false)
     localStorage.removeItem('token')
     localStorage.removeItem('exp')
     localStorage.removeItem('userId')
+    localStorage.removeItem('admin')
     clearTimeout(logoutTimer)
   }
 
-  const login = (token, exp, userID) => {
+  const login = (token, exp, userID, admin) => {
     setToken(token)
     setUserId(userID)
     localStorage.setItem('token', token)
     localStorage.setItem('exp', exp)
     localStorage.setItem('userId', userId)
+    localStorage.setItem('admin', admin)
 
     const remainingTime = calculateRemainingTime(exp)
 
@@ -79,7 +90,9 @@ export const AuthContextProvider = (props) => {
     token,
     login,
     logout, 
-    userId
+    userId,
+    admin,
+    setAdmin
   }
 
   return (

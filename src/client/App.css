@@ -121,7 +121,6 @@
   padding-top: 50px;
   padding-bottom: 50px;
   padding:25px;
-  /* line-height: 1.5; */
 }
 
 .comp-three-title {
@@ -221,7 +220,6 @@ h1 {
 
 .auth-form, .reg-form {
   display: flex;
-  /* min-height: fit-content; */
   flex-direction: column;
   border: 2px solid grey;
   padding: 25px;
@@ -264,6 +262,18 @@ h1 {
   color:#cad1ce;
 }
 
+.badlogin {
+  color: lightcoral;
+  margin-top: 15px;
+  font-size: 14pt;
+  text-align: center;
+}
+
+.h6 {
+  display: block;
+  flex-direction: row;
+}
+
 a {
   text-decoration: none;
 }
@@ -293,13 +303,10 @@ li a:hover {
 
 .testimonial2 {
   background-color: #cad1ce;
-  /* padding-top: 50px;
-  padding-bottom: 50px; */
 }
 
 .heart-puzzle {
   max-width: 40%;
-  /* height: auto; */
 }
 
 .img_textHolder {
@@ -345,15 +352,17 @@ li a:hover {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 10vh;
+  min-height: 11vh;
   background-color: #1e2b3a;
 }
 
 .footerIcons {
   display: flex;
   flex-wrap: nowrap;
-  gap: 15px;
-  min-width: 87px;
+  min-width: 100px;
+  min-height: 45px;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .footerLinks {
@@ -364,6 +373,9 @@ li a:hover {
   justify-content: center;
   align-items: center;
   background-color: #cad1ce;
+}
+.footerLinks:hover {
+  scale:1.03;
 }
 
 .spacer {

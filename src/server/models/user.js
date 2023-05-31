@@ -15,7 +15,7 @@ module.exports = {
         },
         name: {
             type: DataTypes.STRING,
-            // allowNull: false
+            allowNull: false
         },
         hashedPass: {
             type: DataTypes.STRING,
@@ -28,19 +28,19 @@ module.exports = {
         email_address: DataTypes.STRING,
         street_address: {
             type: DataTypes.STRING,
-            // allowNull: false
+            allowNull: false
         },
         city: {
             type: DataTypes.STRING,
-            // allowNull: false
+            allowNull: false
         },
         state: {
             type: DataTypes.STRING,
-            // allowNull: false
+            allowNull: false
         },
         zip: {
             type: DataTypes.FLOAT,
-            // allowNull: false
+            allowNull: false
         }
     })
 }
