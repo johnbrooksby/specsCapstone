@@ -14,7 +14,7 @@ module.exports = {
             // allowNull: false
         },
         amount_due: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING
             // allowNull: false
         }
     })

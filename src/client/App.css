@@ -255,7 +255,8 @@ h1 {
 }
 
 .form-input:focus, .reg-form-input:focus {
-  outline-color:grey;
+  /* outline-color:grey; */
+  outline: none;
 }
 
 .form-input::placeholder, .reg-form-input::placeholder {
@@ -355,7 +356,8 @@ li a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 79vh;
+  min-height: 68vh;
+  background-color: #364a60;
 }
 
 .userCard {

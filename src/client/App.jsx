@@ -25,9 +25,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={!authCtx.token ? <Login /> : <Navigate to='/' />} />
         <Route path="testimonials" element={<Testimonials />} />
+        <Route path="admin" element={authCtx.admin ? <Admin /> : <Navigate to='/' />} />
         <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' /> } />
         <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/admin" element={authCtx.admin ? <Admin /> : <Navigate to='/' />} />
       </Routes>
       <Footer />
     </div>
