@@ -3,42 +3,39 @@ import AuthContext from "../store/authContext";
 import axios from "axios";
 
 const Admin = () => {
-    const [users, setUsers] = useState([])
-    
+  const [users, setUsers] = useState([]);
+
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
-
-      axios
+    axios
       .get("http://localhost:5556/admin")
       .then((res) => {
-            if (authCtx.admin) {
-            console.log(res.data);
-            setUsers(res.data)
+        if (authCtx.admin) {
+          console.log(res.data);
+          setUsers(res.data);
         } else {
-            return
+          return;
         }
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-}, [])
-
-  const mappedUsers = users.map(user => {
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+  console.log("users:",users)
+  const mappedUsers = users.map((user) => {
     return (
       <div key={user.id} className="userCard">
-        <h3>{user.username}</h3>
+        <h3>{user.name}</h3>
         <p>User Id: {user.id}</p>
+        <p>Email: {user.email_address}</p>
+        <p>Address: {user.street_address} {user.city}, {user.state}  {user.zip}</p>
+        <a className="blue-btn" onClick={() => {}}>See Billing Info</a>
       </div>
-    )
-  })
-    
-  return <div>
-    <form>
-      <h3>Add Billing info</h3>
-    </form>
-      {mappedUsers}
-  </div>;
+    );
+  });
+
+  return <div className="adminPage">{mappedUsers}</div>;
 };
 
 export default Admin;
