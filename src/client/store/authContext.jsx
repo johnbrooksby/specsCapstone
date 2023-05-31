@@ -1,4 +1,5 @@
 import { useState, createContext } from 'react'
+import axios from 'axios'
 
 let logoutTimer
 
@@ -8,7 +9,7 @@ const AuthContext = createContext({
   login: () => {},
   logout: () => {},
   userId: null,
-  admin: null,
+  admin: false,
   setAdmin: () => {}
 })
 
@@ -71,6 +72,7 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem('userId')
     localStorage.removeItem('admin')
     clearTimeout(logoutTimer)
+    axios.get('/logout')
   }
 
   const login = (token, exp, userID, admin) => {

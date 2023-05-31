@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { SECRET } = process.env;
 const { User } = require("../models/user");
+const { BillingInfo } = require("../models/billing");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -101,6 +102,7 @@ module.exports = {
     if(admin){
       try{
         let userList = await User.findAll()
+        // let billingList = await BillingInfo.findAll()
         res.status(200).send(userList)
       }
       catch(error) {
@@ -109,7 +111,12 @@ module.exports = {
         res.sendStatus(400)
       }
     } else {
-      res.status(500).send('not an admin: no access')
+      res.status(401).send('Unauthorized')
     }
+  },
+
+  logout: async (req, res) => {
+      admin = false
+      console.log('logged out')
   }
 };

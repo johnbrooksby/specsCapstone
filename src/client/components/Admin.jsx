@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Admin = () => {
     const [users, setUsers] = useState([])
+    
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
@@ -22,11 +23,22 @@ const Admin = () => {
             console.error(err);
         });
 }, [])
+
+  const mappedUsers = users.map(user => {
+    return (
+      <div key={user.id} className="userCard">
+        <h3>{user.username}</h3>
+        <p>User Id: {user.id}</p>
+      </div>
+    )
+  })
     
-  return <div>{users.map((u) => {
-    return (<div><h3>{u.username}</h3>
-        <p>{u.id}</p></div>)
-  })}</div>;
+  return <div>
+    <form>
+      <h3>Add Billing info</h3>
+    </form>
+      {mappedUsers}
+  </div>;
 };
 
 export default Admin;
