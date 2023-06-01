@@ -10,7 +10,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Testimonials from "./components/Testimonials";
 import Account from "./components/Account";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 import Admin from "./components/Admin";
 
 
