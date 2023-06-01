@@ -2,6 +2,7 @@ const express = require("express");
 const ViteExpress = require("vite-express");
 require('dotenv').config()
 const {PORT} = process.env
+const path = require('path')
 const cors = require("cors")
 const {sequelize} = require('./util/database')
 const {User} = require('./models/user')
@@ -13,7 +14,7 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
-app.use(express.static(path.resolve(__dirname, "../build")))
+app.use(express.static(path.join(__dirname, "../../dist")))
 
 
 User.hasMany(billingInfo)
