@@ -9,7 +9,7 @@ const Admin = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5556/admin")
+      .get("/admin")
       .then((res) => {
         if (authCtx.admin) {
           console.log(res.data);
