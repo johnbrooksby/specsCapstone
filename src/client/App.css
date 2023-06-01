@@ -251,7 +251,7 @@ h1 {
 }
 
 .email {
-  width: 80%;
+  min-width: 80%;
 }
 
 .form-input:focus, .reg-form-input:focus {

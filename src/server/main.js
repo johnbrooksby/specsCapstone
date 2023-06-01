@@ -13,7 +13,8 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
-app.use(express.static(`${__dirname}/dist`))
+app.use(express.static(path.resolve(__dirname, "../build")))
+
 
 User.hasMany(billingInfo)
 billingInfo.belongsTo(User)
@@ -22,6 +23,10 @@ app.post('/register', register)
 app.post('/login', login)
 app.get('/admin', users)
 app.get('/logout', logout)
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'))
+})
 
 // sequelize.sync({force:true})
 sequelize.sync()
