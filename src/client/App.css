@@ -37,7 +37,7 @@
   width: 75vw;
   justify-content: space-between;
   padding-right: 5px;
-  min-height: 64px;
+  min-height: 66px;
 }
 
 .head-spacer {
@@ -55,7 +55,7 @@
   padding: 18px;
   font-size: 15pt;
   width: 350px;
-  height: 63px;
+  min-height: 63px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,6 +80,8 @@
   background-color: #cad1ce;
   margin-top: 10px;
 }
+
+
 
 .welcome {
   min-height: 86vh;

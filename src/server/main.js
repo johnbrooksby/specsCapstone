@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
-app.use(express.static(path.resolve(__dirname, "../build")))
+// app.use(express.static(path.resolve(__dirname, "../dist")))
 
 
 User.hasMany(billingInfo)
@@ -25,9 +25,9 @@ app.post('/login', login)
 app.get('/admin', users)
 app.get('/logout', logout)
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../build', 'index.html'))
-})
+// app.get('/*', function (req, res) {
+//   res.sendFile(path.join(__dirname, '../build', 'index.html'))
+// })
 
 // sequelize.sync({force:true})
 sequelize.sync()

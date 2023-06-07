@@ -19,6 +19,7 @@ const createToken = (username, id) => {
 };
 
 let admin = false
+let userList
 
 module.exports = {
   register: async (req, res) => {
@@ -101,7 +102,7 @@ module.exports = {
   users: async (req,res) => {
     if(admin){
       try{
-        let userList = await User.findAll()
+        userList = await User.findAll()
         // let billingList = await BillingInfo.findAll()
         res.status(200).send(userList)
       }
@@ -117,6 +118,7 @@ module.exports = {
 
   logout: async (req, res) => {
       admin = false
-      console.log('logged out')
+      userList = null
+      console.log(admin, userList, 'logged out')
   }
 };
