@@ -1,18 +1,27 @@
-const express = require("express");
 const ViteExpress = require("vite-express");
+const express = require('express');
 require('dotenv').config()
-const {PORT} = process.env
 const path = require('path')
 const cors = require("cors")
 const {sequelize} = require('./util/database')
 const {User} = require('./models/user')
 const {billingInfo} = require('./models/billing')
+const {PORT} = process.env
 const {register, login, users, logout} = require("./controllers/Auth")
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const app = express();
 
 app.use(express.json())
 app.use(cors())
+
+// This is a public sample test API key.
+// Don’t submit any personally identifiable information in requests made with this key.
+// Sign in to see your own test API key embedded in code samples.
+app.use(express.static('public'));
+
+const YOUR_DOMAIN = 'http://localhost:5555';
+
 
 // app.use(express.static(path.resolve(__dirname, "../dist")))
 
@@ -24,6 +33,22 @@ app.post('/register', register)
 app.post('/login', login)
 app.get('/admin', users)
 app.get('/logout', logout)
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price: 50,
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: `${YOUR_DOMAIN}/success.html`,
+    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+  });
+
+  res.redirect(303, session.url);
+});
 
 // app.get('/*', function (req, res) {
 //   res.sendFile(path.join(__dirname, '../build', 'index.html'))
