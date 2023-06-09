@@ -2,6 +2,7 @@
   "name": "vite-react-starter",
   "private": true,
   "version": "0.0.0",
+  "proxy": "http://localhost:4242",
   "main": "src/server/main.js",
   "scripts": {
     "dev": "nodemon src/server/main.js -w src/server",

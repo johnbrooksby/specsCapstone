@@ -5,7 +5,7 @@ const Account = () => {
   return (
     <div className='testimonial accountPage'>
       <StripePayment />
-        <img src='https://i.gifer.com/7i16.gif' />
+        {/* <img src='https://i.gifer.com/7i16.gif' /> */}
         <h1 className='accountPageText'>- - - - Under Construction - - - -</h1>
     </div>
   )
