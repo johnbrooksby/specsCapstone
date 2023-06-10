@@ -20,11 +20,10 @@ app.use(cors())
 // Sign in to see your own test API key embedded in code samples.
 app.use(express.static('public'));
 
-const YOUR_DOMAIN = 'http://localhost:5555';
+const YOUR_DOMAIN = 'http://localhost:5556';
 
 
 // app.use(express.static(path.resolve(__dirname, "../dist")))
-
 
 User.hasMany(billingInfo)
 billingInfo.belongsTo(User)
@@ -33,16 +32,22 @@ app.post('/register', register)
 app.post('/login', login)
 app.get('/admin', users)
 app.get('/logout', logout)
+app.post('/v1/checkout/sessions') 
+app.post('/v1/checkout/sessions/:id/expire')
+app.get('/v1/checkout/sessions/:id')
+app.get('/v1/checkout/sessions')
+app.get('/v1/checkout/sessions/:id/line_items')
 app.post('/create-checkout-session', async (req, res) => {
+  let price1 = 50
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        // price: 50,
+        price: price1,
         quantity: 1,
       },
     ],
-    mode: 'payment',
+    mode: 'subscription',
     success_url: `${YOUR_DOMAIN}/success.html`,
     cancel_url: `${YOUR_DOMAIN}/cancel.html`,
   });
