@@ -7,7 +7,7 @@ const {sequelize} = require('./util/database')
 const {User} = require('./models/user')
 const {billingInfo} = require('./models/billing')
 const {PORT} = process.env
-const {register, login, users, logout} = require("./controllers/Auth")
+const {register, login, users, logout, billing} = require("./controllers/Auth")
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const app = express();
@@ -32,28 +32,29 @@ app.post('/register', register)
 app.post('/login', login)
 app.get('/admin', users)
 app.get('/logout', logout)
+app.post('/billing', billing)
 app.post('/v1/checkout/sessions') 
 app.post('/v1/checkout/sessions/:id/expire')
 app.get('/v1/checkout/sessions/:id')
 app.get('/v1/checkout/sessions')
 app.get('/v1/checkout/sessions/:id/line_items')
-app.post('/create-checkout-session', async (req, res) => {
-  let price1 = 50
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: price1,
-        quantity: 1,
-      },
-    ],
-    mode: 'subscription',
-    success_url: `${YOUR_DOMAIN}/success.html`,
-    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
-  });
+// app.post('/create-checkout-session', async (req, res) => {
+//   let price1 = 50
+//   const session = await stripe.checkout.sessions.create({
+//     line_items: [
+//       {
+//         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+//         price: price1,
+//         quantity: 1,
+//       },
+//     ],
+//     mode: 'subscription',
+//     success_url: `${YOUR_DOMAIN}/success.html`,
+//     cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+//   });
 
-  res.redirect(303, session.url);
-});
+//   res.redirect(303, session.url);
+// });
 
 // app.get('/*', function (req, res) {
 //   res.sendFile(path.join(__dirname, '../build', 'index.html'))

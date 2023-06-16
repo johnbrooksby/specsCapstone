@@ -13,7 +13,6 @@ const AuthContext = createContext({
   setAdmin: () => {}
 })
 
-
 const calculateRemainingTime = (exp) => {
   const currentTime = new Date().getTime()
   const expTime = exp 
@@ -26,8 +25,6 @@ const getLocalData = () => {
   const storedExp = localStorage.getItem('exp')
   const storeId = localStorage.getItem('userId')
   const storedAdmin = localStorage.getItem('admin')
-  
-  
   const remainingTime = calculateRemainingTime(storedExp)
   
   if (remainingTime <= 1000 * 60 * 30) {
@@ -38,7 +35,6 @@ const getLocalData = () => {
     return null
   }
   
-  
   return {
     token: storedToken,
     duration: remainingTime,
@@ -46,7 +42,6 @@ const getLocalData = () => {
     admin: storedAdmin
   }
 }
-
 
 export const AuthContextProvider = (props) => {
   const localData = getLocalData()
@@ -61,7 +56,6 @@ export const AuthContextProvider = (props) => {
   const [token, setToken] = useState(initialToken)
   const [userId, setUserId] = useState(initialId)
   const [admin, setAdmin] = useState(false);
-
 
   const logout = () => {
     setToken(null)

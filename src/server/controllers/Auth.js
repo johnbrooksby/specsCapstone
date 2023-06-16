@@ -9,22 +9,32 @@ const createToken = (username, id) => {
   return jwt.sign(
     {
       username,
-      id
+      id,
     },
     SECRET,
     {
-      expiresIn: "14 days"
+      expiresIn: "14 days",
     }
   );
 };
 
-let admin = false
-let userList
+let admin = false;
+let userList;
+let billingList;
 
 module.exports = {
   register: async (req, res) => {
     try {
-      const { username, name, password, email_address, street_address, city, state, zip  } = req.body;
+      const {
+        username,
+        name,
+        password,
+        email_address,
+        street_address,
+        city,
+        state,
+        zip,
+      } = req.body;
       let foundUser = await User.findOne({ where: { username: username } });
       if (foundUser) {
         res.status(400).send("That username is already in use");
@@ -52,7 +62,7 @@ module.exports = {
           username: newUser.dataValues.username,
           userId: newUser.dataValues.id,
           token,
-          exp
+          exp,
         });
       }
     } catch (error) {
@@ -72,12 +82,12 @@ module.exports = {
           foundUser.hashedPass
         );
         if (isAuthenticated) {
-          console.log("datavalues",foundUser.dataValues)
+          console.log("datavalues", foundUser.dataValues);
           const token = createToken(
             foundUser.dataValues.username,
             foundUser.dataValues.id
           );
-          admin = foundUser.dataValues.admin
+          admin = foundUser.dataValues.admin;
           const exp = Date.now() + 1000 * 60 * 60 * 24 * 14;
           res.status(200).send({
             username: foundUser.dataValues.username,
@@ -99,26 +109,40 @@ module.exports = {
     }
   },
 
-  users: async (req,res) => {
-    if(admin){
-      try{
-        userList = await User.findAll()
-        // let billingList = await BillingInfo.findAll()
-        res.status(200).send(userList)
-      }
-      catch(error) {
-        console.log('Error getting users')
-        console.log(error)
-        res.sendStatus(400)
+  users: async (req, res) => {
+    if (admin) {
+      try {
+        userList = await User.findAll();
+        // billingList = await BillingInfo.findAll()
+        console.log(billingList);
+        res.status(200).send(userList);
+      } catch (error) {
+        console.log("Error getting users");
+        console.log(error);
+        res.sendStatus(400);
       }
     } else {
-      res.status(401).send('Unauthorized')
+      res.status(401).send("Unauthorized");
+    }
+  },
+
+  billing: async (req, res) => {
+    try {
+      const {id} = req.body
+      // console.log(req.body)
+      let user = await User.findOne({ where: { id } })
+      console.log(user)
+      return user
+    } catch (error) {
+      console.log("Error getting users");
+      console.log(error);
+      res.sendStatus(400);
     }
   },
 
   logout: async (req, res) => {
-      admin = false
-      userList = null
-      console.log(admin, userList, 'logged out')
-  }
+    admin = false;
+    userList = null;
+    console.log(admin, userList, "logged out");
+  },
 };
