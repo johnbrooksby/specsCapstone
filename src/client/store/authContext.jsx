@@ -57,7 +57,7 @@ export const AuthContextProvider = (props) => {
   const [userId, setUserId] = useState(initialId)
   const [admin, setAdmin] = useState(false);
 
-  const logout = () => {
+  const logout = (logoutTimer) => {
     setToken(null)
     setUserId(null)
     setAdmin(false)
@@ -69,9 +69,9 @@ export const AuthContextProvider = (props) => {
     axios.get('/logout')
   }
 
-  const login = (token, exp, userID, admin) => {
+  const login = (token, exp, userId, admin) => {
     setToken(token)
-    setUserId(userID)
+    setUserId(userId)
     localStorage.setItem('token', token)
     localStorage.setItem('exp', exp)
     localStorage.setItem('userId', userId)

@@ -3,8 +3,12 @@ import AuthContext from "../store/authContext";
 import axios from "axios";
 import Unauthorized from "./Unauthorized";
 
+
 const Admin = () => {
   const [users, setUsers] = useState([]);
+  const [billingPage, setBillingPage] = useState(false)
+  const [client, setClient] = useState([])
+  const [back, setBack] = useState(false)
 
   const authCtx = useContext(AuthContext);
 
@@ -13,6 +17,8 @@ const Admin = () => {
       .get("/admin")
       .then((res) => {
         if (authCtx.admin) {
+          setBillingPage(false)
+          authCtx.setAdmin(true)
           console.log(res.data);
           setUsers(res.data);
         } else {
@@ -27,7 +33,7 @@ const Admin = () => {
           </div>
         );
       });
-  }, []);
+  }, [back]);
   console.log("users:", users);
   const mappedUsers = users.map((user) => {
     // console.log("-------User-------",user)
@@ -45,8 +51,11 @@ const Admin = () => {
           axios
           .post('/billing', body)
           .then(res => {
-            
-            console.log(res.data)})
+            console.log(res.data)
+           setBillingPage(true)
+           setClient(res.data.name)
+           console.log(billingPage)
+        })
           .catch(err => console.error(err))
         }}>
           See Billing Info
@@ -54,8 +63,12 @@ const Admin = () => {
       </div>
     );
   });
-
-  return <div className="adminPage">{mappedUsers}</div>;
+  console.log(billingPage)
+  return !billingPage ? (<div className="adminPage">{mappedUsers}</div>)
+    : (<div>Hello, update billing info for {client}
+    <br></br>
+    <a onClick={() => setBack(!back)}>Back</a>
+    </div>)
 };
 
 export default Admin;

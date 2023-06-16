@@ -27,7 +27,7 @@ function App() {
         <Route path="testimonials" element={<Testimonials />} />
         <Route path="admin" element={authCtx.admin ? <Admin /> : <Navigate to='/' />} />
         <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' /> } />
-        <Route path="create-checkout-session" element={<Testimonials />} />
+        {/* <Route path="create-checkout-session" element={<Testimonials />} /> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />

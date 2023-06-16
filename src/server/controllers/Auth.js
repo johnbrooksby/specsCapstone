@@ -132,7 +132,7 @@ module.exports = {
       // console.log(req.body)
       let user = await User.findOne({ where: { id } })
       console.log(user)
-      return user
+      res.status(200).send(user)
     } catch (error) {
       console.log("Error getting users");
       console.log(error);
