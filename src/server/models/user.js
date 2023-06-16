@@ -23,7 +23,6 @@ module.exports = {
         },
         admin: {
             type: DataTypes.BOOLEAN,
-            // allowNull: false
         },
         email_address: DataTypes.STRING,
         street_address: {

@@ -14,7 +14,10 @@ import Footer from "./components/Footer";
 import Admin from "./components/Admin";
 
 
+
+
 function App() {
+
   const authCtx = useContext(AuthContext)
   console.log("authCtx",authCtx.admin)
   return (

@@ -5,10 +5,10 @@ const path = require('path')
 const cors = require("cors")
 const {sequelize} = require('./util/database')
 const {User} = require('./models/user')
-const {billingInfo} = require('./models/billing')
+const {BillingInfo} = require('./models/billing')
 const {PORT} = process.env
 const {register, login, users, logout, billing} = require("./controllers/Auth")
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const app = express();
 
@@ -25,8 +25,8 @@ const YOUR_DOMAIN = 'http://localhost:5556';
 
 // app.use(express.static(path.resolve(__dirname, "../dist")))
 
-User.hasMany(billingInfo)
-billingInfo.belongsTo(User)
+User.hasMany(BillingInfo)
+BillingInfo.belongsTo(User)
 
 app.post('/register', register)
 app.post('/login', login)

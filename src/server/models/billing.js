@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize')
 const {sequelize} = require('../util/database')
 
 module.exports = {
-    billingInfo: sequelize.define("billingInfo", {
+    BillingInfo: sequelize.define("billinginfo", {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -11,11 +11,9 @@ module.exports = {
         },
         charge_explanation: {
             type: DataTypes.TEXT,
-            // allowNull: false
         },
         amount_due: {
-            type: DataTypes.STRING
-            // allowNull: false
+            type: DataTypes.DECIMAL(10,2)
         }
     })
 }

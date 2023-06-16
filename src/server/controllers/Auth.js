@@ -52,7 +52,13 @@ module.exports = {
           state: state,
           zip: zip,
         });
+        const newBill = await BillingInfo.create({
+          userId: newUser.id,
+          charge_explanation: null,
+          amount_due: 0,
+        })
         console.log(newUser);
+        console.log(newBill)
         const token = createToken(
           newUser.dataValues.username,
           newUser.dataValues.id
@@ -113,8 +119,9 @@ module.exports = {
     if (admin) {
       try {
         userList = await User.findAll();
-        // billingList = await BillingInfo.findAll()
-        console.log(billingList);
+        // billingList = await BillingInfo.findAll({
+        //   attributes: ['charge_explanation', 'amount_due']
+        // });
         res.status(200).send(userList);
       } catch (error) {
         console.log("Error getting users");
@@ -130,7 +137,7 @@ module.exports = {
     try {
       const {id} = req.body
       // console.log(req.body)
-      let user = await User.findOne({ where: { id } })
+      let user = await User.findOne({ where: { id }})
       console.log(user)
       res.status(200).send(user)
     } catch (error) {
