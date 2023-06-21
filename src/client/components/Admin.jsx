@@ -13,13 +13,14 @@ const Admin = () => {
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
+    // console.log(authCtx.admin)
     axios
       .get("/admin")
       .then((res) => {
         if (authCtx.admin) {
           setBillingPage(false)
           authCtx.setAdmin(true)
-          console.log(res.data);
+          // console.log(res.data);
           setUsers(res.data);
         } else {
           return;
@@ -27,12 +28,11 @@ const Admin = () => {
       })
       .catch((err) => {
         console.error(err);
-        return (
-          <div>
-            <Unauthorized />
-          </div>
-        );
+        {<Unauthorized />};
       });
+      if (!authCtx.admin){
+        {<Unauthorized />}
+      }
   }, [back]);
   console.log("users:", users);
   const mappedUsers = users.map((user) => {
@@ -40,7 +40,6 @@ const Admin = () => {
     return (
       <div key={user.id} className="userCard">
         <h3>{user.name}</h3>
-        <p>User Id: {user.id}</p>
         <p>Email: {user.email_address}</p>
         <p>
           Address: {user.street_address} {user.city}, {user.state} {user.zip}
@@ -65,7 +64,7 @@ const Admin = () => {
   });
   console.log(billingPage)
   return !billingPage ? (<div className="adminPage">{mappedUsers}</div>)
-    : (<div>Hello, update billing info for {client}
+    : (<div>Update billing info for {client}
     <br></br>
     <a onClick={() => setBack(!back)}>Back</a>
     </div>)

@@ -118,10 +118,18 @@ module.exports = {
   users: async (req, res) => {
     if (admin) {
       try {
-        userList = await User.findAll();
-        // billingList = await BillingInfo.findAll({
-        //   attributes: ['charge_explanation', 'amount_due']
-        // });
+        userList = await User.findAll({
+          where: {admin: false},
+          attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id']
+        });
+        billingList = await BillingInfo.findAll({
+          include: [{
+            model: User,
+            required: true,
+          }],
+          attributes: ['charge_explanation', 'amount_due']
+        });
+        console.log("*******Billing list**********", billingList)
         res.status(200).send(userList);
       } catch (error) {
         console.log("Error getting users");
@@ -137,8 +145,9 @@ module.exports = {
     try {
       const {id} = req.body
       // console.log(req.body)
-      let user = await User.findOne({ where: { id }})
-      console.log(user)
+      let user = await User.findOne({ where: { id },
+        attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id']})
+      console.log('~~~~~~~~~USER~~~~~~~~~~~',user)
       res.status(200).send(user)
     } catch (error) {
       console.log("Error getting users");
@@ -150,6 +159,7 @@ module.exports = {
   logout: async (req, res) => {
     admin = false;
     userList = null;
+    billingList = null
     console.log(admin, userList, "logged out");
   },
 };
