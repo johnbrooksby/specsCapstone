@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../store/authContext";
 import axios from "axios";
 import Unauthorized from "./Unauthorized";
+import Billing from "./Billing";
 
 
 const Admin = () => {
@@ -64,10 +65,11 @@ const Admin = () => {
   });
   console.log(billingPage)
   return !billingPage ? (<div className="adminPage">{mappedUsers}</div>)
-    : (<div>Update billing info for {client}
-    <br></br>
-    <a onClick={() => setBack(!back)}>Back</a>
-    </div>)
+    : (<Billing 
+        client={client}
+        back={back}
+        setBack={setBack}
+        />)
 };
 
 export default Admin;

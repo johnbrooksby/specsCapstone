@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Billing = () => {
+const Billing = (props) => {
   return (
-    <div>Billing</div>
+    <div>Update billing info for {props.client}
+    <br></br>
+    <a onClick={() => props.setBack(!props.back)}>Back</a>
+    </div>
   )
 }
 

@@ -147,11 +147,11 @@ module.exports = {
       // console.log(req.body)
       let user = await User.findOne({ where: { id },
         attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id']})
-      console.log('~~~~~~~~~USER~~~~~~~~~~~',user)
+      // console.log('~~~~~~~~~USER~~~~~~~~~~~',user)
       res.status(200).send(user)
     } catch (error) {
       console.log("Error getting users");
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   },
@@ -160,6 +160,6 @@ module.exports = {
     admin = false;
     userList = null;
     billingList = null
-    console.log(admin, userList, "logged out");
+    console.log(admin, userList, billingList, "logged out");
   },
 };
