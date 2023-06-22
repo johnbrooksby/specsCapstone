@@ -69,6 +69,7 @@ const Login = () => {
             onChange={(e) => setUsername(e.target.value)}
             className="form-input"
             required
+            autoFocus
           />
           <input
             placeholder="Password"
@@ -93,6 +94,7 @@ const Login = () => {
             onChange={(e) => setUsername(e.target.value)}
             className="reg-form-input"
             required
+            autoFocus
           />
           <input
             placeholder="First & Last Name"

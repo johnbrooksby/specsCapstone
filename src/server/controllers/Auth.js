@@ -120,17 +120,11 @@ module.exports = {
       try {
         userList = await User.findAll({
           where: {admin: false},
-          attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id']
+          attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id'],
+          include: BillingInfo
         });
-        billingList = await BillingInfo.findAll({
-          include: [{
-            model: User,
-            required: true,
-          }],
-          attributes: ['charge_explanation', 'amount_due']
-        });
-        console.log("*******Billing list**********", billingList)
         res.status(200).send(userList);
+        // res.status(200).send(billingList);
       } catch (error) {
         console.log("Error getting users");
         console.log(error);
@@ -145,7 +139,11 @@ module.exports = {
     try {
       const {id} = req.body
       // console.log(req.body)
-      let user = await User.findOne({ where: { id },
+      let user = await User.findAll({ where: { id },
+        include: [{
+          model: BillingInfo,
+          required: true,
+        }],
         attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id']})
       // console.log('~~~~~~~~~USER~~~~~~~~~~~',user)
       res.status(200).send(user)
