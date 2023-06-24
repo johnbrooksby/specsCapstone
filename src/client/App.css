@@ -375,6 +375,44 @@ li a:hover {
   background-color: #cad1ce;
 }
 
+.billing {
+  min-height: 68vh;
+  background-color:#364a60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+.billscontainer {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.billdiv {
+  height: 50px;
+  background-color: #f2ebe0;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 25px;
+  margin: 20px;
+}
+
+.backbtn {
+  padding-left: 10px;
+  margin-top: 20px;  
+  padding-bottom: 20px;
+
+}
+
 .footer {
   display: flex;
   justify-content: space-evenly;

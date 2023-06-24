@@ -2,26 +2,30 @@ import React from "react";
 
 const Billing = (props) => {
   // const { bills, client, back, setBack } = props;
-  console.log('bills in billing page', props.bills)
-  console.log('client in billing page', props.client)
+  // console.log('bills in billing page', props.bills)
+  // console.log('client in billing page', props.client)
 
   const billList = props.bills.map((charge) => {
     return (
-      <div>
-        <h4>{charge.charge_explanation}</h4>
-        <h4>{charge.amount_due}</h4>
-      </div>
+        <div key={charge.id} className="billdiv">
+          <li>{charge.charge_explanation}</li>
+          <li>{charge.amount_due}</li>
+        </div>
     );
   });
 
   return (
-    <div>
+    <div className="billing">
       Update billing info for {props.client}
       <br></br>
-      {billList}
+      <div>
+        <ul className="billscontainer">{billList}</ul>
+      </div>
       {/* {props.bills.charge_explanation} */}
       {/* {props.bills.amount_due} */}
-      <a onClick={() => props.setBack(!props.back)}>Back</a>
+      <a onClick={() => props.setBack(!props.back)} className="backbtn">
+        &#x3c;&#x3c;Back
+      </a>
     </div>
   );
 };
