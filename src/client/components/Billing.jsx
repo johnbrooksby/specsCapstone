@@ -15,10 +15,10 @@ const Billing = (props) => {
   });
 
   return (
-    <div className="billing">
-      Update billing info for {props.client}
+    <div className="billdetail">
+      <h3>Update billing info for {props.client}</h3>
       <br></br>
-      <div>
+      <div className="billing">
         <ul className="billscontainer">{billList}</ul>
       </div>
       {/* {props.bills.charge_explanation} */}

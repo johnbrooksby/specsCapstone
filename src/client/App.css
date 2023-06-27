@@ -386,7 +386,7 @@ li a:hover {
 }
 
 .billscontainer {
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -403,14 +403,14 @@ li a:hover {
   justify-content: space-evenly;
   align-items: center;
   border-radius: 25px;
-  margin: 20px;
+  margin: 10px;
 }
 
-.backbtn {
+.backbtn .billdetail {
   padding-left: 10px;
   margin-top: 20px;  
   padding-bottom: 20px;
-
+  background-color: #364a60;
 }
 
 .footer {
