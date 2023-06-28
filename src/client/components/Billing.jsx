@@ -13,7 +13,7 @@ const Billing = (props) => {
       //   <li>{charge.charge_explanation}</li>
       //   <li>{charge.amount_due}</li>
       // </div>
-      <tr>
+      <tr key={charge.id}>
         <td className="bills_detail">{charge.charge_explanation}</td>
         <td className="bills_detail">${charge.amount_due}</td>
       </tr>
@@ -22,7 +22,7 @@ const Billing = (props) => {
 
   return (
     <div className="billdetail">
-      <h3>Update billing info for {props.client}</h3>
+      <h3 className="billPageHeader">Update billing info for {props.client}</h3>
       <br></br>
       {/* <div className="billing">
         <ul className="billscontainer">{billList}</ul>
@@ -46,7 +46,10 @@ const Billing = (props) => {
       </div>
       {/* {props.bills.charge_explanation} */}
       {/* {props.bills.amount_due} */}
-      <a onClick={() => props.setBack(!props.back)} className="backbtn">
+      <a onClick={() => props.setBack(!props.back)} className="backbtn topBack">
+        &#x3c;&#x3c;Back
+      </a>
+      <a onClick={() => props.setBack(!props.back)} className="backbtn bottomBack">
         &#x3c;&#x3c;Back
       </a>
     </div>
