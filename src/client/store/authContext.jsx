@@ -55,14 +55,16 @@ export const AuthContextProvider = (props) => {
 
   let initialToken;
   let initialId;
+  let initialAdmin;
   if (localData) {
     initialToken = localData.token;
     initialId = localData.userId;
+    initialAdmin = localData.admin;
   }
 
   const [token, setToken] = useState(initialToken);
   const [userId, setUserId] = useState(initialId);
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(initialAdmin);
   const [client, setClient] = useState(null);
   const [bills, setBills] = useState(null);
 
@@ -85,12 +87,15 @@ export const AuthContextProvider = (props) => {
   const login = (token, exp, userId, admin) => {
     setToken(token);
     setUserId(userId);
+    setAdmin(admin)
     localStorage.setItem("token", token);
     localStorage.setItem("exp", exp);
     localStorage.setItem("userId", userId);
     localStorage.setItem("admin", admin);
     localStorage.setItem("client", client);
     localStorage.setItem("bills", bills);
+    
+    // console.log("--------------token-----------------",token)
 
     const remainingTime = calculateRemainingTime(exp);
 

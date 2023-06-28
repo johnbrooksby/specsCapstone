@@ -39,7 +39,7 @@ const Admin = () => {
       }
     }
   }, [back]);
-  console.log("users:", users);
+  // console.log("users:", users);
   const mappedUsers = users.map((user) => {
     // console.log("-------User-------",user)
     return (
@@ -57,7 +57,7 @@ const Admin = () => {
             axios
               .post("/billing", body)
               .then((res) => {
-                console.log('---res.data---', res.data);
+                // console.log('---res.data---', res.data);
                 setBillingPage(true);
                 setClient(res.data[0].name);
                 setBills(res.data[0].billinginfos)
@@ -70,13 +70,13 @@ const Admin = () => {
       </div>
     );
   });
-  console.log('bills', bills)
-  console.log("client", client);
-  console.log(billingPage);
+  // console.log('bills', bills)
+  // console.log("client", client);
+  // console.log(billingPage);
   return !billingPage ? (
     <div className="adminPage">{mappedUsers}</div>
   ) : (
-    <Billing client={client} back={back} setBack={setBack} bills={bills} />
+    <Billing client={client} back={back} setBack={setBack} bills={bills} admin={authCtx.admin} />
   );
 };
 

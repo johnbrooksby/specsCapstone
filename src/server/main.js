@@ -7,7 +7,7 @@ const {sequelize} = require('./util/database')
 const {User} = require('./models/user')
 const {BillingInfo} = require('./models/billing')
 const {PORT} = process.env
-const {register, login, users, logout, billing} = require("./controllers/Auth")
+const {register, login, usersAdmin, logout, billing, account} = require("./controllers/Auth")
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const app = express();
@@ -30,9 +30,10 @@ BillingInfo.belongsTo(User)
 
 app.post('/register', register)
 app.post('/login', login)
-app.get('/admin', users)
+app.get('/admin', usersAdmin)
 app.put('/logout', logout)
 app.post('/billing', billing)
+app.post('/account', account)
 app.post('/v1/checkout/sessions') 
 app.post('/v1/checkout/sessions/:id/expire')
 app.get('/v1/checkout/sessions/:id')

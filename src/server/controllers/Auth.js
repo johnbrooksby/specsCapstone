@@ -5,7 +5,7 @@ const { BillingInfo } = require("../models/billing");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const createToken = (username, id) => {
+const createToken = (username, id, admin) => {
   return jwt.sign(
     {
       username,
@@ -91,14 +91,14 @@ module.exports = {
           console.log("datavalues", foundUser.dataValues);
           const token = createToken(
             foundUser.dataValues.username,
-            foundUser.dataValues.id
+            foundUser.dataValues.id,
           );
           admin = foundUser.dataValues.admin;
           const exp = Date.now() + 1000 * 60 * 60 * 24 * 14;
           res.status(200).send({
             username: foundUser.dataValues.username,
             userId: foundUser.dataValues.id,
-            admin: foundUser.dataValues.admin,
+            admin,
             token,
             exp,
           });
@@ -115,7 +115,23 @@ module.exports = {
     }
   },
 
-  users: async (req, res) => {
+  account: async (req, res) => {
+    try {
+      userbills = await User.findOne({
+        where: {"userId": req.userId},
+        attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id'],
+        include: BillingInfo
+      });
+      res.status(200).send(userBills);
+      // res.status(200).send(billingList);
+    } catch (error) {
+      console.log("Error getting user");
+      console.log(error);
+      res.sendStatus(400);
+    }
+  },
+
+  usersAdmin: async (req, res) => {
     if (admin) {
       try {
         userList = await User.findAll({

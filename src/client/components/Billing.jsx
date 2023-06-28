@@ -22,7 +22,13 @@ const Billing = (props) => {
 
   return (
     <div className="billdetail">
-      <h3 className="billPageHeader">Update billing info for {props.client}</h3>
+      {props.admin ? (
+        <h3 className="billPageHeader">
+          Update billing info for {props.client}
+        </h3>
+      ) : (
+        <h3 className="billPageHeader">Billing Info for {props.client}</h3>
+      )}
       <br></br>
       {/* <div className="billing">
         <ul className="billscontainer">{billList}</ul>
@@ -46,12 +52,22 @@ const Billing = (props) => {
       </div>
       {/* {props.bills.charge_explanation} */}
       {/* {props.bills.amount_due} */}
-      <a onClick={() => props.setBack(!props.back)} className="backbtn topBack">
-        &#x3c;&#x3c;Back
-      </a>
-      <a onClick={() => props.setBack(!props.back)} className="backbtn bottomBack">
-        &#x3c;&#x3c;Back
-      </a>
+      {props.admin && (
+        <a
+          onClick={() => props.setBack(!props.back)}
+          className="backbtn topBack"
+        >
+          &#x3c;&#x3c;Back
+        </a>
+      )}
+      {props.admin && (
+        <a
+          onClick={() => props.setBack(!props.back)}
+          className="backbtn bottomBack"
+        >
+          &#x3c;&#x3c;Back
+        </a>
+      )}
     </div>
   );
 };

@@ -458,9 +458,8 @@ table {
 }
 
 .bills_detail_head {
-  border-bottom: 2px solid #818181;
+  border-bottom: 3px solid #818181;
   font-weight: bolder;
-  margin-bottom: 2px;
 }
 
 .bills_detail {
@@ -469,9 +468,8 @@ table {
 }
 
 .bills_detail_foot {
-  border: 2px solid #818181;
+  border: 3px double #818181;
   font-weight: bolder;
-  margin-top: 5px;
 }
 
 .footer {
