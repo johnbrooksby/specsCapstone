@@ -413,6 +413,36 @@ li a:hover {
   background-color: #364a60;
 }
 
+.table {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.bills_detail_table, .bills_detail, .bills_detail_head, .bills_detail_foot {
+  border: 1px solid #818181;
+  padding: 4px;
+}
+
+.bills_detail_head {
+  border-bottom: 2px solid #818181;
+  font-weight: bolder;
+  margin-bottom: 2px;
+}
+
+.bills_detail {
+  width: 250px;
+  height: 20px;
+}
+
+.bills_detail_foot {
+  border: 2px solid #818181;
+  font-weight: bolder;
+  margin-top: 5px;
+}
+
 .footer {
   display: flex;
   justify-content: space-evenly;
