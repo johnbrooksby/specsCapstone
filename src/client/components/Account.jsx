@@ -1,38 +1,38 @@
-import React, {useContext, useEffect, useState} from 'react'
-import Billing from './Billing'
-import AuthContext from '../store/authContext'
-import axios from 'axios';
+import React, { useContext, useEffect, useState } from "react";
+import Billing from "./Billing";
+import AuthContext from "../store/authContext";
+import axios from "axios";
 // import StripePayment from './Stripe'
 
 const Account = () => {
   const authCtx = useContext(AuthContext);
-  
-  const [client, setClient] = useState(authCtx.client);
-  const [bills, setBills] = useState([]);
 
+  const [client, setClient] = useState('');
+  const [bills, setBills] = useState([]);
 
   useEffect(() => {
     // console.log(authCtx.admin)
-    let body = authCtx.userId
+    let body = { userId: authCtx.userId };
+    // console.log("body", body);
     axios
       .post("/account", body)
       .then((res) => {
-          // console.log(res.data);
-          // setClient(res.data);
-        console.log(res.data)
-        }
-      )
+        // console.log('RES.DATA.NAME', res.data.name);
+        // console.log('RES.DATA.BILLINGINFO', res.data.billinginfos);
+        setClient(res.data.name);
+        // console.log("client", client);
+        setBills(res.data.billinginfos);
+        // console.log("bills", bills);
+      })
       .catch((err) => {
         console.error(err);
       });
-  });
+  }, [authCtx.userId]);
   // console.log("users:", users);
   // console.log('bills', bills)
   // console.log("client", client);
   // console.log(billingPage);
-  return (
-    <Billing client={client} bills={bills} />
-  );
+  return <Billing client={client} bills={bills} />;
 };
 
-export default Account
+export default Account;

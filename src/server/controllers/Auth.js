@@ -21,6 +21,7 @@ const createToken = (username, id, admin) => {
 let admin = false;
 let userList;
 let billingList;
+let userBills;
 
 module.exports = {
   register: async (req, res) => {
@@ -116,9 +117,10 @@ module.exports = {
   },
 
   account: async (req, res) => {
+    // console.log('REQ.BODY', req.body.userId)
     try {
-      userbills = await User.findOne({
-        where: {"userId": req.userId},
+      userBills = await User.findOne({
+        where: {id: req.body.userId},
         attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id'],
         include: BillingInfo
       });
