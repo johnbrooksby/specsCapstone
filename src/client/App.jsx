@@ -19,7 +19,7 @@ import Admin from "./components/Admin";
 function App() {
 
   const authCtx = useContext(AuthContext)
-  console.log("authCtx",authCtx.admin)
+  // console.log("authCtx",authCtx.admin)
   return (
     <div className="App">
       <Header />
