@@ -176,6 +176,6 @@ module.exports = {
     admin = false;
     userList = null;
     billingList = null
-    console.log(admin, userList, billingList, "logged out");
+    // console.log(admin, userList, billingList, "logged out");
   },
 };

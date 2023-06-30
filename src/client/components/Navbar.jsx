@@ -4,6 +4,8 @@ import AuthContext from "../store/authContext";
 
 const Navbar = () => {
   const authCtx = useContext(AuthContext);
+  const admin = window.localStorage.getItem("admin")
+  console.log("authCtx.admin", window.localStorage.getItem("admin"))
 
   return (
     <div>
@@ -17,7 +19,7 @@ const Navbar = () => {
               <NavLink to="testimonials">Testimonials</NavLink>
             </li>
             <li className="li">
-              {authCtx.admin ? <NavLink to="admin">Admin</NavLink> : <NavLink to="account">Account</NavLink>}
+              {admin ? <NavLink to="admin">Admin</NavLink> : <NavLink to="account">Account</NavLink>}
             </li>
             <li className="li">
             <a onClick={() => authCtx.logout()}>Logout</a>

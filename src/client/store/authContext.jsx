@@ -95,7 +95,7 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("token", token);
     localStorage.setItem("exp", exp);
     localStorage.setItem("userId", userId);
-    localStorage.setItem("admin", admin);
+    localStorage.setItem("admin", JSON.stringify(admin));
     localStorage.setItem("client", client);
     localStorage.setItem("bills", bills);
     

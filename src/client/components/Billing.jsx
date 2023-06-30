@@ -50,8 +50,11 @@ const Billing = (props) => {
           </tfoot>
         </table>
       </div>
-      {/* {props.bills.charge_explanation} */}
-      {/* {props.bills.amount_due} */}
+      {props.admin && (
+        <div className="add_charge">
+          <a className="orange-btn">Add New Charge</a>
+        </div>
+      )}
       {props.admin && (
         <a
           onClick={() => props.setBack(!props.back)}

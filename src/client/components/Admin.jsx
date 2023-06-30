@@ -15,6 +15,7 @@ const Admin = () => {
 
   useEffect(() => {
     // console.log(authCtx.admin)
+    authCtx.setAdmin(window.localStorage.getItem("admin"))
     axios
       .get("/admin")
       .then((res) => {

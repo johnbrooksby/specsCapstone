@@ -1,8 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useContext} from "react";
+import AuthContext from "../store/authContext";
 
 const Header = () => {
+  const authCtx = useContext(AuthContext);
+
   return (
+    // !authCtx.admin && (
     <div className="header">
       <div className="sub-header">
         <div className="head-spacer"></div>
@@ -16,6 +19,7 @@ const Header = () => {
           </a>
       </div>
     </div>
+  // )
   );
 };
 
