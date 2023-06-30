@@ -19,7 +19,7 @@ import Admin from "./components/Admin";
 function App() {
 
   const authCtx = useContext(AuthContext)
-  authCtx.setAdmin(window.localStorage.getItem("admin"))
+  authCtx.setAdmin(localStorage.getItem("admin"))
   // console.log("authCtx",authCtx.admin)
   return (
     <div className="App">

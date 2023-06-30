@@ -81,7 +81,7 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("exp");
     localStorage.removeItem("userId");
-    localStorage.removeItem("admin");
+    window.localStorage.removeItem("admin");
     localStorage.removeItem("client");
     localStorage.removeItem("bills");
     clearTimeout(logoutTimer);
@@ -95,7 +95,8 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("token", token);
     localStorage.setItem("exp", exp);
     localStorage.setItem("userId", userId);
-    localStorage.setItem("admin", JSON.stringify(admin));
+    localStorage.setItem("admin", admin);
+    // localStorage.setItem("admin", JSON.stringify(admin));
     localStorage.setItem("client", client);
     localStorage.setItem("bills", bills);
     
