@@ -5,7 +5,7 @@ const Header = () => {
   const authCtx = useContext(AuthContext);
 
   return (
-    // !authCtx.admin && (
+    !authCtx.admin && (
     <div className="header">
       <div className="sub-header">
         <div className="head-spacer"></div>
@@ -19,7 +19,7 @@ const Header = () => {
           </a>
       </div>
     </div>
-  // )
+  )
   );
 };
 

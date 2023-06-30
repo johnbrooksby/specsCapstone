@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 const Billing = (props) => {
   // const { bills, client, back, setBack } = props;
   // console.log('bills in billing page', props.bills)
   // console.log('client in billing page', props.client)
   let totalDue = 0;
+
+  const [modal, setModal] = useState(false)
 
   const billList = props.bills.map((charge) => {
     totalDue += +charge.amount_due;
@@ -21,14 +23,8 @@ const Billing = (props) => {
   });
 
   return (
-    <div className="billdetail">
-      {props.admin ? (
-        <h3 className="billPageHeader">
-          Update billing info for {props.client}
-        </h3>
-      ) : (
+    <div className={!props.admin ? "billdetail" : "billdetail billdetail_admin"}>
         <h3 className="billPageHeader">Billing Info for {props.client}</h3>
-      )}
       <br></br>
       {/* <div className="billing">
         <ul className="billscontainer">{billList}</ul>
@@ -52,9 +48,33 @@ const Billing = (props) => {
       </div>
       {props.admin && (
         <div className="add_charge">
-          <a className="orange-btn">Add New Charge</a>
+          <a className="orange-btn"
+            onClick={() => {
+              setModal(true)
+            }} 
+          >Add New Charge</a>
         </div>
       )}
+      {modal && <div className="modalDiv" >
+        <a className="closeModal"
+          onClick={() => {
+            setModal(false)
+          }}>X</a>
+          <form onSubmit={() => {
+            setModal(false)
+            }}
+            className="add_charge_form"
+          >
+            <input placeholder="Reason"
+              className="form-input"
+              autoFocus
+            />
+            <input placeholder="Amount"
+              className="form-input"
+            />
+            <button className="orange-btn">Add this Charge</button>
+          </form>
+        </div>}
       {props.admin && (
         <a
           onClick={() => props.setBack(!props.back)}

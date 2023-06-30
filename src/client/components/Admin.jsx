@@ -15,17 +15,17 @@ const Admin = () => {
 
   useEffect(() => {
     // console.log(authCtx.admin)
-    authCtx.setAdmin(window.localStorage.getItem("admin"))
+    authCtx.setAdmin(localStorage.getItem("admin"));
     axios
       .get("/admin")
       .then((res) => {
         if (authCtx.admin) {
           setBillingPage(false);
-          authCtx.setAdmin(true);
+          // authCtx.setAdmin(true);
           // console.log(res.data);
           setUsers(res.data);
         } else {
-          return;
+          <Unauthorized />
         }
       })
       .catch((err) => {
@@ -34,10 +34,8 @@ const Admin = () => {
           <Unauthorized />;
         }
       });
-    if (!authCtx.admin) {
-      {
-        <Unauthorized />;
-      }
+    {
+      !authCtx.admin && <Unauthorized />;
     }
   }, [back]);
   // console.log("users:", users);
@@ -61,11 +59,11 @@ const Admin = () => {
                 // console.log('---res.data---', res.data);
                 setBillingPage(true);
                 setClient(res.data[0].name);
-                setBills(res.data[0].billinginfos)
+                setBills(res.data[0].billinginfos);
               })
               .catch((err) => console.error(err));
-            }}
-            >
+          }}
+        >
           See Billing Info
         </a>
       </div>
@@ -77,7 +75,13 @@ const Admin = () => {
   return !billingPage ? (
     <div className="adminPage">{mappedUsers}</div>
   ) : (
-    <Billing client={client} back={back} setBack={setBack} bills={bills} admin={authCtx.admin} />
+    <Billing
+      client={client}
+      back={back}
+      setBack={setBack}
+      bills={bills}
+      admin={authCtx.admin}
+    />
   );
 };
 

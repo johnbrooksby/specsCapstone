@@ -362,7 +362,7 @@ li a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 68vh;
+  min-height: 82vh;
   background-color: #364a60;
 }
 
@@ -425,7 +425,7 @@ li a:hover {
 }
 
 .topBack {
-  top: 24vh;
+  top: 10vh;
   left: 10px;
 }
 
@@ -437,6 +437,10 @@ li a:hover {
 .billdetail {
   min-height: 68vh;
   background-color: #364a60;
+}
+
+.billdetail_admin {
+  min-height: 82vh;
 }
 
 .table {
@@ -475,6 +479,42 @@ table {
 .add_charge {
   display: flex;
   justify-content: center;
+}
+
+.modalDiv {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .75);
+  z-index: 20;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.add_charge_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-width: 27vw;
+  min-height: 35vh;
+  border-radius: 10px;
+  background-color: #cad1ce;
+  margin-top: 22vh;
+}
+
+.closeModal {
+  position: fixed;
+  top: 9vh;
+  right: 17px;
+  color:#cad1ce;
+  font-weight: bold;
+  font-size: 17pt;
 }
 
 .footer {
