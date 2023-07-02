@@ -55,8 +55,9 @@ module.exports = {
         });
         const newBill = await BillingInfo.create({
           userId: newUser.id,
-          charge_explanation: null,
+          charge_explanation: "Initial Consultation",
           amount_due: 0,
+          paid: true,
         })
         console.log(newUser);
         console.log(newBill)
@@ -122,7 +123,10 @@ module.exports = {
       userBills = await User.findOne({
         where: {id: req.body.userId},
         attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id'],
-        include: BillingInfo
+        include: {
+          model: BillingInfo,
+          where: {paid: false},
+        }
       });
       res.status(200).send(userBills);
       // res.status(200).send(billingList);

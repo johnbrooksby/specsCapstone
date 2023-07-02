@@ -14,6 +14,9 @@ module.exports = {
         },
         amount_due: {
             type: DataTypes.DECIMAL(10,2)
+        },
+        paid : {
+            type: DataTypes.BOOLEAN
         }
     })
 }

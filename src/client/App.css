@@ -443,6 +443,10 @@ li a:hover {
   min-height: 82vh;
 }
 
+.billdetail_blur {
+  /* filter: blur(8px); */
+}
+
 .table {
   width: 100vw;
   display: flex;
@@ -484,7 +488,7 @@ table {
 .modalDiv {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, .75);
+  background-color: rgba(0, 0, 0, .8);
   z-index: 20;
   position: fixed;
   top: 0px;
@@ -502,10 +506,11 @@ table {
   align-items: center;
   gap: 10px;
   min-width: 27vw;
-  min-height: 35vh;
+  min-height: 40vh;
   border-radius: 10px;
-  background-color: #cad1ce;
+  background-color:#364a60;
   margin-top: 22vh;
+  /* filter: blur(0px); */
 }
 
 .closeModal {

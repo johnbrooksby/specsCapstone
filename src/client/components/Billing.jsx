@@ -23,7 +23,7 @@ const Billing = (props) => {
   });
 
   return (
-    <div className={!props.admin ? "billdetail" : "billdetail billdetail_admin"}>
+    <div className={!props.admin ? "billdetail" : !modal ? "billdetail billdetail_admin" : "billdetail billdetail_admin billdetail_blur"}>
         <h3 className="billPageHeader">Billing Info for {props.client}</h3>
       <br></br>
       {/* <div className="billing">
@@ -69,7 +69,7 @@ const Billing = (props) => {
               className="form-input"
               autoFocus
             />
-            <input placeholder="Amount"
+            <input placeholder="Amount (e.g. 50)"
               className="form-input"
             />
             <button className="orange-btn">Add this Charge</button>
