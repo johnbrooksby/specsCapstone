@@ -176,6 +176,23 @@ module.exports = {
     }
   },
 
+  addbill: async (req, res) => {
+    try {
+      const {userid, charge_explanation, amount_due} = req.body
+      let newBill = await BillingInfo.create({
+        "userId": userid,
+        charge_explanation: charge_explanation,
+        amount_due: amount_due,
+        paid: false,
+      })
+      res.status(200).send(newBill)
+    } catch (error) {
+      console.log("Error posting new billing information")
+      console.error(error)
+      res.sendStatus(400)
+    }
+  },
+
   logout: async (req, res) => {
     admin = false;
     userList = null;

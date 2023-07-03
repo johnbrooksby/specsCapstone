@@ -10,6 +10,7 @@ const Admin = () => {
   const [client, setClient] = useState([]);
   const [back, setBack] = useState(false);
   const [bills, setBills] = useState([]);
+  const [userid, setUserid] = useState(undefined)
 
   const authCtx = useContext(AuthContext);
 
@@ -53,6 +54,7 @@ const Admin = () => {
           onClick={() => {
             // console.log("-------User.id--------", user.id);
             let body = { id: user.id };
+            setUserid(user.id)
             axios
               .post("/billing", body)
               .then((res) => {
@@ -60,6 +62,7 @@ const Admin = () => {
                 setBillingPage(true);
                 setClient(res.data[0].name);
                 setBills(res.data[0].billinginfos);
+                console.log(bills)
               })
               .catch((err) => console.error(err));
           }}
@@ -69,7 +72,7 @@ const Admin = () => {
       </div>
     );
   });
-  // console.log('bills', bills)
+  // console.log('userid', userid)
   // console.log("client", client);
   // console.log(billingPage);
   return !billingPage ? (
@@ -81,6 +84,7 @@ const Admin = () => {
       setBack={setBack}
       bills={bills}
       admin={authCtx.admin}
+      userid={userid}
     />
   );
 };

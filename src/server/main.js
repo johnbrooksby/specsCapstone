@@ -7,7 +7,7 @@ const {sequelize} = require('./util/database')
 const {User} = require('./models/user')
 const {BillingInfo} = require('./models/billing')
 const {PORT} = process.env
-const {register, login, usersAdmin, logout, billing, account} = require("./controllers/Auth")
+const {register, login, usersAdmin, logout, billing, addbill, account} = require("./controllers/Auth")
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const app = express();
@@ -33,12 +33,13 @@ app.post('/login', login)
 app.get('/admin', usersAdmin)
 app.put('/logout', logout)
 app.post('/billing', billing)
+app.post("/addbill", addbill)
 app.post('/account', account)
-app.post('/v1/checkout/sessions') 
-app.post('/v1/checkout/sessions/:id/expire')
-app.get('/v1/checkout/sessions/:id')
-app.get('/v1/checkout/sessions')
-app.get('/v1/checkout/sessions/:id/line_items')
+// app.post('/v1/checkout/sessions') 
+// app.post('/v1/checkout/sessions/:id/expire')
+// app.get('/v1/checkout/sessions/:id')
+// app.get('/v1/checkout/sessions')
+// app.get('/v1/checkout/sessions/:id/line_items')
 // app.post('/create-checkout-session', async (req, res) => {
 //   let price1 = 50
 //   const session = await stripe.checkout.sessions.create({

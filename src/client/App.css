@@ -504,13 +504,25 @@ table {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 10%;
   min-width: 27vw;
   min-height: 40vh;
   border-radius: 10px;
   background-color:#364a60;
   margin-top: 22vh;
   /* filter: blur(0px); */
+}
+
+.amount {
+  width: 150px;
+}
+
+.paid {
+  background-color: aquamarine;
+}
+
+.unpaid {
+  background-color: salmon;
 }
 
 .closeModal {
