@@ -452,6 +452,8 @@ li a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: auto;
+  padding-bottom: 50px;
 }
 
 table {
@@ -460,7 +462,7 @@ table {
   border-radius: 3px;
 }
 
-.bills_detail_table, .bills_detail, .bills_detail_head, .bills_detail_foot {
+.bills_detail_table, .bills_detail, .bills_detail_head, .bills_detail_foot, .bills_detail_foottwo {
   border: 1px solid #818181;
   padding: 10px;
 }
@@ -480,9 +482,16 @@ table {
   font-weight: bolder;
 }
 
+.bills_detail_foottwo {
+  border: 4px double #818181;
+  font-weight: bolder;
+}
+
 .add_charge {
   display: flex;
   justify-content: center;
+  margin-top: -50px;
+  padding-bottom: 50px;
 }
 
 .modalDiv {

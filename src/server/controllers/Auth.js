@@ -58,9 +58,9 @@ module.exports = {
           charge_explanation: "Initial Consultation",
           amount_due: 0,
           paid: true,
-        })
+        });
         console.log(newUser);
-        console.log(newBill)
+        console.log(newBill);
         const token = createToken(
           newUser.dataValues.username,
           newUser.dataValues.id
@@ -93,7 +93,7 @@ module.exports = {
           console.log("datavalues", foundUser.dataValues);
           const token = createToken(
             foundUser.dataValues.username,
-            foundUser.dataValues.id,
+            foundUser.dataValues.id
           );
           admin = foundUser.dataValues.admin;
           const exp = Date.now() + 1000 * 60 * 60 * 24 * 14;
@@ -121,12 +121,21 @@ module.exports = {
     // console.log('REQ.BODY', req.body.userId)
     try {
       userBills = await User.findOne({
-        where: {id: req.body.userId},
-        attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id'],
+        where: { id: req.body.userId },
+        attributes: [
+          "name",
+          "email_address",
+          "street_address",
+          "city",
+          "state",
+          "zip",
+          "id",
+        ],
         include: {
           model: BillingInfo,
-          where: {paid: false},
-        }
+          // where: { paid: false },
+        },
+        order: [[BillingInfo, "id", "ASC"]],
       });
       res.status(200).send(userBills);
       // res.status(200).send(billingList);
@@ -141,9 +150,22 @@ module.exports = {
     if (admin) {
       try {
         userList = await User.findAll({
-          where: {admin: false},
-          attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id'],
-          include: BillingInfo
+          where: { admin: false },
+          attributes: [
+            "name",
+            "email_address",
+            "street_address",
+            "city",
+            "state",
+            "zip",
+            "id",
+          ],
+          include: [
+            {
+              model: BillingInfo,
+            },
+          ],
+          order: [[BillingInfo, "id", "ASC"]],
         });
         res.status(200).send(userList);
         // res.status(200).send(billingList);
@@ -159,16 +181,29 @@ module.exports = {
 
   billing: async (req, res) => {
     try {
-      const {id} = req.body
+      const { id } = req.body;
       // console.log(req.body)
-      let user = await User.findAll({ where: { id },
-        include: [{
-          model: BillingInfo,
-          required: true,
-        }],
-        attributes: ['name', 'email_address', 'street_address', 'city', 'state', 'zip', 'id']})
+      let user = await User.findAll({
+        where: { id },
+        include: [
+          {
+            model: BillingInfo,
+            required: true,
+          },
+        ],
+        order: [[BillingInfo, 'id', 'ASC']],
+        attributes: [
+          "name",
+          "email_address",
+          "street_address",
+          "city",
+          "state",
+          "zip",
+          "id",
+        ],
+      });
       // console.log('~~~~~~~~~USER~~~~~~~~~~~',user)
-      res.status(200).send(user)
+      res.status(200).send(user);
     } catch (error) {
       console.log("Error getting users");
       console.error(error);
@@ -178,25 +213,25 @@ module.exports = {
 
   addbill: async (req, res) => {
     try {
-      const {userid, charge_explanation, amount_due} = req.body
+      const { userid, charge_explanation, amount_due } = req.body;
       let newBill = await BillingInfo.create({
-        "userId": userid,
+        userId: userid,
         charge_explanation: charge_explanation,
         amount_due: amount_due,
         paid: false,
-      })
-      res.status(200).send(newBill)
+      });
+      res.status(200).send(newBill);
     } catch (error) {
-      console.log("Error posting new billing information")
-      console.error(error)
-      res.sendStatus(400)
+      console.log("Error posting new billing information");
+      console.error(error);
+      res.sendStatus(400);
     }
   },
 
   logout: async (req, res) => {
     admin = false;
     userList = null;
-    billingList = null
+    billingList = null;
     // console.log(admin, userList, billingList, "logged out");
   },
 };
