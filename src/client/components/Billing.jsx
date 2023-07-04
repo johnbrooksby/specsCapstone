@@ -1,38 +1,66 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useContext, useEffect, useMemo, useCallback } from "react";
 import AddBillModal from "./AddBillModal";
+import axios from "axios";
+import AuthContext from "../store/authContext";
 
 const Billing = (props) => {
   // const { bills, client, back, setBack } = props;
   // console.log('bills in billing page', props.bills)
   // console.log('client in billing page', props.client)
+
+  const authCtx = useContext(AuthContext);
+
   let totalDue = 0;
   let totalPaid = 0;
-  let total = 0
+  let total = 0;
+  let billList;
 
   const [modal, setModal] = useState(false);
 
-  
-  const billList = props.bills.map((charge) => {
-    total += +charge.amount_due
-    if (charge.paid){totalPaid += +charge.amount_due}
-    if (!charge.paid){totalDue += +charge.amount_due}
-    // console.log("charge.paid", charge.paid)
-    return (
-      // <div key={charge.id} className="billdiv">
-      //   <li>{charge.charge_explanation}</li>
-      //   <li>{charge.amount_due}</li>
-      // </div>
-      <tr key={charge.id}>
-          <td className="bills_detail">{charge.charge_explanation}</td>
-          <td className="bills_detail amount">${charge.amount_due}</td>
-          <td className={charge.paid ? "bills_detail paid amount" : "bills_detail unpaid amount"}>{charge.paid ? "Yes" : "No"}</td>
-          {/* {props.admin && <td className={charge.paid ? "bills_detail paid amount" : "bills_detail unpaid amount"}>{charge.paid ? "Yes" : "No"}</td>} */}
-        </tr>
-      );
-    });
-    // const refreshTable = useMemo(() => billList, [modal] )
+  // useEffect(() => {
+  //   let body = { id: props.userid };
+  //   axios
+  //     .post("/billing", body)
+  //     .then((res) => {
+  //       console.log("---res.data---", res.data[0].billinginfos);
+  //       props.setClient(res.data[0].name);
+  //       props.setBills(res.data[0].billinginfos);
+  //       console.log("props.bills",props.bills)
+  // setTimeout(() => {
 
-    return (
+    billList = authCtx.bills.map((charge) => {
+      total += +charge.amount_due;
+      if (charge.paid) {
+        totalPaid += +charge.amount_due;
+      }
+      if (!charge.paid) {
+        totalDue += +charge.amount_due;
+      }
+      return (
+        <tr key={charge.id}>
+              <td className="bills_detail">{charge.charge_explanation}</td>
+              <td className="bills_detail amount">${charge.amount_due}</td>
+              <td
+                className={
+                  charge.paid
+                  ? "bills_detail paid amount"
+                  : "bills_detail unpaid amount"
+                }
+                >
+                {charge.paid ? "Yes" : "No"}
+              </td>
+              {/* {props.admin && <td className={charge.paid ? "bills_detail paid amount" : "bills_detail unpaid amount"}>{charge.paid ? "Yes" : "No"}</td>} */}
+            </tr>
+          );
+        });
+      // }, 3000)
+        // })
+  //     .catch((err) => console.error(err));
+  // }, [modal]);
+
+  return (
+    <div>
+      {modal && <AddBillModal setModal={setModal} userid={props.userid} />}
       <div
         className={
           !props.admin
@@ -42,7 +70,7 @@ const Billing = (props) => {
             : "billdetail billdetail_admin billdetail_blur"
         }
       >
-        <h3 className="billPageHeader">Billing Info for {props.client}</h3>
+        <h3 className="billPageHeader">Billing Info for {authCtx.client}</h3>
         <br></br>
         {/* <div className="billing">
         <ul className="billscontainer">{billList}</ul>
@@ -58,6 +86,7 @@ const Billing = (props) => {
               </tr>
             </thead>
             <tbody>{billList}</tbody>
+            {/* <tbody>{useMemo(() => billList, [authCtx.bills])}</tbody> */}
             <tfoot>
               <tr>
                 <td className="bills_detail_foot">Total:</td>
@@ -87,8 +116,6 @@ const Billing = (props) => {
           </div>
         )}
 
-        {modal && <AddBillModal setModal={setModal} userid={props.userid} />}
-
         {props.admin && (
           <a
             onClick={() => props.setBack(!props.back)}
@@ -106,7 +133,8 @@ const Billing = (props) => {
           </a>
         )}
       </div>
-    );
+    </div>
+  );
 };
 
 export default Billing;

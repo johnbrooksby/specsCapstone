@@ -430,8 +430,9 @@ li a:hover {
 }
 
 .bottomBack {
+  position: relative;
   left: 10px;
-  bottom: 13vh;
+  bottom: 5vh;
 }
 
 .billdetail {
@@ -444,7 +445,7 @@ li a:hover {
 }
 
 .billdetail_blur {
-  /* filter: blur(8px); */
+  filter: blur(4px);
 }
 
 .table {
@@ -498,7 +499,7 @@ table {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, .8);
-  z-index: 20;
+  z-index: 5;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -508,18 +509,26 @@ table {
   align-items: flex-start;
 }
 
+/* .modalFormDiv {
+  filter: blur(8px);
+} */
+
 .add_charge_form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10%;
-  min-width: 27vw;
+  min-width: 28vw;
   min-height: 40vh;
   border-radius: 10px;
   background-color:#364a60;
   margin-top: 22vh;
-  /* filter: blur(0px); */
+  position: fixed;
+  z-index: 10;
+  margin-left: 36vw;
+  margin-right: auto;
+  bottom: 40vh;
 }
 
 .amount {
@@ -541,6 +550,7 @@ table {
   color:#cad1ce;
   font-weight: bold;
   font-size: 17pt;
+  z-index: 10;
 }
 
 .footer {

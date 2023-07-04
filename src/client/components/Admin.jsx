@@ -52,17 +52,18 @@ const Admin = () => {
         <a
           className="blue-btn"
           onClick={() => {
+            setUserid(user.id)
+            // setBillingPage(true)
             // console.log("-------User.id--------", user.id);
             let body = { id: user.id };
-            setUserid(user.id)
             axios
               .post("/billing", body)
               .then((res) => {
                 // console.log('---res.data---', res.data);
                 setBillingPage(true);
-                setClient(res.data[0].name);
-                setBills(res.data[0].billinginfos);
-                console.log(bills)
+                authCtx.setClient(res.data[0].name);
+                authCtx.setBills(res.data[0].billinginfos);
+                // console.log(client, bills)
               })
               .catch((err) => console.error(err));
           }}
@@ -79,10 +80,12 @@ const Admin = () => {
     <div className="adminPage">{mappedUsers}</div>
   ) : (
     <Billing
-      client={client}
+      // client={client}
+      // setClient={setClient}
       back={back}
       setBack={setBack}
-      bills={bills}
+      // bills={bills}
+      // setBills={setBills}
       admin={authCtx.admin}
       userid={userid}
     />
