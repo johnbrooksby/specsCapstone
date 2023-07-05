@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import {Routes, Route, Navigate} from 'react-router-dom'
 import "./App.css";
 
@@ -19,8 +19,11 @@ import Admin from "./components/Admin";
 function App() {
 
   const authCtx = useContext(AuthContext)
-  authCtx.setAdmin(localStorage.getItem("admin"))
-  // console.log("authCtx",authCtx.admin)
+
+  useEffect(() => {
+    authCtx.setAdmin(localStorage.getItem("admin"))
+  }, [authCtx.token])
+  
   return (
     <div className="App">
       <Header />
@@ -31,7 +34,6 @@ function App() {
         <Route path="testimonials" element={<Testimonials />} />
         <Route path="admin" element={authCtx.admin ? <Admin /> : <Navigate to='/' />} />
         <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' /> } />
-        {/* <Route path="create-checkout-session" element={<Testimonials />} /> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />

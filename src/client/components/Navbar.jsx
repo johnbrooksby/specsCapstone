@@ -6,9 +6,7 @@ const Navbar = () => {
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
-    authCtx.setAdmin(JSON.parse(localStorage.getItem("admin")))
-    console.log("authCtx.admin", authCtx.admin)
-    
+    {localStorage.getItem("admin") && authCtx.setAdmin(JSON.parse(localStorage.getItem("admin")))}
   }, [authCtx.login])
 
 

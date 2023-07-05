@@ -4,19 +4,20 @@ import AuthContext from "../store/authContext";
 
 const AddBillModal = (props) => {
   const [reason, setReason] = useState("");
-  const [amount, setAmount] = useState(undefined);
+  const [amount, setAmount] = useState(0);
 
   const authCtx = useContext(AuthContext);
 
   return (
     <div className="modalFormDiv">
-      <div className="modalDiv">
-      </div>
+      <div className="modalDiv"></div>
       <div>
         <a
           className="closeModal"
           onClick={() => {
             props.setModal(false);
+            setReason("");
+            setAmount("");
           }}
         >
           X
@@ -24,20 +25,19 @@ const AddBillModal = (props) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            //   console.log("props.userid",props.userid);
+
             const body = {
               userid: props.userid,
               charge_explanation: reason,
               amount_due: amount,
             };
+
             axios
-            .post("/addbill", body)
+              .post("/addbill", body)
               .then((res) => {
-                // console.log("res.data",res.data);
                 setReason("");
                 setAmount("");
-                authCtx.setBills(...authCtx.bills, res.data)
-                // console.log("authCtx.bills", authCtx.bills)
+                authCtx.setBills(...authCtx.bills, res.data);
               })
               .catch((err) => console.error(err));
 

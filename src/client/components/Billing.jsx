@@ -1,13 +1,8 @@
-import React, { useState, useContext, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useContext, useEffect, useMemo } from "react";
 import AddBillModal from "./AddBillModal";
-import axios from "axios";
 import AuthContext from "../store/authContext";
 
 const Billing = (props) => {
-  // const { bills, client, back, setBack } = props;
-  // console.log('bills in billing page', props.bills)
-  // console.log('client in billing page', props.client)
-
   const authCtx = useContext(AuthContext);
 
   let totalDue = 0;
@@ -17,46 +12,43 @@ const Billing = (props) => {
 
   const [modal, setModal] = useState(false);
 
-  // useEffect(() => {
-  //   let body = { id: props.userid };
-  //   axios
-  //     .post("/billing", body)
-  //     .then((res) => {
-  //       console.log("---res.data---", res.data[0].billinginfos);
-  //       props.setClient(res.data[0].name);
-  //       props.setBills(res.data[0].billinginfos);
-  //       console.log("props.bills",props.bills)
-  // setTimeout(() => {
-
-    billList = authCtx.bills.map((charge) => {
-      total += +charge.amount_due;
-      if (charge.paid) {
-        totalPaid += +charge.amount_due;
-      }
-      if (!charge.paid) {
-        totalDue += +charge.amount_due;
-      }
-      return (
-        <tr key={charge.id}>
-              <td className="bills_detail">{charge.charge_explanation}</td>
-              <td className="bills_detail amount">${charge.amount_due}</td>
-              <td
-                className={
-                  charge.paid
-                  ? "bills_detail paid amount"
-                  : "bills_detail unpaid amount"
-                }
-                >
-                {charge.paid ? "Yes" : "No"}
-              </td>
-              {/* {props.admin && <td className={charge.paid ? "bills_detail paid amount" : "bills_detail unpaid amount"}>{charge.paid ? "Yes" : "No"}</td>} */}
-            </tr>
-          );
-        });
-      // }, 3000)
-        // })
-  //     .catch((err) => console.error(err));
-  // }, [modal]);
+  billList = (props.bills ? props.bills : authCtx.bills).map((charge) => {
+    total += +charge.amount_due;
+    if (charge.paid) {
+      totalPaid += +charge.amount_due;
+    }
+    if (!charge.paid) {
+      totalDue += +charge.amount_due;
+    }
+    return (
+      <tr key={charge.id}>
+        <td className="bills_detail">{charge.charge_explanation}</td>
+        <td className="bills_detail amount">${charge.amount_due}</td>
+        <td
+          className={
+            charge.paid
+              ? "bills_detail paid amount"
+              : "bills_detail unpaid amount"
+          }
+        >
+          {charge.paid ? "Yes" : "No"}
+        </td>
+        {authCtx.admin && (
+          <td className="bills_detail checkbox">
+            <input type="checkbox" className="paidCheckbox" value={true} />
+            <button
+              className="paid_save_btn"
+              onClick={() => {
+                console.log(authCtx.bills);
+              }}
+            >
+              Save
+            </button>
+          </td>
+        )}
+      </tr>
+    );
+  });
 
   return (
     <div>
@@ -70,7 +62,9 @@ const Billing = (props) => {
             : "billdetail billdetail_admin billdetail_blur"
         }
       >
-        <h3 className="billPageHeader">Billing Info for {authCtx.client}</h3>
+        <h3 className="billPageHeader">
+          Billing Info for {props.client ? props.client : authCtx.client}
+        </h3>
         <br></br>
         {/* <div className="billing">
         <ul className="billscontainer">{billList}</ul>
@@ -82,6 +76,9 @@ const Billing = (props) => {
                 <td className="bills_detail_head">Explanation:</td>
                 <td className="bills_detail_head">Amount Due:</td>
                 <td className="bills_detail_head">Paid?</td>
+                {authCtx.admin && (
+                  <td className="bills_detail_head">Mark as Paid</td>
+                )}
                 {/* {props.admin && <td className="bills_detail_head">Paid?</td>} */}
               </tr>
             </thead>
