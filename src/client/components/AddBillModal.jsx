@@ -41,6 +41,7 @@ const AddBillModal = (props) => {
               })
               .catch((err) => console.error(err));
 
+            props.setAddedBill(!props.addedBill);
             props.setModal(false);
           }}
           className="add_charge_form"

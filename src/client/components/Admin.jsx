@@ -9,6 +9,8 @@ const Admin = () => {
   const [billingPage, setBillingPage] = useState(false);
   const [back, setBack] = useState(false);
   const [userid, setUserid] = useState(undefined);
+  const [markaspaid, setMarkaspaid] = useState(false);
+  const [addedBill, setAddedBill] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
@@ -33,7 +35,7 @@ const Admin = () => {
     {
       !authCtx.admin && <Unauthorized />;
     }
-  }, [back]);
+  }, [back, markaspaid, addedBill]);
 
   const mappedUsers = users.map((user) => {
     return (
@@ -72,6 +74,10 @@ const Admin = () => {
       setBack={setBack}
       admin={authCtx.admin}
       userid={userid}
+      setMarkaspaid={setMarkaspaid}
+      markaspaid={markaspaid}
+      setAddedBill={setAddedBill}
+      addedBill={addedBill}
     />
   );
 };

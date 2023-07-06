@@ -228,6 +228,21 @@ module.exports = {
     }
   },
 
+  markaspaid: async (req, res) => {
+    try {
+      const { id } = req.body;
+      let markBillAsPaid = await BillingInfo.upsert({
+        id: id,
+        paid: true
+      })
+      res.status(200).send(markBillAsPaid)
+    } catch (error) {
+      console.log("Error marking bill as paid");
+      console.error(error);
+      res.sendStatus(400);
+    }
+  },
+
   logout: async (req, res) => {
     admin = false;
     userList = null;

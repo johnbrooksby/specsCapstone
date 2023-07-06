@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useMemo } from "react";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../store/authContext";
+import axios from "axios";
 
 const Billing = (props) => {
   const authCtx = useContext(AuthContext);
@@ -39,7 +40,15 @@ const Billing = (props) => {
             <button
               className="paid_save_btn"
               onClick={() => {
-                console.log(authCtx.bills);
+                let body = {
+                  id: charge.id
+                }
+                axios
+                .put('/markaspaid', body)
+                .then(res => {
+                  console.log(res.data);
+                  props.setMarkaspaid(!props.markaspaid);
+                })
               }}
             >
               Save
@@ -52,7 +61,7 @@ const Billing = (props) => {
 
   return (
     <div>
-      {modal && <AddBillModal setModal={setModal} userid={props.userid} />}
+      {modal && <AddBillModal setModal={setModal} userid={props.userid} addedBill={props.addedBill} setAddedBill={props.setAddedBill} />}
       <div
         className={
           !props.admin
