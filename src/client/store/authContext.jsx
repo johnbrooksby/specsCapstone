@@ -59,7 +59,7 @@ export const AuthContextProvider = (props) => {
   if (localData) {
     initialToken = localData.token;
     initialId = localData.userId;
-    initialAdmin = localData.admin;
+    // initialAdmin = localData.admin;
   } else if (localData && admin){
     initialToken = localData.token;
     initialId = localData.userId;

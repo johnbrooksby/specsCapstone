@@ -14,8 +14,9 @@ const Admin = () => {
 
   const authCtx = useContext(AuthContext);
 
+  authCtx.setAdmin(localStorage.getItem("admin"));
+  
   useEffect(() => {
-    authCtx.setAdmin(localStorage.getItem("admin"));
     axios
       .get("/admin")
       .then((res) => {

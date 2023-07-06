@@ -46,7 +46,7 @@ const Login = () => {
       .then((res) => {
         // console.log("res.data", res.data.admin);
         setRegister(res);
-        authCtx.setAdmin(res.data.admin)
+        // authCtx.setAdmin(res.data.admin)
         authCtx.login(res.data.token, res.data.exp, res.data.userId, res.data.admin);
         setUsername("");
         setPassword("");

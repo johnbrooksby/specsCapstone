@@ -12,9 +12,9 @@ const Billing = (props) => {
   let billList;
 
   const [modal, setModal] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-
+  
   billList = (props.bills ? props.bills : authCtx.bills).map((charge) => {
+    const [isChecked, setIsChecked] = useState(false);
     total += +charge.amount_due;
     if (charge.paid) {
       totalPaid += +charge.amount_due;
@@ -38,7 +38,7 @@ const Billing = (props) => {
         {authCtx.admin && (
           <td className="bills_detail checkbox">
             <input
-              id={`paid.{charge.id}`}
+              id={`paid.${charge.id}`}
               type="checkbox"
               className="paidCheckbox"
               defaultChecked={isChecked}
@@ -48,7 +48,7 @@ const Billing = (props) => {
             />
             <button
               className="paid_save_btn"
-              htmlFor={`paid.{charge.id}`}
+              htmlFor={`paid.${charge.id}`}
               onClick={() => {
                 let body = {
                   id: charge.id,
