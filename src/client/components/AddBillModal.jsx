@@ -5,8 +5,10 @@ import AuthContext from "../store/authContext";
 const AddBillModal = (props) => {
   const [reason, setReason] = useState("");
   const [amount, setAmount] = useState(0);
-
+  
   const authCtx = useContext(AuthContext);
+  
+  // console.log("props.addedBill", props.addedBill)
 
   return (
     <div className="modalFormDiv">
@@ -41,8 +43,8 @@ const AddBillModal = (props) => {
               })
               .catch((err) => console.error(err));
 
-            props.setAddedBill(!props.addedBill);
             props.setModal(false);
+            props.setAddedBill(!props.addedBill);
           }}
           className="add_charge_form"
         >
@@ -63,7 +65,7 @@ const AddBillModal = (props) => {
               setAmount(e.target.value);
             }}
           />
-          <a className="orange-btn">Add Charge</a>
+          <button className="orange-btn">Add Charge</button>
         </form>
       </div>
     </div>

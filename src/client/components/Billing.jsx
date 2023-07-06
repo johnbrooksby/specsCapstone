@@ -12,6 +12,7 @@ const Billing = (props) => {
   let billList;
 
   const [modal, setModal] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   billList = (props.bills ? props.bills : authCtx.bills).map((charge) => {
     total += +charge.amount_due;
@@ -36,19 +37,30 @@ const Billing = (props) => {
         </td>
         {authCtx.admin && (
           <td className="bills_detail checkbox">
-            <input type="checkbox" className="paidCheckbox" value={true} />
+            <input
+              id={`paid.{charge.id}`}
+              type="checkbox"
+              className="paidCheckbox"
+              defaultChecked={isChecked}
+              onChange={() => {
+                setIsChecked(!isChecked);
+              }}
+            />
             <button
               className="paid_save_btn"
+              htmlFor={`paid.{charge.id}`}
               onClick={() => {
                 let body = {
-                  id: charge.id
+                  id: charge.id,
+                };
+                {
+                  isChecked
+                    ? axios.put("/markaspaid", body).then((res) => {
+                        console.log(res.data);
+                        props.setMarkaspaid(!props.markaspaid);
+                      })
+                    : alert("You must check a box to mark as paid");
                 }
-                axios
-                .put('/markaspaid', body)
-                .then(res => {
-                  console.log(res.data);
-                  props.setMarkaspaid(!props.markaspaid);
-                })
               }}
             >
               Save
@@ -61,7 +73,14 @@ const Billing = (props) => {
 
   return (
     <div>
-      {modal && <AddBillModal setModal={setModal} userid={props.userid} addedBill={props.addedBill} setAddedBill={props.setAddedBill} />}
+      {modal && (
+        <AddBillModal
+          setModal={setModal}
+          userid={props.userid}
+          addedBill={props.addedBill}
+          setAddedBill={props.setAddedBill}
+        />
+      )}
       <div
         className={
           !props.admin

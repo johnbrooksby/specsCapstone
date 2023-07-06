@@ -191,7 +191,7 @@ module.exports = {
             required: true,
           },
         ],
-        order: [[BillingInfo, 'id', 'ASC']],
+        order: [[BillingInfo, 'id', 'DESC']],
         attributes: [
           "name",
           "email_address",
