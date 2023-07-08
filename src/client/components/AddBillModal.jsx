@@ -4,10 +4,10 @@ import AuthContext from "../store/authContext";
 
 const AddBillModal = (props) => {
   const [reason, setReason] = useState("");
-  const [amount, setAmount] = useState(0);
-  
+  const [amount, setAmount] = useState("");
+
   const authCtx = useContext(AuthContext);
-  
+
   // console.log("props.addedBill", props.addedBill)
 
   return (
@@ -44,7 +44,10 @@ const AddBillModal = (props) => {
               .catch((err) => console.error(err));
 
             props.setModal(false);
-            props.setAddedBill(!props.addedBill);
+            // setTimeout(() => {
+              props.setAddedBill(!props.addedBill);
+            // }, 1250);
+            window.scrollTo(0, 0);
           }}
           className="add_charge_form"
         >

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useMemo } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../store/authContext";
 import axios from "axios";
@@ -12,8 +12,32 @@ const Billing = (props) => {
   let billList;
 
   const [modal, setModal] = useState(false);
-  
-  billList = (props.bills ? props.bills : authCtx.bills).map((charge) => {
+  // const [bills, setBills] = useState(props.bills);
+  const [markaspaid, setMarkaspaid] = useState(false);
+  const [addedBill, setAddedBill] = useState(false);
+  const [refreshPage, setRefreshPage] = useState(false);
+
+  useEffect(() => {
+    authCtx.setAdmin(localStorage.getItem("admin"));
+  });
+
+  useEffect(() => {
+    if (authCtx.admin) {
+      let body = { id: props.userid };
+      axios
+        .post("/billing", body)
+        .then((res) => {
+          props.setBills(res.data[0].billinginfos);
+          // authCtx.setClient(res.data[0].name)
+          authCtx.setBills(res.data[0].billinginfos);
+          console.log("props.bills", props.bills);
+          setRefreshPage(!refreshPage);
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [addedBill, markaspaid]);
+
+  billList = props.bills.map((charge) => {
     const [isChecked, setIsChecked] = useState(false);
     total += +charge.amount_due;
     if (charge.paid) {
@@ -22,53 +46,57 @@ const Billing = (props) => {
     if (!charge.paid) {
       totalDue += +charge.amount_due;
     }
-    return (
-      <tr key={charge.id}>
-        <td className="bills_detail">{charge.charge_explanation}</td>
-        <td className="bills_detail amount">${charge.amount_due}</td>
-        <td
-          className={
-            charge.paid
-              ? "bills_detail paid amount"
-              : "bills_detail unpaid amount"
-          }
-        >
-          {charge.paid ? "Yes" : "No"}
-        </td>
-        {authCtx.admin && (
-          <td className="bills_detail checkbox">
-            <input
-              id={`paid.${charge.id}`}
-              type="checkbox"
-              className="paidCheckbox"
-              defaultChecked={isChecked}
-              onChange={() => {
-                setIsChecked(!isChecked);
-              }}
-            />
-            <button
-              className="paid_save_btn"
-              htmlFor={`paid.${charge.id}`}
-              onClick={() => {
-                let body = {
-                  id: charge.id,
-                };
-                {
-                  isChecked
-                    ? axios.put("/markaspaid", body).then((res) => {
-                        console.log(res.data);
-                        props.setMarkaspaid(!props.markaspaid);
-                      })
-                    : alert("You must check a box to mark as paid");
-                }
-              }}
-            >
-              Save
-            </button>
+
+    // useEffect(() => {
+      return (
+        <tr key={charge.id}>
+          <td className="bills_detail">{charge.charge_explanation}</td>
+          <td className="bills_detail amount">${charge.amount_due}</td>
+          <td
+            className={
+              charge.paid
+                ? "bills_detail paid amount"
+                : "bills_detail unpaid amount"
+            }
+          >
+            {charge.paid ? "Yes" : "No"}
           </td>
-        )}
-      </tr>
-    );
+          {authCtx.admin && (
+            <td className="bills_detail checkbox">
+              <input
+                id={`paid.${charge.id}`}
+                type="checkbox"
+                className="paidCheckbox"
+                defaultChecked={isChecked}
+                onChange={() => {
+                  setIsChecked(!isChecked);
+                }}
+              />
+              <button
+                className="paid_save_btn"
+                htmlFor={`paid.${charge.id}`}
+                onClick={() => {
+                  let body = {
+                    id: charge.id,
+                  };
+                  {
+                    isChecked
+                      ? axios.put("/markaspaid", body).then((res) => {
+                          setIsChecked(false);
+                          console.log(res.data);
+                          setMarkaspaid(!markaspaid);
+                        })
+                      : alert("You must check a box to mark as paid");
+                  }
+                }}
+              >
+                Save
+              </button>
+            </td>
+          )}
+        </tr>
+      );
+    // }, [refreshPage]);
   });
 
   return (
@@ -77,13 +105,13 @@ const Billing = (props) => {
         <AddBillModal
           setModal={setModal}
           userid={props.userid}
-          addedBill={props.addedBill}
-          setAddedBill={props.setAddedBill}
+          addedBill={addedBill}
+          setAddedBill={setAddedBill}
         />
       )}
       <div
         className={
-          !props.admin
+          !authCtx.admin
             ? "billdetail"
             : !modal
             ? "billdetail billdetail_admin"
@@ -94,9 +122,6 @@ const Billing = (props) => {
           Billing Info for {props.client ? props.client : authCtx.client}
         </h3>
         <br></br>
-        {/* <div className="billing">
-        <ul className="billscontainer">{billList}</ul>
-      </div> */}
         <div className="table">
           <table className="bills_detail_table">
             <thead>
@@ -107,11 +132,9 @@ const Billing = (props) => {
                 {authCtx.admin && (
                   <td className="bills_detail_head">Mark as Paid</td>
                 )}
-                {/* {props.admin && <td className="bills_detail_head">Paid?</td>} */}
               </tr>
             </thead>
             <tbody>{billList}</tbody>
-            {/* <tbody>{useMemo(() => billList, [authCtx.bills])}</tbody> */}
             <tfoot>
               <tr>
                 <td className="bills_detail_foot">Total:</td>
@@ -128,7 +151,7 @@ const Billing = (props) => {
             </tfoot>
           </table>
         </div>
-        {props.admin && (
+        {authCtx.admin && (
           <div className="add_charge">
             <a
               className="orange-btn"
@@ -141,7 +164,7 @@ const Billing = (props) => {
           </div>
         )}
 
-        {props.admin && (
+        {authCtx.admin && (
           <a
             onClick={() => props.setBack(!props.back)}
             className="backbtn topBack"
@@ -149,7 +172,7 @@ const Billing = (props) => {
             &#x3c;&#x3c;Back
           </a>
         )}
-        {props.admin && (
+        {authCtx.admin && (
           <a
             onClick={() => props.setBack(!props.back)}
             className="backbtn bottomBack"

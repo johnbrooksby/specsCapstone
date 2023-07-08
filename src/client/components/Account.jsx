@@ -17,12 +17,8 @@ const Account = () => {
     axios
       .post("/account", body)
       .then((res) => {
-        // console.log('RES.DATA.NAME', res.data.name);
-        // console.log('RES.DATA.BILLINGINFO', res.data.billinginfos);
         setClient(res.data.name);
-        // console.log("client", client);
         setBills(res.data.billinginfos);
-        // console.log("bills", bills);
       })
       .catch((err) => {
         console.error(err);

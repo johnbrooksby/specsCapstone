@@ -9,34 +9,39 @@ const Admin = () => {
   const [billingPage, setBillingPage] = useState(false);
   const [back, setBack] = useState(false);
   const [userid, setUserid] = useState(undefined);
-  const [markaspaid, setMarkaspaid] = useState(false);
-  const [addedBill, setAddedBill] = useState(false);
+  const [bills, setBills] = useState(undefined);
+  // const [markaspaid, setMarkaspaid] = useState(false);
+  // const [addedBill, setAddedBill] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
-  authCtx.setAdmin(localStorage.getItem("admin"));
-  
   useEffect(() => {
-    axios
-      .get("/admin")
-      .then((res) => {
-        if (authCtx.admin) {
-          setBillingPage(false);
-          setUsers(res.data);
-        } else {
-          <Unauthorized />;
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        {
-          <Unauthorized />;
-        }
-      });
+    authCtx.setAdmin(localStorage.getItem("admin"));
+    if (localStorage.getItem("admin")) {
+      axios
+        .get("/admin")
+        .then(
+          (res) => {
+            setBillingPage(false);
+            setUsers(res.data);
+          }
+          // else {
+          //   <Unauthorized />;
+          // }
+        )
+        .catch((err) => {
+          console.error(err);
+          {
+            <Unauthorized />;
+          }
+        });
+    } else {
+      console.log("not authorized")
+    }
     {
       !authCtx.admin && <Unauthorized />;
     }
-  }, [back, markaspaid, addedBill]);
+  }, [back]);
 
   const mappedUsers = users.map((user) => {
     return (
@@ -52,11 +57,12 @@ const Admin = () => {
             setUserid(user.id);
             let body = { id: user.id };
             axios
-              .post("/billing", body)
-              .then((res) => {
+            .post("/billing", body)
+            .then((res) => {
                 setBillingPage(true);
                 authCtx.setClient(res.data[0].name);
                 authCtx.setBills(res.data[0].billinginfos);
+                setBills(res.data[0].billinginfos);
               })
               .catch((err) => console.error(err));
           }}
@@ -73,12 +79,13 @@ const Admin = () => {
     <Billing
       back={back}
       setBack={setBack}
-      admin={authCtx.admin}
       userid={userid}
-      setMarkaspaid={setMarkaspaid}
-      markaspaid={markaspaid}
-      setAddedBill={setAddedBill}
-      addedBill={addedBill}
+      bills={bills}
+      setBills={setBills}
+      // setMarkaspaid={setMarkaspaid}
+      // markaspaid={markaspaid}
+      // setAddedBill={setAddedBill}
+      // addedBill={addedBill}
     />
   );
 };
