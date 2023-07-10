@@ -76,9 +76,16 @@
 
 .inactive-btn {
   padding: 5px;
-  border-radius: 5px;
-  background-color: #cad1ce;
+  /* border-radius: 5px; */
+  background-color:#364a60;
   margin-top: 10px;
+  border: none;
+  border-left: 2px solid #cad1ce;
+  border-right: 2px solid #cad1ce;
+  color:#818181;
+  cursor: pointer;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 

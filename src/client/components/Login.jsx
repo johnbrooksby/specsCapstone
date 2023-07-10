@@ -163,11 +163,11 @@ const Login = () => {
       )}
       <button className="inactive-btn" onClick={() => {
         setRegister(!register)
-        setLogin('')
+        setUsername('')
         setPassword('')
       }
       }>
-        Need to {register ? "Login" : "Create an Account"}?
+        Click here to {register ? "login" : "create an account"}
       </button>
     </main>
   );
