@@ -47,11 +47,6 @@ const Billing = (props) => {
       totalDue += +charge.amount_due;
     }
 
-    const uncheckTheBox = (func) => {
-      func(false)
-    }
-
-    // useEffect(() => {
       return (
         <tr key={charge.id}>
           <td className="bills_detail">{charge.charge_explanation}</td>
@@ -81,7 +76,6 @@ const Billing = (props) => {
                 className="paid_save_btn"
                 htmlFor={`paid.${charge.id}`}
                 onClick={() => {
-                  {`paid.${charge.id}`.paidCheckbox.value = !isChecked}
                   let body = {
                     id: charge.id,
                   };
@@ -89,8 +83,7 @@ const Billing = (props) => {
                     isChecked
                       ? axios.put("/markaspaid", body).then((res) => {
                           console.log("ischecked", isChecked)
-                          uncheckTheBox(setIsChecked)
-                          // setIsChecked(!isChecked);
+                          setIsChecked(!isChecked);
                           console.log(res.data);
                           setMarkaspaid(!markaspaid);
                           console.log("ischecked", isChecked)
@@ -105,7 +98,6 @@ const Billing = (props) => {
           )}
         </tr>
       );
-    // }, [refreshPage]);
   });
 
   return (
