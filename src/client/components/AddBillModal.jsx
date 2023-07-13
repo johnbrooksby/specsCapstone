@@ -8,8 +8,6 @@ const AddBillModal = (props) => {
 
   const authCtx = useContext(AuthContext);
 
-  // console.log("props.addedBill", props.addedBill)
-
   return (
     <div className="modalFormDiv">
       <div className="modalDiv"></div>
@@ -27,7 +25,7 @@ const AddBillModal = (props) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            // props.setBills(...props.bills, {charge_explanation: reason, amount_due: amount})
+
             const body = {
               userid: props.userid,
               charge_explanation: reason,
@@ -45,9 +43,7 @@ const AddBillModal = (props) => {
 
             window.scrollTo(0, 0);
             props.setModal(false);
-            // setTimeout(() => {
             props.setAddedBill(!props.addedBill);
-            // }, 1250);
           }}
           className="add_charge_form"
         >

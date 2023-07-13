@@ -10,8 +10,6 @@ const Admin = () => {
   const [back, setBack] = useState(false);
   const [userid, setUserid] = useState(undefined);
   const [bills, setBills] = useState(undefined);
-  // const [markaspaid, setMarkaspaid] = useState(false);
-  // const [addedBill, setAddedBill] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
@@ -25,9 +23,6 @@ const Admin = () => {
             setBillingPage(false);
             setUsers(res.data);
           }
-          // else {
-          //   <Unauthorized />;
-          // }
         )
         .catch((err) => {
           console.error(err);
@@ -82,10 +77,6 @@ const Admin = () => {
       userid={userid}
       bills={bills}
       setBills={setBills}
-      // setMarkaspaid={setMarkaspaid}
-      // markaspaid={markaspaid}
-      // setAddedBill={setAddedBill}
-      // addedBill={addedBill}
     />
   );
 };

@@ -11,9 +11,8 @@ const Account = () => {
   const [bills, setBills] = useState([]);
 
   useEffect(() => {
-    // console.log(authCtx.admin)
     let body = { userId: authCtx.userId };
-    // console.log("body", body);
+
     axios
       .post("/account", body)
       .then((res) => {
@@ -24,10 +23,7 @@ const Account = () => {
         console.error(err);
       });
   }, [authCtx.userId]);
-  // console.log("users:", users);
-  // console.log('bills', bills)
-  // console.log("client", client);
-  // console.log(billingPage);
+  
   return <Billing client={client} bills={bills} />;
 };
 

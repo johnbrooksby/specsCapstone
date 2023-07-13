@@ -12,33 +12,32 @@ const Billing = (props) => {
   let billList;
 
   const [modal, setModal] = useState(false);
-  // const [bills, setBills] = useState(props.bills);
   const [markaspaid, setMarkaspaid] = useState(false);
   const [addedBill, setAddedBill] = useState(false);
   const [refreshPage, setRefreshPage] = useState(false);
-
+  
   useEffect(() => {
     authCtx.setAdmin(localStorage.getItem("admin"));
   });
-
+  
   useEffect(() => {
     if (authCtx.admin) {
       let body = { id: props.userid };
       axios
-        .post("/billing", body)
-        .then((res) => {
-          props.setBills(res.data[0].billinginfos);
-          // authCtx.setClient(res.data[0].name)
-          authCtx.setBills(res.data[0].billinginfos);
-          console.log("props.bills", props.bills);
-          setRefreshPage(!refreshPage);
-        })
-        .catch((err) => console.error(err));
+      .post("/billing", body)
+      .then((res) => {
+        props.setBills(res.data[0].billinginfos);
+        // authCtx.setClient(res.data[0].name)
+        authCtx.setBills(res.data[0].billinginfos);
+        // console.log("props.bills", props.bills);
+        setRefreshPage(!refreshPage);
+      })
+      .catch((err) => console.error(err));
     }
   }, [addedBill, markaspaid]);
-
+  
   billList = props.bills.map((charge) => {
-    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked, setIsChecked] = useState(!!false);
     total += +charge.amount_due;
     if (charge.paid) {
       totalPaid += +charge.amount_due;
@@ -71,7 +70,7 @@ const Billing = (props) => {
                 onChange={() => {
                   setIsChecked(!isChecked);
                 }}
-              />
+                />
               <button
                 className="paid_save_btn"
                 htmlFor={`paid.${charge.id}`}
@@ -81,13 +80,13 @@ const Billing = (props) => {
                   };
                   {
                     isChecked
-                      ? axios.put("/markaspaid", body).then((res) => {
-                          console.log("ischecked", isChecked)
-                          setIsChecked(!isChecked);
-                          console.log(res.data);
-                          setMarkaspaid(!markaspaid);
-                          console.log("ischecked", isChecked)
-                        })
+                    ? axios.put("/markaspaid", body).then((res) => {
+                      console.log("ischecked", isChecked)
+                      setIsChecked(false);
+                      console.log(res.data);
+                      setMarkaspaid(!markaspaid);
+                      console.log("ischecked", isChecked)
+                    })
                       : alert("You must check a box to mark as paid");
                   }
                 }}
