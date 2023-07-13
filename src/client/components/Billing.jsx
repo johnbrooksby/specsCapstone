@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../store/authContext";
 import axios from "axios";
+import AdminBilling, { billList } from "./AdminBilling";
 
 const Billing = (props) => {
   const authCtx = useContext(AuthContext);
@@ -9,35 +10,36 @@ const Billing = (props) => {
   let totalDue = 0;
   let totalPaid = 0;
   let total = 0;
+  let accountBillList;
   let billList;
 
   const [modal, setModal] = useState(false);
   const [markaspaid, setMarkaspaid] = useState(false);
   const [addedBill, setAddedBill] = useState(false);
   const [refreshPage, setRefreshPage] = useState(false);
-  
+
   useEffect(() => {
     authCtx.setAdmin(localStorage.getItem("admin"));
   });
-  
+
   useEffect(() => {
     if (authCtx.admin) {
       let body = { id: props.userid };
       axios
-      .post("/billing", body)
-      .then((res) => {
-        props.setBills(res.data[0].billinginfos);
-        // authCtx.setClient(res.data[0].name)
-        authCtx.setBills(res.data[0].billinginfos);
-        // console.log("props.bills", props.bills);
-        setRefreshPage(!refreshPage);
-      })
-      .catch((err) => console.error(err));
+        .post("/billing", body)
+        .then((res) => {
+          props.setBills(res.data[0].billinginfos);
+          // authCtx.setClient(res.data[0].name)
+          authCtx.setBills(res.data[0].billinginfos);
+          // console.log("props.bills", props.bills);
+          setRefreshPage(!refreshPage);
+        })
+        .catch((err) => console.error(err));
     }
   }, [addedBill, markaspaid]);
   
+  const [isChecked, setIsChecked] = useState(false);
   billList = props.bills.map((charge) => {
-    const [isChecked, setIsChecked] = useState(!!false);
     total += +charge.amount_due;
     if (charge.paid) {
       totalPaid += +charge.amount_due;
@@ -46,57 +48,81 @@ const Billing = (props) => {
       totalDue += +charge.amount_due;
     }
 
-      return (
-        <tr key={charge.id}>
-          <td className="bills_detail">{charge.charge_explanation}</td>
-          <td className="bills_detail amount">${charge.amount_due}</td>
-          <td
-            className={
-              charge.paid
-                ? "bills_detail paid amount"
-                : "bills_detail unpaid amount"
-            }
-          >
-            {charge.paid ? "Yes" : "No"}
-          </td>
-          {authCtx.admin && (
-            <td className="bills_detail checkbox">
-              <input
-                id={`paid.${charge.id}`}
-                type="checkbox"
-                className="paidCheckbox"
-                defaultChecked={isChecked}
-                name={`paid.${charge.id}`}
-                onChange={() => {
-                  setIsChecked(!isChecked);
-                }}
-                />
-              <button
-                className="paid_save_btn"
-                htmlFor={`paid.${charge.id}`}
-                onClick={() => {
-                  let body = {
-                    id: charge.id,
-                  };
-                  {
-                    isChecked
-                    ? axios.put("/markaspaid", body).then((res) => {
-                      console.log("ischecked", isChecked)
+    return (
+      <tr key={charge.id}>
+        <td className="bills_detail">{charge.charge_explanation}</td>
+        <td className="bills_detail amount">${charge.amount_due}</td>
+        <td
+          className={
+            charge.paid
+              ? "bills_detail paid amount"
+              : "bills_detail unpaid amount"
+          }
+        >
+          {charge.paid ? "Yes" : "No"}
+        </td>
+        <td className="bills_detail checkbox">
+          <input
+            id={`paid.${charge.id}`}
+            type="checkbox"
+            className="paidCheckbox"
+            defaultChecked={isChecked}
+            name={`paid.${charge.id}`}
+            onChange={() => {
+              setIsChecked(!isChecked);
+            }}
+          />
+          <button
+            className="paid_save_btn"
+            htmlFor={`paid.${charge.id}`}
+            onClick={() => {
+              let body = {
+                id: charge.id,
+              };
+              {
+                isChecked
+                  ? axios.put("/markaspaid", body).then((res) => {
+                      console.log("ischecked", isChecked);
                       setIsChecked(false);
                       console.log(res.data);
                       setMarkaspaid(!markaspaid);
-                      console.log("ischecked", isChecked)
+                      console.log("ischecked", isChecked);
                     })
-                      : alert("You must check a box to mark as paid");
-                  }
-                }}
-              >
-                Save
-              </button>
-            </td>
-          )}
-        </tr>
-      );
+                  : alert("You must check a box to mark as paid");
+              }
+            }}
+          >
+            Save
+          </button>
+        </td>
+      </tr>
+    );
+  });
+
+  accountBillList = props.bills.map((charge) => {
+    total += +charge.amount_due;
+    if (charge.paid) {
+      totalPaid += +charge.amount_due;
+    }
+    if (!charge.paid) {
+      totalDue += +charge.amount_due;
+    }
+
+    return (
+      <tr key={charge.id}>
+        <td className="bills_detail">{charge.charge_explanation}</td>
+        <td className="bills_detail amount">${charge.amount_due}</td>
+        <td
+          className={
+            charge.paid
+              ? "bills_detail paid amount"
+              : "bills_detail unpaid amount"
+          }
+        >
+          {charge.paid ? "Yes" : "No"}
+        </td>
+      </tr>
+    );
   });
 
   return (
@@ -136,7 +162,12 @@ const Billing = (props) => {
                 )}
               </tr>
             </thead>
-            <tbody>{billList}</tbody>
+            <tbody>
+              {authCtx.admin ? (billList
+              ) : (
+                accountBillList
+              )}
+            </tbody>
             <tfoot>
               <tr>
                 <td className="bills_detail_foot">Total:</td>
