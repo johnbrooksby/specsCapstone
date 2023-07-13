@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../store/authContext";
 import axios from "axios";
-import AdminBilling, { billList } from "./AdminBilling";
+// import AdminBilling, { billList } from "./AdminBilling";
 
 const Billing = (props) => {
   const authCtx = useContext(AuthContext);
@@ -10,17 +10,17 @@ const Billing = (props) => {
   let totalDue = 0;
   let totalPaid = 0;
   let total = 0;
-  let accountBillList;
-  let billList;
+  let accountBillList = [];
+  let billList = [];
 
   const [modal, setModal] = useState(false);
   const [markaspaid, setMarkaspaid] = useState(false);
   const [addedBill, setAddedBill] = useState(false);
   const [refreshPage, setRefreshPage] = useState(false);
 
-  useEffect(() => {
-    authCtx.setAdmin(localStorage.getItem("admin"));
-  });
+  // useEffect(() => {
+    // authCtx.setAdmin(localStorage.getItem("admin"));
+  // });
 
   useEffect(() => {
     if (authCtx.admin) {
