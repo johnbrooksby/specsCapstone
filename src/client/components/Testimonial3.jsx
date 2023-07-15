@@ -6,7 +6,7 @@ const Testimonial3 = () => {
         <div className="img_textHolder">
         <img
           className="heart-puzzle"
-          src="https://drive.google.com/uc?export=view&id=12RBg0TDSKrvki7TRKMC_ydJEVnfcQ2yG"
+          src="../../../public/8698.png"
           alt="two people talking"
         />
         <div className="text-box">

@@ -4,7 +4,7 @@ const Welcome = () => {
   return (
     <div className='welcome'>
         <div>
-            <img className='welcome_img' src='https://drive.google.com/uc?export=view&id=1xjngjLPz31_20aHZXHhMFvOTQob9GTjx' alt='Sure Spark Coaching'/>
+            <img className='welcome_img' src='../../../public/AI-ME-mottled-grey-background.png' alt='Sure Spark Coaching'/>
         </div>
         <div>
 
