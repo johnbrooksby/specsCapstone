@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../store/authContext";
 import axios from "axios";
-import AlertModal from "./AlertModal";
 // import AdminBilling, { billList } from "./AdminBilling";
 
 const Billing = (props) => {
