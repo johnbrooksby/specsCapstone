@@ -613,3 +613,12 @@ input.paidCheckbox {
 .footer-text {
   color:#cad1ce
 }
+
+.edit_head {
+  text-align: center;
+}
+
+.disabled {
+  background-color: #a5a5a5;
+  color:#b5b5b5;
+}

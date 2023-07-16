@@ -6,7 +6,7 @@ const CompFour = () => {
       <div className="comp-Four">
         <img
           className="hierarchy"
-          src="../../../public/heirarchy.png"
+          src="/heirarchy.png"
           alt="hierarchy of needs"
         />
         <div className="compFour-text">

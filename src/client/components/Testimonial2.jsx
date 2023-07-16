@@ -12,7 +12,7 @@ const Testimonial2 = () => {
         </div>
         <img
           className="heart-puzzle"
-          src="../../../public/wound_heart.jpg"
+          src="/wound_heart.jpg"
           alt="hand untangling string around heart"
         />
       </div>

@@ -4,7 +4,7 @@ const Welcome = () => {
   return (
     <div className='welcome'>
         <div>
-            <img className='welcome_img' src='../../../public/AI-ME-mottled-grey-background.png' alt='Sure Spark Coaching'/>
+            <img className='welcome_img' src='/AI-ME-mottled-grey-background.png' alt='Sure Spark Coaching'/>
         </div>
         <div>
 

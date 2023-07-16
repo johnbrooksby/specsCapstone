@@ -230,10 +230,10 @@ module.exports = {
 
   markaspaid: async (req, res) => {
     try {
-      const { id } = req.body;
+      const { id, paid } = req.body;
       let markBillAsPaid = await BillingInfo.upsert({
         id: id,
-        paid: true
+        paid: paid,
       })
       res.status(200).send(markBillAsPaid)
     } catch (error) {
