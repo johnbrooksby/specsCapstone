@@ -48,8 +48,6 @@ const Billing = (props) => {
       totalPaid += +charge.amount_due;
     }
     if (!charge.paid) {
-      console.log("totalDue", totalDue)
-      console.log("charge.amount_due", +charge.amount_due)
       totalDue += +charge.amount_due;
     }
 

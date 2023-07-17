@@ -9,11 +9,11 @@ const CompThree = () => {
         </div>
         <div className="comp-three-text">
           <h3>
-            I listen with unconditional love and non-judgement to really
+            I listen with unconditional love and non-judgment to really
             understand where you are coming from and what you are experiencing.
             <br />
             Then together we explore where you are now, what your brain is doing
-            and why, where you feelings are coming from, and how you can begin
+            and why, where your feelings are coming from, and how you can begin
             to create a life you look forward to.
           </h3>
         </div>
