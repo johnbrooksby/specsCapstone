@@ -48,6 +48,8 @@ const Billing = (props) => {
       totalPaid += +charge.amount_due;
     }
     if (!charge.paid) {
+      console.log("totalDue", totalDue)
+      console.log("charge.amount_due", +charge.amount_due)
       totalDue += +charge.amount_due;
     }
 
@@ -184,15 +186,15 @@ const Billing = (props) => {
             <tfoot>
               <tr>
                 <td className="bills_detail_foot">Total:</td>
-                <td className="bills_detail_foot">${total}</td>
+                <td className="bills_detail_foot">${total / 2}</td>
               </tr>
               <tr>
                 <td className="bills_detail_foot">Total Amount Paid:</td>
-                <td className="bills_detail_foot">${totalPaid}</td>
+                <td className="bills_detail_foot">${totalPaid / 2}</td>
               </tr>
               <tr>
                 <td className="bills_detail_foottwo">Amount Due:</td>
-                <td className="bills_detail_foottwo">${totalDue}</td>
+                <td className="bills_detail_foottwo">${totalDue / 2}</td>
               </tr>
             </tfoot>
           </table>
