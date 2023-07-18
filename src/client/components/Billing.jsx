@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../store/authContext";
 import axios from "axios";
-// import AdminBilling, { billList } from "./AdminBilling";
 
 const Billing = (props) => {
   const authCtx = useContext(AuthContext);
@@ -14,7 +13,6 @@ const Billing = (props) => {
   let billList = [];
 
   const [modal, setModal] = useState(false);
-  const [alertModal, setAlertModal] = useState(false);
 
   const [markaspaid, setMarkaspaid] = useState(true);
   const [addedBill, setAddedBill] = useState(false);
@@ -32,16 +30,13 @@ const Billing = (props) => {
         .post("/billing", body)
         .then((res) => {
           props.setBills(res.data[0].billinginfos);
-          // authCtx.setClient(res.data[0].name)
           authCtx.setBills(res.data[0].billinginfos);
-          // console.log("props.bills", props.bills);
           setRefreshPage(!refreshPage);
         })
         .catch((err) => console.error(err));
     }
   }, [addedBill, markaspaid, modal]);
 
-  const [isChecked, setIsChecked] = useState(true);
   billList = props.bills.map((charge) => {
     total += +charge.amount_due;
     if (charge.paid) {
@@ -65,36 +60,17 @@ const Billing = (props) => {
           {charge.paid ? "Yes" : "No"}
         </td>
         <td className="bills_detail checkbox">
-          {/* <input
-            id={`paid.${charge.id}`}
-            type="checkbox"
-            className="paidCheckbox"
-            defaultChecked={isChecked}
-            name={`paid.${charge.id}`}
-            onChange={() => {
-              setIsChecked(!isChecked);
-            }}
-          /> */}
           <button
             className={edit ? "paid_save_btn" : "paid_save_btn disabled"}
             disabled={!edit ? true : false}
-            // htmlFor={`paid.${charge.id}`}
             onClick={() => {
               let body = {
                 id: charge.id,
                 paid: !charge.paid,
               };
-              {
-                isChecked
-                  ? axios.put("/markaspaid", body).then((res) => {
-                      // console.log("ischecked", isChecked);
-                      // setIsChecked(!isChecked);
-                      // console.log(res.data);
+              axios.put("/markaspaid", body).then((res) => {
                       setMarkaspaid(markaspaid ? false : true);
-                      // console.log("ischecked", isChecked);
                     })
-                  : setAlertModal(!alertModal);
-              }
             }}
           >
             {charge.paid ? "Unpaid" : "Paid"}
@@ -132,9 +108,6 @@ const Billing = (props) => {
 
   return (
     <div>
-      {/* {setAlertModal && (
-        <AlertModal alertModal={alertModal} setAlertModal={setAlertModal} />
-      )} */}
       {modal && (
         <AddBillModal
           setModal={setModal}
@@ -176,7 +149,6 @@ const Billing = (props) => {
                       {!edit ? "Edit" : "Save"}
                     </button>
                   </td>
-                  // <td className="bills_detail_head">Mark as Paid</td>
                 )}
               </tr>
             </thead>

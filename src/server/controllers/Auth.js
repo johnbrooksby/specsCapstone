@@ -118,7 +118,6 @@ module.exports = {
   },
 
   account: async (req, res) => {
-    // console.log('REQ.BODY', req.body.userId)
     try {
       userBills = await User.findOne({
         where: { id: req.body.userId },
@@ -138,7 +137,6 @@ module.exports = {
         order: [[BillingInfo, "id", "ASC"]],
       });
       res.status(200).send(userBills);
-      // res.status(200).send(billingList);
     } catch (error) {
       console.log("Error getting user");
       console.log(error);
@@ -168,7 +166,6 @@ module.exports = {
           order: [[BillingInfo, "id", "ASC"]],
         });
         res.status(200).send(userList);
-        // res.status(200).send(billingList);
       } catch (error) {
         console.log("Error getting users");
         console.log(error);
@@ -182,7 +179,6 @@ module.exports = {
   billing: async (req, res) => {
     try {
       const { id } = req.body;
-      // console.log(req.body)
       let user = await User.findAll({
         where: { id },
         include: [
@@ -202,7 +198,6 @@ module.exports = {
           "id",
         ],
       });
-      // console.log('~~~~~~~~~USER~~~~~~~~~~~',user)
       res.status(200).send(user);
     } catch (error) {
       console.log("Error getting users");
@@ -247,6 +242,5 @@ module.exports = {
     admin = false;
     userList = null;
     billingList = null;
-    // console.log(admin, userList, billingList, "logged out");
   },
 };

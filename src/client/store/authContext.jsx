@@ -59,7 +59,6 @@ export const AuthContextProvider = (props) => {
   if (localData) {
     initialToken = localData.token;
     initialId = localData.userId;
-    // initialAdmin = localData.admin;
   } else if (localData && admin){
     initialToken = localData.token;
     initialId = localData.userId;
@@ -96,12 +95,9 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("exp", exp);
     localStorage.setItem("userId", userId);
     localStorage.setItem("admin", admin);
-    // localStorage.setItem("admin", JSON.stringify(admin));
     localStorage.setItem("client", client);
     localStorage.setItem("bills", bills);
     
-    // console.log("--------------token-----------------",token)
-
     const remainingTime = calculateRemainingTime(exp);
 
     logoutTimer = setTimeout(logout, remainingTime);

@@ -4,7 +4,7 @@ import axios from "axios";
 let totalDue = 0;
 let totalPaid = 0;
 let total = 0;
-let billList;
+let billList = [];
 
 const AdminBilling = (props) => {
   billList = props.bills.map((charge) => {

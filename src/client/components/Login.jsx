@@ -44,9 +44,7 @@ const Login = () => {
     axios
       .post(register ? "/register" : "/login", register ? RegBody : Body)
       .then((res) => {
-        // console.log("res.data", res.data.admin);
         setRegister(res);
-        // authCtx.setAdmin(res.data.admin)
         authCtx.login(res.data.token, res.data.exp, res.data.userId, res.data.admin);
         setUsername("");
         setPassword("");
@@ -55,8 +53,6 @@ const Login = () => {
         console.error(err);
         setLogin(false);
       });
-
-    // console.log("submitHandler called");
   };
 
   return (
