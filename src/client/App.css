@@ -22,7 +22,7 @@
 }
 
 .header {
-  min-height: 14vh;
+  min-height: 95px;
   width: 100vw;
   background-color: #cad1ce;
   top: 0px;
@@ -550,13 +550,8 @@ table {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  width: 125px;
+  width: 75px;
   height: 100%;
-}
-
-input.paidCheckbox {
-  height: 15px;
-  width: 15px;
 }
 
 .paid_save_btn {
