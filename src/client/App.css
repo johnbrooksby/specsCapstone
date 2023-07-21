@@ -22,7 +22,7 @@
 }
 
 .header {
-  min-height: 95px;
+  min-height: 16vh;
   width: 100vw;
   background-color: #cad1ce;
   top: 0px;
@@ -161,7 +161,7 @@
 .navbar {
   display: flex;
   width: 100vw;
-  min-height: 7vh;
+  min-height: 6vh;
   background-color: #cad1ce;
   justify-content: center;
 }
@@ -174,11 +174,12 @@
   gap: 30px;
   padding-right: 20px;
   padding-bottom: 10px;
+  height: 100%;
 }
 
 .li {
   width: fit-content;
-  height: fit-content;
+  height: 23px;
   border-radius: 0px;
   display: flex;
   justify-content: center;
@@ -223,7 +224,7 @@ h1 {
 
 .page {
   width: 100vw;
-  min-height: 79vh;
+  min-height: 67vh;
   background-color: #364a60;
   display: flex;
   justify-content: flex-start;
@@ -302,9 +303,9 @@ a:active {
 }
 
 li a:hover {
-  
+  margin-bottom: -1px;
   border-bottom: 1px solid black;
-  scale:1;
+  scale: 1;
 }
 
 .testimonial {
