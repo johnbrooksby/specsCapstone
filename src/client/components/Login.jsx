@@ -20,16 +20,17 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     if (register && (password !== verifyPassword)){
       alert('Passwords do not match')
       return;
     }
-
+    
     const Body = {
       username,
       password,
     };
-
+    
     const RegBody = {
       username,
       name,
@@ -40,19 +41,21 @@ const Login = () => {
       zip,
       email_address,
     };
-
+    
     axios
-      .post(register ? "/register" : "/login", register ? RegBody : Body)
-      .then((res) => {
-        setRegister(res);
-        authCtx.login(res.data.token, res.data.exp, res.data.userId, res.data.admin);
-        setUsername("");
-        setPassword("");
-      })
-      .catch((err) => {
-        console.error(err);
-        setLogin(false);
-      });
+    .post(register ? "/register" : "/login", register ? RegBody : Body)
+    .then((res) => {
+      // setRegister(res);
+      authCtx.login(res.data.token, res.data.exp, res.data.userId, res.data.admin);
+      setUsername("");
+      setPassword("");
+      // localStorage.setItem("admin", res.data.admin)
+    })
+    .catch((err) => {
+      console.error(err);
+      setLogin(false);
+    });
+    register ? localStorage.setItem("admin", false) : null;
   };
 
   return (

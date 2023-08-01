@@ -70,6 +70,7 @@ module.exports = {
           username: newUser.dataValues.username,
           userId: newUser.dataValues.id,
           token,
+          admin,
           exp,
         });
       }
