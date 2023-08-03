@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../store/authContext";
 import axios from "axios";
@@ -69,8 +70,8 @@ const Billing = (props) => {
                 paid: !charge.paid,
               };
               axios.put("/markaspaid", body).then((res) => {
-                      setMarkaspaid(markaspaid ? false : true);
-                    })
+                setMarkaspaid(markaspaid ? false : true);
+              });
             }}
           >
             {charge.paid ? "Unpaid" : "Paid"}
@@ -130,6 +131,7 @@ const Billing = (props) => {
         <h3 className="billPageHeader">
           Billing Info for {props.client ? props.client : authCtx.client}
         </h3>
+        <NavLink to="clientinfo">Edit client information</NavLink>
         <br></br>
         <div className="table">
           <table className="bills_detail_table">

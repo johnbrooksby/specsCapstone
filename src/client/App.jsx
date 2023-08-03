@@ -12,6 +12,7 @@ import Testimonials from "./components/Testimonials";
 import Account from "./components/Account";
 import Footer from "./components/Footer";
 import Admin from "./components/Admin";
+import ClientProfile from "./components/clientprofile/ClientProfile";
 
 
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="login" element={!authCtx.token ? <Login /> : <Navigate to='/' />} />
         <Route path="testimonials" element={<Testimonials />} />
         <Route path="admin" element={authCtx.admin ? <Admin /> : <Navigate to='/' />} />
+        <Route path="clientinfo" element={authCtx.admin ? <ClientProfile /> : <Navigate to='/' />} />
         <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' /> } />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
