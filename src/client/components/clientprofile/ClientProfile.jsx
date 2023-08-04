@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useContext} from "react";
+import AuthContext from "../../store/authContext";
 
 const ClientProfile = () => {
-  return (
-    <div>ClientProfile</div>
-  )
-}
+  const authCtx = useContext(AuthContext);
+  return <div className="clientprofilepage">ClientProfile for {authCtx.client}</div>;
+};
 
-export default ClientProfile
+export default ClientProfile;

@@ -131,7 +131,10 @@ const Billing = (props) => {
         <h3 className="billPageHeader">
           Billing Info for {props.client ? props.client : authCtx.client}
         </h3>
-        <NavLink to="clientinfo">Edit client information</NavLink>
+       <div className="clientinfo">
+            <NavLink to="clientinfo" className="clientinfolink" >Edit client information</NavLink>
+       </div>
+          
         <br></br>
         <div className="table">
           <table className="bills_detail_table">

@@ -566,6 +566,20 @@ table {
   color:#f2ebe0;
 }
 
+.clientprofilepage {
+  min-height: 83vh;
+  background-color: #364a60;
+}
+
+.clientinfo {
+  text-align: center;
+  width: 100vw;
+}
+
+.clientinfolink {
+  color:#c3965f;
+}
+
 .closeModal {
   position: fixed;
   top: 9vh;
