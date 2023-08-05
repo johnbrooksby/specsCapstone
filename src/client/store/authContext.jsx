@@ -12,6 +12,8 @@ const AuthContext = createContext({
   setAdmin: () => {},
   client: null,
   setClient: () => {},
+  clientId: null,
+  setClientId: () => {},
   bills: null,
   setBills: () => {},
 });
@@ -29,6 +31,7 @@ const getLocalData = () => {
   const storeId = localStorage.getItem("userId");
   const storedAdmin = localStorage.getItem("admin");
   const storedClient = localStorage.getItem("client");
+  const storedClientId = localStorage.getItem("clientId");
   const storedBills = localStorage.getItem("bills");
   const remainingTime = calculateRemainingTime(storedExp);
 
@@ -46,6 +49,7 @@ const getLocalData = () => {
     userId: +storeId,
     admin: storedAdmin,
     client: storedClient,
+    clientId: storedClientId,
     bills: storedBills,
   };
 };
@@ -69,6 +73,7 @@ export const AuthContextProvider = (props) => {
   const [userId, setUserId] = useState(initialId);
   const [admin, setAdmin] = useState(initialAdmin);
   const [client, setClient] = useState(null);
+  const [clientId, setClientId] = useState(null);
   const [bills, setBills] = useState(null);
 
   const logout = (logoutTimer) => {
@@ -76,12 +81,14 @@ export const AuthContextProvider = (props) => {
     setUserId(null);
     setAdmin(false);
     setClient(null);
+    setClientId(null);
     setBills(null);
     localStorage.removeItem("token");
     localStorage.removeItem("exp");
     localStorage.removeItem("userId");
     window.localStorage.removeItem("admin");
     localStorage.removeItem("client");
+    localStorage.removeItem("clientId");
     localStorage.removeItem("bills");
     clearTimeout(logoutTimer);
     axios.put("/logout");
@@ -96,6 +103,7 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("userId", userId);
     localStorage.setItem("admin", admin);
     localStorage.setItem("client", client);
+    localStorage.setItem("clientId", clientId);
     localStorage.setItem("bills", bills);
     
     const remainingTime = calculateRemainingTime(exp);
@@ -112,6 +120,8 @@ export const AuthContextProvider = (props) => {
     setAdmin,
     client,
     setClient,
+    clientId,
+    setClientId,
     bills,
     setBills,
   };

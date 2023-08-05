@@ -50,6 +50,7 @@ const Admin = () => {
           className="blue-btn"
           onClick={() => {
             setUserid(user.id);
+            authCtx.setClientId(user.id);
             let body = { id: user.id };
             axios
             .post("/billing", body)

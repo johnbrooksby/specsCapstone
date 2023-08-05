@@ -239,6 +239,20 @@ module.exports = {
     }
   },
 
+  deleteuser: async (req, res) => {
+    try {
+      const {client} = req.params;
+      console.log("client to delete", client)
+      await BillingInfo.delete ({ where: { userid: client } });
+      await User.delete({ where: { id: client } });
+
+    } catch (error) {
+      console.log("Error deleting user")
+      console.error(error)
+      res.sendStatus(400)
+    }
+  },
+
   logout: async (req, res) => {
     admin = false;
     userList = null;
