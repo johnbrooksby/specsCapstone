@@ -243,8 +243,8 @@ module.exports = {
     try {
       const {client} = req.params;
       console.log("client to delete", client)
-      await BillingInfo.delete ({ where: { userid: client } });
-      await User.delete({ where: { id: client } });
+      await BillingInfo.destroy ({ where: { "userId": client } });
+      await User.destroy({ where: { id: client } });
 
     } catch (error) {
       console.log("Error deleting user")
