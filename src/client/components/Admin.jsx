@@ -39,6 +39,7 @@ const Admin = () => {
   }, [back]);
 
   const mappedUsers = users.map((user) => {
+    console.log(user)
     return (
       <div key={user.id} className="userCard">
         <h3>{user.name}</h3>

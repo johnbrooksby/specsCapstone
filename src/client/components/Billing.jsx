@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../store/authContext";
+import ClientProfile from "./clientprofile/ClientProfile";
 import axios from "axios";
 
 const Billing = (props) => {
@@ -19,6 +20,7 @@ const Billing = (props) => {
   const [addedBill, setAddedBill] = useState(false);
   const [refreshPage, setRefreshPage] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [editClient, setEditClient] = useState(false);
 
   // useEffect(() => {
   // authCtx.setAdmin(localStorage.getItem("admin"));
@@ -108,7 +110,9 @@ const Billing = (props) => {
   });
 
   return (
+    
     <div>
+    {/* {(!editClient) ? ( */}
       {modal && (
         <AddBillModal
           setModal={setModal}
@@ -131,10 +135,19 @@ const Billing = (props) => {
         <h3 className="billPageHeader">
           Billing Info for {props.client ? props.client : authCtx.client}
         </h3>
-       <div className="clientinfo">
-            <NavLink to="clientinfo" className="clientinfolink" >Edit client information</NavLink>
-       </div>
-          
+        <div className="clientinfo">
+          {authCtx.admin && <NavLink to="/clientinfo" className="clientinfolink" >Edit client information</NavLink>}
+          {/* <a
+            className="clientinfolink"
+            onClick={() => {
+              setEditClient(!editClient);
+              console.log(editClient);
+            }}
+          >
+            Edit Client Information
+          </a> */}
+        </div>
+
         <br></br>
         <div className="table">
           <table className="bills_detail_table">
@@ -204,6 +217,7 @@ const Billing = (props) => {
           </a>
         )}
       </div>
+      {/* ) : (<ClientProfile />)} */}
     </div>
   );
 };
