@@ -5,21 +5,20 @@ import axios from "axios";
 
 const ClientProfile = () => {
   const authCtx = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="clientprofilepage">
       <p>Client Profile for {authCtx.client}</p>
-      <a
-        onClick={() => {
+      <a          
+        onClick={() =>  {
           axios
             .delete("/deleteUser/" + authCtx.clientId)
-            .then(() => {
-              navigate('/admin')
-            })
+            .then(() => {})
             .catch((err) => {
               console.error(err);
             });
+          setTimeout(() => navigate("/admin"), 200);
         }}
       >
         Delete User
