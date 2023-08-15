@@ -112,7 +112,6 @@ const Billing = (props) => {
   return (
     
     <div>
-    {/* {(!editClient) ? ( */}
       {modal && (
         <AddBillModal
           setModal={setModal}
@@ -137,15 +136,6 @@ const Billing = (props) => {
         </h3>
         <div className="clientinfo">
           {authCtx.admin && <NavLink to="/clientinfo" className="clientinfolink" >Edit client information</NavLink>}
-          {/* <a
-            className="clientinfolink"
-            onClick={() => {
-              setEditClient(!editClient);
-              console.log(editClient);
-            }}
-          >
-            Edit Client Information
-          </a> */}
         </div>
 
         <br></br>
@@ -217,7 +207,6 @@ const Billing = (props) => {
           </a>
         )}
       </div>
-      {/* ) : (<ClientProfile />)} */}
     </div>
   );
 };
