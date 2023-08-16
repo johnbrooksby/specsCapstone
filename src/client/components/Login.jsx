@@ -15,17 +15,21 @@ const Login = () => {
   const [zip, setZip] = useState("");
   const [register, setRegister] = useState(false);
   const [login, setLogin] = useState(true);
+  const [clicked, setClicked] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
+    setClicked(true)
+
     if (register && (password !== verifyPassword)){
       alert('Passwords do not match')
       return;
     }
     
+
     const Body = {
       username,
       password,
@@ -86,7 +90,7 @@ const Login = () => {
           </button>
         </form>
       ) : (
-        <form className="form reg-form" onSubmit={submitHandler}>
+        <form className="form reg-form" onSubmit={submitHandler} >
           <input
             placeholder="Username"
             value={username}
@@ -154,9 +158,9 @@ const Login = () => {
             className="reg-form-input email"
           />
           <div>
-            <button className="orange-btn">
+            <button className="orange-btn" disabled={clicked ? true : false} >
               {register ? "Create Account" : "Login"}{" "}
-            </button>
+            </button >
           </div>
         </form>
       )}

@@ -1,9 +1,11 @@
 import React, {useContext, useEffect} from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../store/authContext";
 
 const Navbar = () => {
   const authCtx = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     {localStorage.getItem("admin") && authCtx.setAdmin(JSON.parse(localStorage.getItem("admin")))}
@@ -25,7 +27,10 @@ const Navbar = () => {
               {authCtx.admin ? <NavLink to="admin">Admin</NavLink> : <NavLink to="account">Account</NavLink>}
             </li>
             <li className="li">
-            <a onClick={() => authCtx.logout()}>Logout</a>
+            <a onClick={() => {
+              navigate("/")
+              authCtx.logout()
+            }}>Logout</a>
             </li>
           </ul>
         ) : (
