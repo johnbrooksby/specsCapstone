@@ -17,7 +17,7 @@ const Admin = () => {
     authCtx.setAdmin(localStorage.getItem("admin"));
     if (localStorage.getItem("admin")) {
       axios
-        .get("/admin")
+        .get("/api/admin")
         .then(
           (res) => {
             setBillingPage(false);
@@ -54,7 +54,7 @@ const Admin = () => {
             authCtx.setClientId(user.id);
             let body = { id: user.id };
             axios
-            .post("/billing", body)
+            .post("/api/billing", body)
             .then((res) => {
                 setBillingPage(true);
                 authCtx.setClient(res.data[0].name);

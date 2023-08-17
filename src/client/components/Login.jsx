@@ -47,7 +47,7 @@ const Login = () => {
     };
     
     axios
-    .post(register ? "/register" : "/login", register ? RegBody : Body)
+    .post(register ? "/api/register" : "/api/login", register ? RegBody : Body)
     .then((res) => {
       // setRegister(res);
       authCtx.login(res.data.token, res.data.exp, res.data.userId, res.data.admin);

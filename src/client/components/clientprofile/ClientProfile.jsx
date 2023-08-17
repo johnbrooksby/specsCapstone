@@ -13,12 +13,12 @@ const ClientProfile = () => {
       <a          
         onClick={() =>  {
           axios
-            .delete("/deleteUser/" + authCtx.clientId)
+            .delete("/api/deleteUser/" + authCtx.clientId)
             .then(() => {})
             .catch((err) => {
               console.error(err);
             });
-          setTimeout(() => navigate("/admin"), 200);
+          setTimeout(() => navigate("/admin"), 300);
         }}
       >
         Delete User

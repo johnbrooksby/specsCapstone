@@ -91,7 +91,7 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("clientId");
     localStorage.removeItem("bills");
     clearTimeout(logoutTimer);
-    axios.put("/logout");
+    axios.put("/api/logout");
   };
 
   const login = (token, exp, userId, admin) => {

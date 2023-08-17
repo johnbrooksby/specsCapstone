@@ -30,7 +30,7 @@ const Billing = (props) => {
     if (authCtx.admin) {
       let body = { id: props.userid };
       axios
-        .post("/billing", body)
+        .post("/api/billing", body)
         .then((res) => {
           props.setBills(res.data[0].billinginfos);
           authCtx.setBills(res.data[0].billinginfos);
@@ -71,7 +71,7 @@ const Billing = (props) => {
                 id: charge.id,
                 paid: !charge.paid,
               };
-              axios.put("/markaspaid", body).then((res) => {
+              axios.put("/api/markaspaid", body).then((res) => {
                 setMarkaspaid(markaspaid ? false : true);
               });
             }}
@@ -110,7 +110,6 @@ const Billing = (props) => {
   });
 
   return (
-    
     <div>
       {modal && (
         <AddBillModal
@@ -135,7 +134,11 @@ const Billing = (props) => {
           Billing Info for {props.client ? props.client : authCtx.client}
         </h3>
         <div className="clientinfo">
-          {authCtx.admin && <NavLink to="/clientinfo" className="clientinfolink" >Edit client information</NavLink>}
+          {authCtx.admin && (
+            <NavLink to="/clientinfo" className="clientinfolink">
+              Edit client information
+            </NavLink>
+          )}
         </div>
 
         <br></br>

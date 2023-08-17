@@ -33,7 +33,7 @@ const AddBillModal = (props) => {
             };
 
             axios
-              .post("/addbill", body)
+              .post("/api/addbill", body)
               .then((res) => {
                 setReason("");
                 setAmount("");

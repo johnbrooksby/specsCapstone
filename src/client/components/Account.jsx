@@ -14,7 +14,7 @@ const Account = () => {
     let body = { userId: authCtx.userId };
 
     axios
-      .post("/account", body)
+      .post("/api/account", body)
       .then((res) => {
         setClient(res.data.name);
         setBills(res.data.billinginfos);

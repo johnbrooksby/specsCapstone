@@ -28,15 +28,15 @@ const YOUR_DOMAIN = 'http://localhost:5556';
 User.hasMany(BillingInfo)
 BillingInfo.belongsTo(User)
 
-app.post('/register', register)
-app.post('/login', login)
-app.get('/admin', usersAdmin)
-app.put('/logout', logout)
-app.post('/billing', billing)
-app.post("/addbill", addbill)
-app.post('/account', account)
-app.put('/markaspaid', markaspaid)
-app.delete('/deleteuser/:client', deleteuser)
+app.post('/api/register', register)
+app.post('/api/login', login)
+app.get('/api/admin', usersAdmin)
+app.put('/api/logout', logout)
+app.post('/api/billing', billing)
+app.post("/api/addbill", addbill)
+app.post('/api/account', account)
+app.put('/api/markaspaid', markaspaid)
+app.delete('/api/deleteuser/:client', deleteuser)
 // app.post('/v1/checkout/sessions') 
 // app.post('/v1/checkout/sessions/:id/expire')
 // app.get('/v1/checkout/sessions/:id')
@@ -61,7 +61,7 @@ app.delete('/deleteuser/:client', deleteuser)
 // });
 
 // app.get('/*', function (req, res) {
-//   res.sendFile(path.join(__dirname, '../build', 'index.html'))
+//   res.sendFile(path.join(__dirname, '../../dist', 'index.html'))
 // })
 
 // sequelize.sync({force:true})
