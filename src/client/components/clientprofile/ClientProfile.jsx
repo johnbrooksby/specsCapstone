@@ -10,7 +10,7 @@ const ClientProfile = () => {
   return (
     <div className="clientprofilepage">
       <p>Client Profile for {authCtx.client}</p>
-      <a          
+      <a      
         onClick={() =>  {
           axios
             .delete("/api/deleteUser/" + authCtx.clientId)

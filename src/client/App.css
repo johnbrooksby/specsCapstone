@@ -569,6 +569,7 @@ table {
 .clientprofilepage {
   min-height: 83vh;
   background-color: #364a60;
+  color:#c3965f;
 }
 
 .clientinfo {
