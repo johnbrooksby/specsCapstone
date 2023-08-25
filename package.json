@@ -8,6 +8,7 @@
     "dev": "nodemon src/server/main.js -w src/server",
     "start": "node src/server/main.js && npm build",
     "build": "vite build",
+    "predeploy": "npm run build",
     "preview": "vite preview --port 8080"
   },
   "dependencies": {

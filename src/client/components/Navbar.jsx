@@ -42,7 +42,8 @@ const Navbar = () => {
               <NavLink to="testimonials">Testimonials</NavLink>
             </li>
             <li  className="li">
-              <NavLink to="login">Login or Sign Up</NavLink>
+              {/* <NavLink to="login">Login or Sign Up</NavLink> */}
+              <NavLink to="login">Login / Register</NavLink>
             </li>
           </ul>
         )}
