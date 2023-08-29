@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import axios from "axios";
 
 import AuthContext from "../store/authContext";
@@ -18,6 +18,7 @@ const Login = () => {
   const [clicked, setClicked] = useState(false);
 
   const authCtx = useContext(AuthContext);
+  
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -49,11 +50,9 @@ const Login = () => {
     axios
     .post(register ? "/api/register" : "/api/login", register ? RegBody : Body)
     .then((res) => {
-      // setRegister(res);
       authCtx.login(res.data.token, res.data.exp, res.data.userId, res.data.admin);
       setUsername("");
       setPassword("");
-      // localStorage.setItem("admin", res.data.admin)
     })
     .catch((err) => {
       console.error(err);
@@ -62,17 +61,23 @@ const Login = () => {
     register ? localStorage.setItem("admin", false) : null;
   };
 
+  const callbackRef = useCallback(inputElement => {
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, [register]);
+
   return (
     <main className="page">
       {!register ? (
         <form className="form auth-form" onSubmit={submitHandler}>
           <input
+            ref={callbackRef}
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="form-input"
+            className="form-input leading_input"
             required
-            autoFocus
           />
           <input
             placeholder="Password"
@@ -92,12 +97,12 @@ const Login = () => {
       ) : (
         <form className="form reg-form" onSubmit={submitHandler} >
           <input
+            ref={callbackRef}
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="reg-form-input"
+            className="reg-form-input leading_input"
             required
-            autoFocus
           />
           <input
             placeholder="First & Last Name"
