@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AddBillModal from "./AddBillModal";
-import AuthContext from "../store/authContext";
+import AuthContext from "../../store/authContext";
 import ClientProfile from "./clientprofile/ClientProfile";
 import axios from "axios";
 
 const Billing = (props) => {
   const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
 
   let totalDue = 0;
   let totalPaid = 0;

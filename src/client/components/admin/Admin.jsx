@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import AuthContext from "../store/authContext";
+import AuthContext from "../../store/authContext";
 import axios from "axios";
-import Unauthorized from "./Unauthorized";
+// import Unauthorized from "./Unauthorized";
 import Billing from "./Billing";
 
 const Admin = () => {
@@ -26,16 +26,8 @@ const Admin = () => {
         )
         .catch((err) => {
           console.error(err);
-          {
-            <Unauthorized />;
-          }
         });
-    } else {
-      console.log("not authorized")
-    }
-    {
-      !authCtx.admin && <Unauthorized />;
-    }
+    } 
   }, [back]);
 
   const mappedUsers = users.map((user) => {

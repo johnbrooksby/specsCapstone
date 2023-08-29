@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import AuthContext from "../store/authContext";
+import AuthContext from "../../store/authContext";
 
 const Navbar = () => {
   const authCtx = useContext(AuthContext);
@@ -17,6 +17,7 @@ const Navbar = () => {
       <nav className="navbar">
         {authCtx.token ? (
           <ul className="navUl">
+            {/* <li className={!admin ? "li drop_one_pixel" : "li"}> */}
             <li className="li">
               <NavLink to="/">Home</NavLink>
             </li>

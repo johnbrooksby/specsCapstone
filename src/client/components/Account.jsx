@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import Billing from "./Billing";
+import Billing from "./admin/Billing";
 import AuthContext from "../store/authContext";
 import axios from "axios";
 // import StripePayment from './Stripe'
