@@ -242,7 +242,6 @@ module.exports = {
   deleteuser: async (req, res) => {
     try {
       const {client} = req.params;
-      // console.log("client to delete", client)
       await BillingInfo.destroy ({ where: { "userId": client } });
       await User.destroy({ where: { id: client } });
 

@@ -316,7 +316,7 @@ a {
 a:hover {
   scale: 1.01;
   cursor: pointer;
-  z-index: 3;
+  z-index: 6;
 }
 
 a:active {
