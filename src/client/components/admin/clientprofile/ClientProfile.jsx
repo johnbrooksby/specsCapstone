@@ -8,9 +8,10 @@ const ClientProfile = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="clientprofilepage">
-      <p>Client Profile for {authCtx.client}</p>
-      <a      
+    <div className="clientProfilePage">
+      <h2 className="fourPar">Client Profile for {authCtx.client}</h2>
+      <a
+      className="orange-btn" 
         onClick={() =>  {
           axios
             .delete("/api/deleteUser/" + authCtx.clientId)

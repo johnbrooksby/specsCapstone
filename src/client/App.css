@@ -583,10 +583,13 @@ table {
   color:#f2ebe0;
 }
 
-.clientprofilepage {
+.clientProfilePage {
   min-height: 83vh;
   background-color: #364a60;
   color:#c3965f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .clientinfo {

@@ -19,6 +19,7 @@ const Billing = (props) => {
 
   const [markaspaid, setMarkaspaid] = useState(true);
   const [addedBill, setAddedBill] = useState(false);
+  // let addedBill = useState(false);
   const [refreshPage, setRefreshPage] = useState(false);
   const [edit, setEdit] = useState(false);
   const [editClient, setEditClient] = useState(false);
@@ -118,6 +119,7 @@ const Billing = (props) => {
           userid={props.userid}
           addedBill={addedBill}
           setAddedBill={setAddedBill}
+
           bills={props.bills}
           setBills={props.setBills}
         />

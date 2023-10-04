@@ -44,6 +44,7 @@ const AddBillModal = (props) => {
             window.scrollTo(0, 0);
             props.setModal(false);
             props.setAddedBill(!props.addedBill);
+            // props.addedBill[1](!props.addedBill);
           }}
           className="add_charge_form"
         >
