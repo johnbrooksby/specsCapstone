@@ -23,6 +23,7 @@ const AddBillModal = (props) => {
           X
         </a>
         <form
+          className="add_charge_form"
           onSubmit={(e) => {
             e.preventDefault();
 
@@ -46,7 +47,6 @@ const AddBillModal = (props) => {
             props.setAddedBill(!props.addedBill);
             // props.addedBill[1](!props.addedBill);
           }}
-          className="add_charge_form"
         >
           <input
             placeholder="Reason"

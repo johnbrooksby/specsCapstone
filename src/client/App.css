@@ -537,6 +537,17 @@ table {
   justify-content: center;
   align-items: flex-start;
 }
+/* 
+.greyBox {
+  width: 30vw;
+  height: 40vh;
+  background-color: #a5a5a5;
+  z-index: 99;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-around;
+} */
 
 .add_charge_form {
   display: flex;
@@ -552,6 +563,7 @@ table {
   position: fixed;
   z-index: 10;
   margin-left: 36vw;
+  
   margin-right: auto;
   bottom: 40vh;
 }
