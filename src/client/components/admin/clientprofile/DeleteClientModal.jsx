@@ -6,43 +6,49 @@ const DeleteClientModal = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div className="modalFormDiv">
+    <div>
       <div className="modalDiv"></div>
-      <a
-        className="closeModal"
-        onClick={() => {
-          props.setModal(false);
-        }}
-      >
-        X
-      </a>
-      <form className="add_charge_form">
-        <p>Are you sure you want to delete this user?</p>
+      {/* <div> */}
         <a
-          className="blue-btn"
+          className="closeModal"
           onClick={() => {
             props.setModal(false);
           }}
         >
-          Cancel
+          X
         </a>
-        <a
-          className="orange-btn"
-          onClick={() => {
-            alert("User delete test successful");
-            // axios
-            //   .delete("/api/deleteUser/" + authCtx.clientId)
-            //   .then(() => {})
-            //   .catch((err) => {
-            //     console.error(err);
-            //   });
-            props.setModal(false);
-            setTimeout(() => navigate("/admin"), 100);
-          }}
-        >
-          Delete Client
-        </a>
-      </form>
+        {/* <div className="modalContainer"> */}
+        <form className="add_charge_form"
+        onSubmit={e =>
+            e.preventDefault()}>
+          <h3>Are you sure you want to delete this user? All history for this user will be lost forever!</h3>
+          <a
+            className="blue-btn"
+            onClick={() => {
+              props.setModal(false);
+            }}
+          >
+            Cancel
+          </a>
+          <a
+            className="orange-btn"
+            onClick={() => {
+              alert("User delete test successful");
+              // axios
+              //   .delete("/api/deleteUser/" + authCtx.clientId)
+              //   .then(() => {})
+              //   .catch((err) => {
+              //     console.error(err);
+              //   });
+              props.setModal(false);
+              setTimeout(() => navigate("/admin"), 100);
+            }}
+          >
+            Delete Client
+          </a>
+        </form>
+        {/* </div> */}
+      {/* </div> */}
     </div>
   );
 };

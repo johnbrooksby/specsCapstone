@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import AddBillModal from "./AddBillModal";
+// import AddBillModal from "./AddBillModal";
 import AuthContext from "../../store/authContext";
 import ClientProfile from "./clientprofile/ClientProfile";
 import axios from "axios";
@@ -119,7 +119,6 @@ const Billing = (props) => {
           userid={props.userid}
           addedBill={addedBill}
           setAddedBill={setAddedBill}
-
           bills={props.bills}
           setBills={props.setBills}
         />

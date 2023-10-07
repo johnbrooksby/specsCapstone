@@ -14,29 +14,31 @@ const ClientProfile = () => {
       {modal && (
         <DeleteClientModal setModal={setModal} userid={authCtx.clientId} />
       )}
-      <div className={
+      <div
+        className={
           !authCtx.admin
             ? "billdetail"
             : !modal
             ? "billdetail billdetail_admin"
             : "billdetail billdetail_admin billdetail_blur"
-        }>
-      <h2 className="fourPar">Client Profile for {authCtx.client}</h2>
-      <a
-        className="orange-btn"
-        onClick={() => {
-          setModal(true);
-          // axios
-          //   .delete("/api/deleteUser/" + authCtx.clientId)
-          //   .then(() => {})
-          //   .catch((err) => {
-          //     console.error(err);
-          //   });
-          // setTimeout(() => navigate("/admin"), 300);
-        }}
+        }
       >
-        Delete User
-      </a>
+        <h2 className="fourPar">Client Profile for {authCtx.client}</h2>
+        <a
+          className="orange-btn"
+          onClick={() => {
+            setModal(true);
+            // axios
+            //   .delete("/api/deleteUser/" + authCtx.clientId)
+            //   .then(() => {})
+            //   .catch((err) => {
+            //     console.error(err);
+            //   });
+            // setTimeout(() => navigate("/admin"), 300);
+          }}
+        >
+          Delete User
+        </a>
       </div>
     </div>
   );

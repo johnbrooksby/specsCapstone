@@ -563,9 +563,18 @@ table {
   position: fixed;
   z-index: 10;
   margin-left: 36vw;
-  
   margin-right: auto;
   bottom: 40vh;
+}
+
+.modalContainer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .amount {

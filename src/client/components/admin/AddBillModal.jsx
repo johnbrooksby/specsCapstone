@@ -9,9 +9,9 @@ const AddBillModal = (props) => {
   const authCtx = useContext(AuthContext);
 
   return (
-    <div className="modalFormDiv">
+    <div>
       <div className="modalDiv"></div>
-      <div>
+      {/* <div> */}
         <a
           className="closeModal"
           onClick={() => {
@@ -67,7 +67,7 @@ const AddBillModal = (props) => {
           />
           <button className="orange-btn">Add Charge</button>
         </form>
-      </div>
+      {/* </div> */}
     </div>
   );
 };
