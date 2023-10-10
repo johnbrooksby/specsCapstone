@@ -22,12 +22,9 @@ const Billing = (props) => {
   // let addedBill = useState(false);
   const [refreshPage, setRefreshPage] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [editClient, setEditClient] = useState(false);
+  const [editClient, setEditClient] = useState({email: "", street: "", city: "", state: "", zip: ""});
 
-  // useEffect(() => {
-  // authCtx.setAdmin(localStorage.getItem("admin"));
-  // });
-
+  
   useEffect(() => {
     if (authCtx.admin) {
       let body = { id: props.userid };

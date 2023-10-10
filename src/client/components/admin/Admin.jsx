@@ -48,10 +48,12 @@ const Admin = () => {
             axios
             .post("/api/billing", body)
             .then((res) => {
+              console.log(res.data[0])
                 setBillingPage(true);
                 authCtx.setClient(res.data[0].name);
                 authCtx.setBills(res.data[0].billinginfos);
                 setBills(res.data[0].billinginfos);
+                authCtx.setEmail(res.data[0].email_address)
               })
               .catch((err) => console.error(err));
           }}

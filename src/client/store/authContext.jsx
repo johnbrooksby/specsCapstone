@@ -16,6 +16,8 @@ const AuthContext = createContext({
   setClientId: () => {},
   bills: null,
   setBills: () => {},
+  email: "",
+  setEmail: () => {},
 });
 
 const calculateRemainingTime = (exp) => {
@@ -75,6 +77,7 @@ export const AuthContextProvider = (props) => {
   const [client, setClient] = useState(null);
   const [clientId, setClientId] = useState(null);
   const [bills, setBills] = useState(null);
+  const [email, setEmail] = useState(null)
 
   const logout = (logoutTimer) => {
     setToken(null);
@@ -83,6 +86,7 @@ export const AuthContextProvider = (props) => {
     setClient(null);
     setClientId(null);
     setBills(null);
+    setEmail(null);
     localStorage.removeItem("token");
     localStorage.removeItem("exp");
     localStorage.removeItem("userId");
@@ -124,6 +128,8 @@ export const AuthContextProvider = (props) => {
     setClientId,
     bills,
     setBills,
+    email,
+    setEmail,
   };
 
   return (

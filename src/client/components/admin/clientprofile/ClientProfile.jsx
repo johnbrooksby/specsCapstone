@@ -9,6 +9,8 @@ const ClientProfile = () => {
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
 
+  console.log(authCtx.email)
+
   return (
     <div className="clientProfilePage">
       {modal && (
@@ -24,6 +26,8 @@ const ClientProfile = () => {
         }
       >
         <h2 className="fourPar">Client Profile for {authCtx.client}</h2>
+        <h3>Email Address: {authCtx.email}</h3>
+
         <div className="Centered">
           <a
             className="orange"
@@ -41,6 +45,8 @@ const ClientProfile = () => {
             Delete User
           </a>
         </div>
+
+
       </div>
     </div>
   );
