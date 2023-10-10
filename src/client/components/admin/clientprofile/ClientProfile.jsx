@@ -24,21 +24,23 @@ const ClientProfile = () => {
         }
       >
         <h2 className="fourPar">Client Profile for {authCtx.client}</h2>
-        <a
-          className="orange-btn"
-          onClick={() => {
-            setModal(true);
-            // axios
-            //   .delete("/api/deleteUser/" + authCtx.clientId)
-            //   .then(() => {})
-            //   .catch((err) => {
-            //     console.error(err);
-            //   });
-            // setTimeout(() => navigate("/admin"), 300);
-          }}
-        >
-          Delete User
-        </a>
+        <div className="Centered">
+          <a
+            className="orange"
+            onClick={() => {
+              setModal(true);
+              // axios
+              //   .delete("/api/deleteUser/" + authCtx.clientId)
+              //   .then(() => {})
+              //   .catch((err) => {
+              //     console.error(err);
+              //   });
+              // setTimeout(() => navigate("/admin"), 300);
+            }}
+          >
+            Delete User
+          </a>
+        </div>
       </div>
     </div>
   );
