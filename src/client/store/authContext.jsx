@@ -18,6 +18,10 @@ const AuthContext = createContext({
   setBills: () => {},
   email: "",
   setEmail: () => {},
+  street: "",
+  setStreet: () => {},
+  city: "",
+  setCity: () => {},
 });
 
 const calculateRemainingTime = (exp) => {
@@ -78,6 +82,10 @@ export const AuthContextProvider = (props) => {
   const [clientId, setClientId] = useState(null);
   const [bills, setBills] = useState(null);
   const [email, setEmail] = useState(null)
+  const [street, setStreet] = useState(null)
+  const [city, setCity] = useState(null)
+  const [state, setState] = useState(null)
+  const [zip, setZip] = useState(null)
 
   const logout = (logoutTimer) => {
     setToken(null);
@@ -87,6 +95,10 @@ export const AuthContextProvider = (props) => {
     setClientId(null);
     setBills(null);
     setEmail(null);
+    setStreet(null);
+    setCity(null);
+    setState(null);
+    setZip(null);
     localStorage.removeItem("token");
     localStorage.removeItem("exp");
     localStorage.removeItem("userId");
@@ -130,6 +142,14 @@ export const AuthContextProvider = (props) => {
     setBills,
     email,
     setEmail,
+    street,
+    setStreet,
+    city,
+    setCity,
+    state,
+    setState,
+    zip,
+    setZip,
   };
 
   return (

@@ -403,6 +403,19 @@ li:hover {
   justify-content: center;
 }
 
+.editValuesForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5vhd;
+  gap: 2vh;
+  min-height: 40vh;
+}
+
+.editInput {
+  height: 25px;
+  background-color: #818181;
+}
+
 .userCard {
   width: 45vw;
   min-height: 150px;

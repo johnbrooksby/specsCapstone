@@ -54,6 +54,10 @@ const Admin = () => {
                 authCtx.setBills(res.data[0].billinginfos);
                 setBills(res.data[0].billinginfos);
                 authCtx.setEmail(res.data[0].email_address)
+                authCtx.setStreet(res.data[0].street_address)
+                authCtx.setCity(res.data[0].city)
+                authCtx.setState(res.data[0].state)
+                authCtx.setZip(res.data[0].zip)
               })
               .catch((err) => console.error(err));
           }}
