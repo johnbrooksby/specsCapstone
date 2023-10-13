@@ -8,12 +8,13 @@ const ClientProfile = () => {
   const [modal, setModal] = useState(false);
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
-  const [inactive, setInactive] = useState([true, true, true, true, true])
+  const [inactive, setInactive] = useState(true);
 
   console.log(authCtx.email);
 
   return (
-    <div className="clientProfilePage">
+    // <div className="clientProfilePage">
+    <div>
       {modal && (
         <DeleteClientModal setModal={setModal} userid={authCtx.clientId} />
       )}
@@ -28,11 +29,31 @@ const ClientProfile = () => {
       >
         <h2 className="fourPar">Client Profile for {authCtx.client}</h2>
         <form className="editValuesForm">
-          <input className="editInput" defaultValue={authCtx.email} disabled={inactive[0]} />
-          <input className="editInput" defaultValue={authCtx.street} disabled={inactive[1]} />
-          <input className="editInput" defaultValue={authCtx.city} disabled={inactive[2]} />
-          <input className="editInput" defaultValue={authCtx.state} disabled={inactive[3]} />
-          <input className="editInput" defaultValue={authCtx.zip} disabled={inactive[4]} />
+          <input
+            className="editInput"
+            defaultValue={authCtx.email}
+            disabled={inactive}
+          />
+          <input
+            className="editInput"
+            defaultValue={authCtx.street}
+            disabled={inactive}
+          />
+          <input
+            className="editInput"
+            defaultValue={authCtx.city}
+            disabled={inactive}
+          />
+          <input
+            className="editInput"
+            defaultValue={authCtx.state}
+            disabled={inactive}
+          />
+          <input
+            className="editInput"
+            defaultValue={authCtx.zip}
+            disabled={inactive}
+          />
         </form>
 
         <div className="Centered">

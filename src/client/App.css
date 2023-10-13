@@ -211,6 +211,7 @@
 
 .fourPar {
   margin-top: 15px;
+  text-align: center;
 }
 
 h3 {
@@ -409,11 +410,14 @@ li:hover {
   margin-bottom: 5vhd;
   gap: 2vh;
   min-height: 40vh;
+  width: 100vw;
+  align-items: center;
 }
 
 .editInput {
   height: 25px;
   background-color: #818181;
+  width: 50%;
 }
 
 .userCard {

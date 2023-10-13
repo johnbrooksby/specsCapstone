@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../store/authContext";
 
 const DeleteClientModal = (props) => {
   const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
 
   return (
     <div>
@@ -21,31 +23,34 @@ const DeleteClientModal = (props) => {
         <form className="add_charge_form"
         onSubmit={e =>
             e.preventDefault()}>
-          <h3>Are you sure you want to delete this user? All history for this user will be lost forever!</h3>
-          <a
+          <h3>Are you sure you want to delete this user?</h3>
+          <h3> All history for this user will be lost forever!</h3>
+          <button
             className="blue-btn"
             onClick={() => {
               props.setModal(false);
             }}
           >
             Cancel
-          </a>
-          <a
+          </button>
+          <button
             className="orange-btn"
             onClick={() => {
-              alert("User delete test successful");
-              // axios
-              //   .delete("/api/deleteUser/" + authCtx.clientId)
-              //   .then(() => {})
-              //   .catch((err) => {
-              //     console.error(err);
-              //   });
+              alert("User delete successful");
+              axios
+              .delete("/api/deleteUser/" + authCtx.clientId)
+              .then(() => {
+
+              })
+                .catch((err) => {
+                  console.error(err);
+                });
               props.setModal(false);
               setTimeout(() => navigate("/admin"), 100);
             }}
           >
             Delete Client
-          </a>
+          </button>
         </form>
         {/* </div> */}
       {/* </div> */}

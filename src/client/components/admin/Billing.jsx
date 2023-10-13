@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-// import AddBillModal from "./AddBillModal";
+import AddBillModal from "./AddBillModal";
 import AuthContext from "../../store/authContext";
 import ClientProfile from "./clientprofile/ClientProfile";
 import axios from "axios";
@@ -24,7 +24,7 @@ const Billing = (props) => {
   const [edit, setEdit] = useState(false);
   const [editClient, setEditClient] = useState({email: "", street: "", city: "", state: "", zip: ""});
 
-  
+
   useEffect(() => {
     if (authCtx.admin) {
       let body = { id: props.userid };
