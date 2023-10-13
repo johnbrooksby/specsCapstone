@@ -133,11 +133,11 @@ const Billing = (props) => {
           Billing Info for {props.client ? props.client : authCtx.client}
         </h3>
         <div className="clientinfo">
-          {authCtx.admin && (
+          {/* {authCtx.admin && ( */}
             <NavLink to="/clientinfo" className="clientinfolink">
-              Edit client information
+              Edit {authCtx.admin ? "client" : "user"} information
             </NavLink>
-          )}
+          {/* )} */}
         </div>
 
         <br></br>

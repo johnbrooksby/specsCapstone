@@ -101,6 +101,11 @@ module.exports = {
           res.status(200).send({
             username: foundUser.dataValues.username,
             userId: foundUser.dataValues.id,
+            email_address: foundUser.dataValues.email_address,
+            street_address: foundUser.dataValues.street_address,
+            city: foundUser.dataValues.city,
+            state: foundUser.dataValues.state,
+            zip: foundUser.dataValues.zip,
             admin,
             token,
             exp,

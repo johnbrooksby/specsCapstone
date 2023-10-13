@@ -27,7 +27,7 @@ const ClientProfile = () => {
             : "billdetail billdetail_admin billdetail_blur"
         }
       >
-        <h2 className="fourPar">Client Profile for {authCtx.client}</h2>
+        <h2 className="fourPar">{authCtx.admin ? "Client" : "User"} Profile for {authCtx.client}</h2>
         <form className="editValuesForm">
           <input
             className="editInput"

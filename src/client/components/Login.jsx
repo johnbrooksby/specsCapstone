@@ -51,6 +51,11 @@ const Login = () => {
     .post(register ? "/api/register" : "/api/login", register ? RegBody : Body)
     .then((res) => {
       authCtx.login(res.data.token, res.data.exp, res.data.userId, res.data.admin);
+      authCtx.setEmail(res.data.email_address)
+      authCtx.setStreet(res.data.street_address)
+      authCtx.setCity(res.data.city)
+      authCtx.setState(res.data.state)
+      authCtx.setZip(res.data.zip)
       setUsername("");
       setPassword("");
     })
