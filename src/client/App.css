@@ -221,6 +221,14 @@ h3 {
   line-height: 1.5;
 }
 
+.textDiv {
+  margin-bottom: 20px;
+}
+
+.whiteText {
+  color:#b5b5b5;
+}
+
 .billPageHeader {
   color:#cad1ce;
   font-size: 20pt;
@@ -400,8 +408,13 @@ li:hover {
 }
 
 .Centered {
+  width: 100vw;
   display: flex;
   justify-content: center;
+}
+
+.margin-top {
+  margin-top: 20px;
 }
 
 .editValuesForm {
@@ -416,7 +429,7 @@ li:hover {
 
 .editInput {
   height: 25px;
-  background-color: #818181;
+  /* background-color: #818181; */
   width: 50%;
 }
 

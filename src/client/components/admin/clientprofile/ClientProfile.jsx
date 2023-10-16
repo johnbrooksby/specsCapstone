@@ -54,9 +54,16 @@ const ClientProfile = () => {
             defaultValue={authCtx.zip}
             disabled={inactive}
           />
+        <a className="orange-btn"
+        onClick={() => {
+          setInactive(!inactive)
+        }
+
+        }>{inactive ? "Edit" : "Save"}</a>
         </form>
 
-        <div className="Centered">
+
+        <div className="Centered margin-top">
           <a
             className="orange"
             onClick={() => {
