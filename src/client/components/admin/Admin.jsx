@@ -44,11 +44,12 @@ const Admin = () => {
           onClick={() => {
             setUserid(user.id);
             authCtx.setClientId(user.id);
-            let body = { id: user.id };
+            // let body = { id: user.id };
             axios
-            .post("/api/billing", body)
+            // .post("/api/billing", body)
+            .post("/api/billing", {id: user.id})
             .then((res) => {
-              console.log(res.data[0])
+              // console.log(res.data[0])
                 setBillingPage(true);
                 authCtx.setClient(res.data[0].name);
                 authCtx.setBills(res.data[0].billinginfos);
@@ -58,6 +59,14 @@ const Admin = () => {
                 authCtx.setCity(res.data[0].city)
                 authCtx.setState(res.data[0].state)
                 authCtx.setZip(res.data[0].zip)
+                localStorage.setItem("bills", res.data[0].billinginfos);
+                localStorage.setItem("client", res.data[0].name);
+                localStorage.setItem("clientId", user.id);
+                localStorage.setItem("email", res.data[0].email_address);
+                localStorage.setItem("street", res.data[0].street_address);
+                localStorage.setItem("city", res.data[0].city);
+                localStorage.setItem("state", res.data[0].state);
+                localStorage.setItem("zip", res.data[0].zip);
               })
               .catch((err) => console.error(err));
           }}

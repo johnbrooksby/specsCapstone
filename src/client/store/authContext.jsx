@@ -22,6 +22,10 @@ const AuthContext = createContext({
   setStreet: () => {},
   city: "",
   setCity: () => {},
+  state: "",
+  setState: () => {},
+  zip: "",
+  setZip: () => {},
 });
 
 const calculateRemainingTime = (exp) => {
@@ -39,6 +43,11 @@ const getLocalData = () => {
   const storedClient = localStorage.getItem("client");
   const storedClientId = localStorage.getItem("clientId");
   const storedBills = localStorage.getItem("bills");
+  const storedEmail = localStorage.getItem("email");
+  const storedStreet = localStorage.getItem("street");
+  const storedCity = localStorage.getItem("city");
+  const storedState = localStorage.getItem("state");
+  const storedZip = localStorage.getItem("zip");
   const remainingTime = calculateRemainingTime(storedExp);
 
   if (remainingTime <= 60 * 60 * 24 * 14) {
@@ -46,8 +55,16 @@ const getLocalData = () => {
     localStorage.removeItem("exp");
     localStorage.removeItem("userId");
     localStorage.removeItem("admin");
+    localStorage.removeItem("");
+    localStorage.removeItem("");
+    localStorage.removeItem("");
+    localStorage.removeItem("");
+    localStorage.removeItem("");
+    localStorage.removeItem("");
     return null;
   }
+
+  console.log()
 
   return {
     token: storedToken,
@@ -57,6 +74,11 @@ const getLocalData = () => {
     client: storedClient,
     clientId: storedClientId,
     bills: storedBills,
+    email: storedEmail,
+    street: storedStreet,
+    city: storedCity,
+    state: storedState,
+    zip: storedZip,
   };
 };
 
@@ -106,6 +128,11 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("client");
     localStorage.removeItem("clientId");
     localStorage.removeItem("bills");
+    localStorage.removeItem("email");
+    localStorage.removeItem("street");
+    localStorage.removeItem("city");
+    localStorage.removeItem("state");
+    localStorage.removeItem("zip");
     clearTimeout(logoutTimer);
     axios.put("/api/logout");
   };
@@ -121,6 +148,11 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("client", client);
     localStorage.setItem("clientId", clientId);
     localStorage.setItem("bills", bills);
+    localStorage.setItem("email", email);
+    localStorage.setItem("street", street);
+    localStorage.setItem("city", city);
+    localStorage.setItem("state", state);
+    localStorage.setItem("zip", zip);
     
     const remainingTime = calculateRemainingTime(exp);
 

@@ -13,7 +13,6 @@ const ClientProfile = () => {
   console.log(authCtx.email);
 
   return (
-    // <div className="clientProfilePage">
     <div>
       {modal && (
         <DeleteClientModal setModal={setModal} userid={authCtx.clientId} />
@@ -27,54 +26,56 @@ const ClientProfile = () => {
             : "billdetail billdetail_admin billdetail_blur"
         }
       >
-        <h2 className="fourPar">{authCtx.admin ? "Client" : "User"} Profile for {authCtx.client}</h2>
+        <h2 className="fourPar">
+          {authCtx.admin ? "Client" : "User"} Profile for {localStorage.getItem("client")}
+        </h2>
         <form className="editValuesForm">
           <input
             className="editInput"
-            defaultValue={authCtx.email}
+            defaultValue={localStorage.getItem("client")}
             disabled={inactive}
           />
           <input
             className="editInput"
-            defaultValue={authCtx.street}
+            defaultValue={localStorage.getItem("email")}
             disabled={inactive}
           />
           <input
             className="editInput"
-            defaultValue={authCtx.city}
+            defaultValue={localStorage.getItem("street")}
             disabled={inactive}
           />
           <input
             className="editInput"
-            defaultValue={authCtx.state}
+            defaultValue={localStorage.getItem("city")}
             disabled={inactive}
           />
           <input
             className="editInput"
-            defaultValue={authCtx.zip}
+            // defaultValue={authCtx.state}
+            defaultValue={localStorage.getItem("state")}
             disabled={inactive}
           />
-        <a className="orange-btn"
-        onClick={() => {
-          setInactive(!inactive)
-        }
-
-        }>{inactive ? "Edit" : "Save"}</a>
+          <input
+            className="editInput"
+            // defaultValue={authCtx.zip}
+            defaultValue={localStorage.getItem("zip")}
+            disabled={inactive}
+          />
+          <a
+            className="orange-btn"
+            onClick={() => {
+              setInactive(!inactive);
+            }}
+          >
+            {inactive ? "Edit" : "Save"}
+          </a>
         </form>
-
-
         <div className="Centered margin-top">
           <a
             className="orange"
             onClick={() => {
               setModal(true);
-              // axios
-              //   .delete("/api/deleteUser/" + authCtx.clientId)
-              //   .then(() => {})
-              //   .catch((err) => {
-              //     console.error(err);
-              //   });
-              // setTimeout(() => navigate("/admin"), 300);
             }}
           >
             Delete User
