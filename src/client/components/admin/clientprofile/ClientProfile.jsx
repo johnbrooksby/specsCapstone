@@ -10,8 +10,6 @@ const ClientProfile = () => {
   const navigate = useNavigate();
   const [inactive, setInactive] = useState(true);
 
-  console.log(authCtx.email);
-
   return (
     <div>
       {modal && (
@@ -27,37 +25,44 @@ const ClientProfile = () => {
         }
       >
         <h2 className="fourPar">
-          {authCtx.admin ? "Client" : "User"} Profile for {localStorage.getItem("client")}
+          {authCtx.admin ? "Client" : "User"} Profile for{" "}
+          {localStorage.getItem("client")}
         </h2>
         <form className="editValuesForm">
           <input
             className="editInput"
+            id="client"
             defaultValue={localStorage.getItem("client")}
             disabled={inactive}
           />
           <input
             className="editInput"
+            id="email"
             defaultValue={localStorage.getItem("email")}
             disabled={inactive}
           />
           <input
             className="editInput"
+            id="street"
             defaultValue={localStorage.getItem("street")}
             disabled={inactive}
           />
           <input
             className="editInput"
+            id="city"
             defaultValue={localStorage.getItem("city")}
             disabled={inactive}
           />
           <input
             className="editInput"
+            id="state"
             // defaultValue={authCtx.state}
             defaultValue={localStorage.getItem("state")}
             disabled={inactive}
           />
           <input
             className="editInput"
+            id="zip"
             // defaultValue={authCtx.zip}
             defaultValue={localStorage.getItem("zip")}
             disabled={inactive}
@@ -66,6 +71,22 @@ const ClientProfile = () => {
             className="orange-btn"
             onClick={() => {
               setInactive(!inactive);
+              let body = {
+                id: authCtx.clientId,
+                client: client.value,
+                email: email.value,
+                street: street.value,
+                city: city.value,
+                state: state.value,
+                zip: zip.value,
+              };
+              {
+                !inactive &&
+                  axios
+                    .put("/api/editUser", body)
+                    .then(() => {console.log("success")})
+                    .catch((err) => console.error(err));
+              }
             }}
           >
             {inactive ? "Edit" : "Save"}

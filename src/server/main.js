@@ -7,7 +7,7 @@ const {sequelize} = require('./util/database')
 const {User} = require('./models/user')
 const {BillingInfo} = require('./models/billing')
 const {PORT} = process.env
-const {register, login, usersAdmin, logout, billing, addbill, account, markaspaid, deleteuser} = require("./controllers/Auth")
+const {register, login, usersAdmin, logout, billing, addbill, account, markaspaid, deleteuser, editUser} = require("./controllers/Auth")
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const app = express();
@@ -37,6 +37,7 @@ app.post("/api/addbill", addbill)
 app.post('/api/account', account)
 app.put('/api/markaspaid', markaspaid)
 app.delete('/api/deleteuser/:client', deleteuser)
+app.put('/api/editUser', editUser)
 // app.post('/v1/checkout/sessions') 
 // app.post('/v1/checkout/sessions/:id/expire')
 // app.get('/v1/checkout/sessions/:id')

@@ -72,7 +72,10 @@ const Billing = (props) => {
               };
               axios.put("/api/markaspaid", body).then((res) => {
                 setMarkaspaid(markaspaid ? false : true);
-              });
+              }).catch(err => {
+                console.error(err)
+                 console.log("Error marking bill paid");
+                 console.log("Billing.jsx, line 73")});
             }}
           >
             {charge.paid ? "Unpaid" : "Paid"}

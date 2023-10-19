@@ -244,6 +244,30 @@ module.exports = {
     }
   },
 
+  editUser: async (req, res) => {
+    try {
+      const {id, client, email, street, city, state, zip} = req.body
+      // console.log("Before axios", id, client, email, street, city, state, zip)
+      let editUser = await User.update(
+        {
+          name: client,
+          email_address: email,
+          street_address: street,
+          city: city,
+          state: state,
+          zip: zip,
+        },
+        {where: { id: id }})
+        // console.log("In axios call", id, client, email, street, city, state, zip)
+      // console.log("-----EDIT USER------", editUser)
+      res.status(200).send(editUser)
+    } catch (error) {
+      console.log("Error editing user");
+      console.error(error);
+      res.sendStatus(400);
+    }
+  },
+
   deleteuser: async (req, res) => {
     try {
       const {client} = req.params;
