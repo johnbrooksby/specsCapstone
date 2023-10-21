@@ -26,45 +26,71 @@ const ClientProfile = () => {
       >
         <h2 className="fourPar">
           {authCtx.admin ? "Client" : "User"} Profile for{" "}
-          {authCtx.admin && !authCtx.refered ? localStorage.getItem("adminUser") : localStorage.getItem("client")}
+          {authCtx.admin && !authCtx.refered
+            ? localStorage.getItem("adminUser")
+            : localStorage.getItem("client")}
         </h2>
         <form className="editValuesForm">
           <input
             className="editInput"
             id="client"
-            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminUser") : localStorage.getItem("client")}
+            defaultValue={
+              authCtx.admin && !authCtx.refered
+                ? localStorage.getItem("adminUser")
+                : localStorage.getItem("client")
+            }
             disabled={inactive}
           />
           <input
             className="editInput"
             id="email"
-            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminEmail") : localStorage.getItem("email")}
+            defaultValue={
+              authCtx.admin && !authCtx.refered
+                ? localStorage.getItem("adminEmail")
+                : localStorage.getItem("email")
+            }
             disabled={inactive}
           />
           <input
             className="editInput"
             id="street"
-            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminStreet") : localStorage.getItem("street")}
+            defaultValue={
+              authCtx.admin && !authCtx.refered
+                ? localStorage.getItem("adminStreet")
+                : localStorage.getItem("street")
+            }
             disabled={inactive}
           />
           <input
             className="editInput"
             id="city"
-            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminCity") : localStorage.getItem("city")}
+            defaultValue={
+              authCtx.admin && !authCtx.refered
+                ? localStorage.getItem("adminCity")
+                : localStorage.getItem("city")
+            }
             disabled={inactive}
           />
           <input
             className="editInput"
             id="state"
             // defaultValue={authCtx.state}
-            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminState") : localStorage.getItem("state")}
+            defaultValue={
+              authCtx.admin && !authCtx.refered
+                ? localStorage.getItem("adminState")
+                : localStorage.getItem("state")
+            }
             disabled={inactive}
           />
           <input
             className="editInput"
             id="zip"
             // defaultValue={authCtx.zip}
-            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminZip") : localStorage.getItem("zip")}
+            defaultValue={
+              authCtx.admin && !authCtx.refered
+                ? localStorage.getItem("adminZip")
+                : localStorage.getItem("zip")
+            }
             disabled={inactive}
           />
           <a
@@ -84,7 +110,9 @@ const ClientProfile = () => {
                 !inactive &&
                   axios
                     .put("/api/editUser", body)
-                    .then(() => {console.log("success")})
+                    .then(() => {
+                      console.log("success");
+                    })
                     .catch((err) => console.error(err));
               }
             }}
@@ -92,16 +120,18 @@ const ClientProfile = () => {
             {inactive ? "Edit" : "Save"}
           </a>
         </form>
-        <div className="Centered margin-top">
-          <a
-            className="orange"
-            onClick={() => {
-              setModal(true);
-            }}
-          >
-            Delete User
-          </a>
-        </div>
+        {authCtx.admin && (
+          <div className="Centered margin-top">
+            <a
+              className="orange"
+              onClick={() => {
+                setModal(true);
+              }}
+            >
+              Delete User
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

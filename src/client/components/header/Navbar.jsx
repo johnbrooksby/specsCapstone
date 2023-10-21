@@ -28,7 +28,7 @@ const Navbar = () => {
             </li>
             <li className="li">
               {/* {authCtx.admin ? <NavLink to="clientinfo/adminUser">Account</NavLink> : <NavLink to="account">Account</NavLink>} */}
-              {authCtx.admin ? <NavLink to="account">Account</NavLink> : null}
+              <NavLink to="account">Account</NavLink>
             </li>
             {authCtx.admin && <li className="li">
               {/* {authCtx.admin ? <NavLink to="admin">Admin</NavLink> : <NavLink to="account">Account</NavLink>} */}
