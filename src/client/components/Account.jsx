@@ -7,7 +7,7 @@ import axios from "axios";
 const Account = () => {
   const authCtx = useContext(AuthContext);
 
-  const [client, setClient] = useState('');
+  const [client, setClient] = useState("");
   const [bills, setBills] = useState([]);
 
   useEffect(() => {
@@ -18,12 +18,25 @@ const Account = () => {
       .then((res) => {
         setClient(res.data.name);
         setBills(res.data.billinginfos);
+        localStorage.setItem("client", res.data.name);
+        localStorage.setItem("email", res.data.email_address);
+        localStorage.setItem("street", res.data.street_address);
+        localStorage.setItem("city", res.data.city);
+        localStorage.setItem("state", res.data.state);
+        localStorage.setItem("zip", res.data.zip);
+        authCtx.setClient(res.data.name);
+        authCtx.setEmail(res.data.email_address);
+        authCtx.setStreet(res.data.street_address);
+        authCtx.setCity(res.data.city);
+        authCtx.setState(res.data.state);
+        authCtx.setZip(res.data.zip);
+        console.log(authCtx.client, authCtx.email, authCtx.street, authCtx.city)
       })
       .catch((err) => {
         console.error(err);
       });
   }, [authCtx.userId]);
-  
+
   return <Billing client={client} bills={bills} />;
 };
 

@@ -100,6 +100,7 @@ module.exports = {
           const exp = Date.now() + 1000 * 60 * 60 * 24 * 14;
           res.status(200).send({
             username: foundUser.dataValues.username,
+            name: foundUser.dataValues.name,
             userId: foundUser.dataValues.id,
             email_address: foundUser.dataValues.email_address,
             street_address: foundUser.dataValues.street_address,

@@ -26,45 +26,45 @@ const ClientProfile = () => {
       >
         <h2 className="fourPar">
           {authCtx.admin ? "Client" : "User"} Profile for{" "}
-          {localStorage.getItem("client")}
+          {authCtx.admin && !authCtx.refered ? localStorage.getItem("adminUser") : localStorage.getItem("client")}
         </h2>
         <form className="editValuesForm">
           <input
             className="editInput"
             id="client"
-            defaultValue={localStorage.getItem("client")}
+            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminUser") : localStorage.getItem("client")}
             disabled={inactive}
           />
           <input
             className="editInput"
             id="email"
-            defaultValue={localStorage.getItem("email")}
+            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminEmail") : localStorage.getItem("email")}
             disabled={inactive}
           />
           <input
             className="editInput"
             id="street"
-            defaultValue={localStorage.getItem("street")}
+            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminStreet") : localStorage.getItem("street")}
             disabled={inactive}
           />
           <input
             className="editInput"
             id="city"
-            defaultValue={localStorage.getItem("city")}
+            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminCity") : localStorage.getItem("city")}
             disabled={inactive}
           />
           <input
             className="editInput"
             id="state"
             // defaultValue={authCtx.state}
-            defaultValue={localStorage.getItem("state")}
+            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminState") : localStorage.getItem("state")}
             disabled={inactive}
           />
           <input
             className="editInput"
             id="zip"
             // defaultValue={authCtx.zip}
-            defaultValue={localStorage.getItem("zip")}
+            defaultValue={authCtx.admin && !authCtx.refered ? localStorage.getItem("adminZip") : localStorage.getItem("zip")}
             disabled={inactive}
           />
           <a

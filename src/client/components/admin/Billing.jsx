@@ -14,6 +14,7 @@ const Billing = (props) => {
   let total = 0;
   let accountBillList = [];
   let billList = [];
+  
 
   const [modal, setModal] = useState(false);
 
@@ -137,8 +138,8 @@ const Billing = (props) => {
         </h3>
         <div className="clientinfo">
           {/* {authCtx.admin && ( */}
-            <NavLink to="/clientinfo" className="clientinfolink">
-              Edit {authCtx.admin ? "client" : "user"} information
+            <NavLink to="/clientinfo/:client" className="clientinfolink">
+              Edit {authCtx.admin ? "Client" : "User"} Information
             </NavLink>
           {/* )} */}
         </div>

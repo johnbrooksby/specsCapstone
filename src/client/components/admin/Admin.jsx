@@ -4,6 +4,7 @@ import axios from "axios";
 // import Unauthorized from "./Unauthorized";
 import Billing from "./Billing";
 
+
 const Admin = () => {
   const [users, setUsers] = useState([]);
   const [billingPage, setBillingPage] = useState(false);
@@ -67,6 +68,7 @@ const Admin = () => {
                 localStorage.setItem("city", res.data[0].city);
                 localStorage.setItem("state", res.data[0].state);
                 localStorage.setItem("zip", res.data[0].zip);
+                authCtx.setRefered(true)
               })
               .catch((err) => console.error(err));
           }}

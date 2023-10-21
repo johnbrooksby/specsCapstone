@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../store/authContext";
 
@@ -8,9 +8,11 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    {localStorage.getItem("admin") && authCtx.setAdmin(JSON.parse(localStorage.getItem("admin")))}
-  }, [authCtx.login])
-
+    {
+      localStorage.getItem("admin") &&
+        authCtx.setAdmin(JSON.parse(localStorage.getItem("admin")));
+    }
+  }, [authCtx.login]);
 
   return (
     <div>
@@ -25,24 +27,33 @@ const Navbar = () => {
               <NavLink to="testimonials">Testimonials</NavLink>
             </li>
             <li className="li">
-              {authCtx.admin ? <NavLink to="admin">Admin</NavLink> : <NavLink to="account">Account</NavLink>}
+              {/* {authCtx.admin ? <NavLink to="clientinfo/adminUser">Account</NavLink> : <NavLink to="account">Account</NavLink>} */}
+              {authCtx.admin ? <NavLink to="account">Account</NavLink> : null}
             </li>
+            {authCtx.admin && <li className="li">
+              {/* {authCtx.admin ? <NavLink to="admin">Admin</NavLink> : <NavLink to="account">Account</NavLink>} */}
+              <NavLink to="admin">Admin</NavLink>
+            </li>}
             <li className="li">
-            <a onClick={() => {
-              navigate("/")
-              authCtx.logout()
-            }}>Logout</a>
+              <a
+                onClick={() => {
+                  navigate("/");
+                  authCtx.logout();
+                }}
+              >
+                Logout
+              </a>
             </li>
           </ul>
         ) : (
           <ul className="navUl">
-            <li  className="li">
+            <li className="li">
               <NavLink to="/">Home</NavLink>
             </li>
             <li className="li">
               <NavLink to="testimonials">Testimonials</NavLink>
             </li>
-            <li  className="li">
+            <li className="li">
               {/* <NavLink to="login">Login or Sign Up</NavLink> */}
               <NavLink to="login">Login / Register</NavLink>
             </li>

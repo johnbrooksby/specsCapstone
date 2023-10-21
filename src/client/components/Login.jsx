@@ -18,24 +18,22 @@ const Login = () => {
   const [clicked, setClicked] = useState(false);
 
   const authCtx = useContext(AuthContext);
-  
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    setClicked(true)
+    setClicked(true);
 
-    if (register && (password !== verifyPassword)){
-      alert('Passwords do not match')
+    if (register && password !== verifyPassword) {
+      alert("Passwords do not match");
       return;
     }
-    
 
     const Body = {
       username,
       password,
     };
-    
+
     const RegBody = {
       username,
       name,
@@ -46,31 +44,51 @@ const Login = () => {
       zip,
       email_address,
     };
-    
+
     axios
-    .post(register ? "/api/register" : "/api/login", register ? RegBody : Body)
-    .then((res) => {
-      authCtx.login(res.data.token, res.data.exp, res.data.userId, res.data.admin);
-      authCtx.setEmail(res.data.email_address)
-      authCtx.setStreet(res.data.street_address)
-      authCtx.setCity(res.data.city)
-      authCtx.setState(res.data.state)
-      authCtx.setZip(res.data.zip)
-      setUsername("");
-      setPassword("");
-    })
-    .catch((err) => {
-      console.error(err);
-      setLogin(false);
-    });
+      .post(
+        register ? "/api/register" : "/api/login",
+        register ? RegBody : Body
+      )
+      .then((res) => {
+        console.log("res.data", res.data);
+        authCtx.login(
+          res.data.token,
+          res.data.exp,
+          res.data.userId,
+          res.data.admin
+        );
+        authCtx.setEmail(res.data.email_address);
+        authCtx.setStreet(res.data.street_address);
+        authCtx.setCity(res.data.city);
+        authCtx.setState(res.data.state);
+        authCtx.setZip(res.data.zip);
+        {res.data.admin && 
+          localStorage.setItem("adminUser", res.data.name);
+          localStorage.setItem("adminEmail", res.data.email_address);
+          localStorage.setItem("adminStreet", res.data.street_address);
+          localStorage.setItem("adminCity", res.data.city);
+          localStorage.setItem("adminState", res.data.state);
+          localStorage.setItem("adminZip", res.data.zip);
+        }
+        setUsername("");
+        setPassword("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setLogin(false);
+      });
     register ? localStorage.setItem("admin", false) : null;
   };
 
-  const callbackRef = useCallback(inputElement => {
-    if (inputElement) {
-      inputElement.focus();
-    }
-  }, [register]);
+  const callbackRef = useCallback(
+    (inputElement) => {
+      if (inputElement) {
+        inputElement.focus();
+      }
+    },
+    [register]
+  );
 
   return (
     <main className="page">
@@ -100,7 +118,7 @@ const Login = () => {
           </button>
         </form>
       ) : (
-        <form className="form reg-form" onSubmit={submitHandler} >
+        <form className="form reg-form" onSubmit={submitHandler}>
           <input
             ref={callbackRef}
             placeholder="Username"
@@ -168,18 +186,20 @@ const Login = () => {
             className="reg-form-input email"
           />
           <div>
-            <button className="orange-btn" disabled={clicked ? true : false} >
+            <button className="orange-btn" disabled={clicked ? true : false}>
               {register ? "Create Account" : "Login"}{" "}
-            </button >
+            </button>
           </div>
         </form>
       )}
-      <button className="inactive-btn" onClick={() => {
-        setRegister(!register)
-        setUsername('')
-        setPassword('')
-      }
-      }>
+      <button
+        className="inactive-btn"
+        onClick={() => {
+          setRegister(!register);
+          setUsername("");
+          setPassword("");
+        }}
+      >
         Click here to {register ? "login" : "create an account"}
       </button>
     </main>

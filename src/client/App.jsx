@@ -37,7 +37,9 @@ function App() {
             <Route path="admin" element={authCtx.admin || localStorage.getItem("admin") ? <Admin /> : <Navigate to='/' />} />
             <Route path="billing" element={authCtx.admin || localStorage.getItem("admin") ? <Billing /> : <Navigate to='/' />} />
             
-            <Route path="clientinfo" element={<ClientProfile />} />
+            <Route path="clientinfo/:client" element={!authCtx.token ? <Login /> : <ClientProfile />} />
+            {/* <Route path="clientinfo/userprofile" element={<ClientProfile />} /> */}
+            <Route path="clientinfo/:adminUser" element={!authCtx.token ? <Login /> : <Billing />} />
             {/* <Route path="clientinfo" element={authCtx.admin ? <ClientProfile /> : <Navigate to='/' />} /> */}
             <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' /> } />
             <Route path="*" element={<Navigate to="/" />} />
