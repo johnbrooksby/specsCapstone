@@ -138,7 +138,7 @@ const Billing = (props) => {
         </h3>
         <div className="clientinfo">
           {/* {authCtx.admin && ( */}
-            <NavLink to="/clientinfo/:client" className="clientinfolink">
+            <NavLink to="/clientprofile/client" className="clientinfolink">
               Edit {authCtx.admin ? "Client" : "User"} Information
             </NavLink>
           {/* )} */}

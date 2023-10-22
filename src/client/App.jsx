@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import {Routes, Route, Navigate} from 'react-router-dom'
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
-import AuthContext from './store/authContext';
+import AuthContext from "./store/authContext";
 
-import Header from './components/header/Header'
+import Header from "./components/header/Header";
 import Navbar from "./components/header/Navbar";
 import Home from "./components/homeScreen/Home";
 import Login from "./components/Login";
@@ -15,35 +15,70 @@ import Admin from "./components/admin/Admin";
 import ClientProfile from "./components/admin/clientprofile/ClientProfile";
 import Billing from "./components/admin/Billing";
 
-
-
-
 function App() {
-
-  const authCtx = useContext(AuthContext)
+  const authCtx = useContext(AuthContext);
 
   useEffect(() => {
-    authCtx.setAdmin(localStorage.getItem("admin"))
-  }, [authCtx.token])
-  
+    authCtx.setAdmin(localStorage.getItem("admin"));
+  }, [authCtx.token]);
+
+  let profile = authCtx.admin && authCtx.refered ? authCtx.clientId : authCtx.userId
+
   return (
     <div className="App">
       <Header />
-        <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="login" element={!authCtx.token ? <Login /> : <Navigate to='/' />} />
-            <Route path="testimonials" element={<Testimonials />} />
-            <Route path="admin" element={authCtx.admin || localStorage.getItem("admin") ? <Admin /> : <Navigate to='/' />} />
-            <Route path="billing" element={authCtx.admin || localStorage.getItem("admin") ? <Billing /> : <Navigate to='/' />} />
-            
-            <Route path="clientinfo/:client" element={!authCtx.token ? <Login /> : <ClientProfile />} />
-            {/* <Route path="clientinfo/userprofile" element={<ClientProfile />} /> */}
-            <Route path="clientinfo/:adminUser" element={!authCtx.token ? <Login /> : <Billing />} />
-            {/* <Route path="clientinfo" element={authCtx.admin ? <ClientProfile /> : <Navigate to='/' />} /> */}
-            <Route path="account" element={authCtx.token ? <Account /> : <Navigate to='/' /> } />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="login"
+          element={!authCtx.token ? <Login /> : <Navigate to="/" />}
+        />
+        <Route path="testimonials" element={<Testimonials />} />
+        <Route
+          path="admin"
+          element={
+            authCtx.admin || localStorage.getItem("admin") ? (
+              <Admin />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        <Route
+          path="billing"
+          element={
+            authCtx.admin || localStorage.getItem("admin") ? (
+              <Billing />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+
+        <Route
+          path="clientprofile/client"
+          element={
+            !authCtx.token ? (
+              <Login />
+            ) : (
+              <ClientProfile 
+                id={profile} />
+            )
+          }
+        />
+        {/* <Route path="clientinfo/userprofile" element={<ClientProfile />} /> */}
+        <Route
+          path="clientinfo/adminUser"
+          element={!authCtx.token ? <Login /> : <Billing />}
+        />
+        {/* <Route path="clientinfo" element={authCtx.admin ? <ClientProfile /> : <Navigate to='/' />} /> */}
+        <Route
+          path="account"
+          element={authCtx.token ? <Account /> : <Navigate to="/" />}
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
       <Footer />
     </div>
   );

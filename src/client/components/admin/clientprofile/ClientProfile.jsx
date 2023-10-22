@@ -4,12 +4,17 @@ import AuthContext from "../../../store/authContext";
 import DeleteClientModal from "./DeleteClientModal";
 import axios from "axios";
 
-const ClientProfile = () => {
+const ClientProfile = (props) => {
   const [modal, setModal] = useState(false);
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
   const [inactive, setInactive] = useState(true);
-
+  const [refered, setRefered] = useState(false)
+  
+  useEffect(() => {
+    // setRefered(authCtx.refered)
+  }, authCtx.refered)
+  
   return (
     <div>
       {modal && (
@@ -26,7 +31,7 @@ const ClientProfile = () => {
       >
         <h2 className="fourPar">
           {authCtx.admin ? "Client" : "User"} Profile for{" "}
-          {authCtx.admin && !authCtx.refered
+          {authCtx.admin && !refered
             ? localStorage.getItem("adminUser")
             : localStorage.getItem("client")}
         </h2>
@@ -35,7 +40,7 @@ const ClientProfile = () => {
             className="editInput"
             id="client"
             defaultValue={
-              authCtx.admin && !authCtx.refered
+              authCtx.admin && !refered
                 ? localStorage.getItem("adminUser")
                 : localStorage.getItem("client")
             }
@@ -45,7 +50,7 @@ const ClientProfile = () => {
             className="editInput"
             id="email"
             defaultValue={
-              authCtx.admin && !authCtx.refered
+              authCtx.admin && !refered
                 ? localStorage.getItem("adminEmail")
                 : localStorage.getItem("email")
             }
@@ -55,7 +60,7 @@ const ClientProfile = () => {
             className="editInput"
             id="street"
             defaultValue={
-              authCtx.admin && !authCtx.refered
+              authCtx.admin && !refered
                 ? localStorage.getItem("adminStreet")
                 : localStorage.getItem("street")
             }
@@ -65,7 +70,7 @@ const ClientProfile = () => {
             className="editInput"
             id="city"
             defaultValue={
-              authCtx.admin && !authCtx.refered
+              authCtx.admin && !refered
                 ? localStorage.getItem("adminCity")
                 : localStorage.getItem("city")
             }
@@ -76,7 +81,7 @@ const ClientProfile = () => {
             id="state"
             // defaultValue={authCtx.state}
             defaultValue={
-              authCtx.admin && !authCtx.refered
+              authCtx.admin && !refered
                 ? localStorage.getItem("adminState")
                 : localStorage.getItem("state")
             }
@@ -87,7 +92,7 @@ const ClientProfile = () => {
             id="zip"
             // defaultValue={authCtx.zip}
             defaultValue={
-              authCtx.admin && !authCtx.refered
+              authCtx.admin && !refered
                 ? localStorage.getItem("adminZip")
                 : localStorage.getItem("zip")
             }
@@ -97,24 +102,45 @@ const ClientProfile = () => {
             className="orange-btn"
             onClick={() => {
               setInactive(!inactive);
+
               let body = {
-                id: authCtx.clientId,
+                id: props.id,
                 client: client.value,
                 email: email.value,
                 street: street.value,
                 city: city.value,
                 state: state.value,
                 zip: zip.value,
+                // let ID = authCtx.admin ? authCtx.clientId : authCtx.userId
+                // let body = {
+                //   id: ID,
+                //   client: client.value,
+                //   email: email.value,
+                //   street: street.value,
+                //   city: city.value,
+                //   state: state.value,
+                //   zip: zip.value,
               };
+
+              // To comment back in when testing is ready to continue
               {
                 !inactive &&
                   axios
                     .put("/api/editUser", body)
-                    .then(() => {
+                    .then((res) => {
+                      authCtx.admin && !refered
+                        ? localStorage.setItem("adminState", res.data.state)
+                        : localStorage.setItem("state", res.data.state);
+                      console.log("--res.data--", res.data);
+                      console.log("--localstorageAdmin--", localStorage.getItem("adminState"));
+                      console.log("--localstorage--", localStorage.getItem("state"));
                       console.log("success");
                     })
                     .catch((err) => console.error(err));
               }
+
+              console.log("refered", refered);
+              console.log("admin", authCtx.admin);
             }}
           >
             {inactive ? "Edit" : "Save"}

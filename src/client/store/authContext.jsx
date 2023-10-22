@@ -26,7 +26,7 @@ const AuthContext = createContext({
   setState: () => {},
   zip: "",
   setZip: () => {},
-  refered: "",
+  refered: false,
   setRefered: () => {},
 });
 

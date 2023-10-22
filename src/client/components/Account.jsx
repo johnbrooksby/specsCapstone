@@ -9,6 +9,7 @@ const Account = () => {
 
   const [client, setClient] = useState("");
   const [bills, setBills] = useState([]);
+  authCtx.setRefered(false);
 
   useEffect(() => {
     let body = { userId: authCtx.userId };
