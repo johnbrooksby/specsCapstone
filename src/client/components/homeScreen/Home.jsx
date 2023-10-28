@@ -8,7 +8,7 @@ const Home = () => {
   // console.log("Home screen")
   return (
     <div>
-        {/* <Welcome /> */}
+        <Welcome />
         <CompThree />
         <CompFour />
         <Credentials />
