@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../../store/authContext";
 import DeleteClientModal from "./DeleteClientModal";
@@ -10,10 +10,6 @@ const ClientProfile = (props) => {
   const navigate = useNavigate();
   const [inactive, setInactive] = useState(true);
   const [refered, setRefered] = useState(false)
-  
-  useEffect(() => {
-    // setRefered(authCtx.refered)
-  }, authCtx.refered)
   
   return (
     <div>
@@ -31,7 +27,8 @@ const ClientProfile = (props) => {
       >
         <h2 className="fourPar">
           {authCtx.admin ? "Client" : "User"} Profile for{" "}
-          {authCtx.admin && !refered
+          {/* {authCtx.admin && !refered */}
+          {authCtx.admin
             ? localStorage.getItem("adminUser")
             : localStorage.getItem("client")}
         </h2>
@@ -40,7 +37,8 @@ const ClientProfile = (props) => {
             className="editInput"
             id="client"
             defaultValue={
-              authCtx.admin && !refered
+              // authCtx.admin && !refered
+              authCtx.admin
                 ? localStorage.getItem("adminUser")
                 : localStorage.getItem("client")
             }

@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../../store/authContext";
-import ClientProfile from "./clientprofile/ClientProfile";
+// import ClientProfile from "./clientprofile/ClientProfile";
 import axios from "axios";
 
 const Billing = (props) => {
   const authCtx = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   let totalDue = 0;
   let totalPaid = 0;
@@ -24,13 +24,14 @@ const Billing = (props) => {
   const [refreshPage, setRefreshPage] = useState(false);
   const [edit, setEdit] = useState(false);
   const [editClient, setEditClient] = useState({email: "", street: "", city: "", state: "", zip: ""});
+  // console.log("Billing line 27", authCtx.userId)
 
 
   useEffect(() => {
     if (authCtx.admin) {
       let body = { id: props.userid };
       axios
-        .post("/api/billing", body)
+        .post("/api/billing", {id: props.userid})
         .then((res) => {
           props.setBills(res.data[0].billinginfos);
           authCtx.setBills(res.data[0].billinginfos);
@@ -76,7 +77,7 @@ const Billing = (props) => {
               }).catch(err => {
                 console.error(err)
                  console.log("Error marking bill paid");
-                 console.log("Billing.jsx, line 73")});
+                 console.log("Billing.jsx, line 74")});
             }}
           >
             {charge.paid ? "Unpaid" : "Paid"}
@@ -134,7 +135,7 @@ const Billing = (props) => {
         }
       >
         <h3 className="billPageHeader">
-          Billing Info for {props.client ? props.client : authCtx.client}
+          Billing Info for {authCtx.admin && props.client ? props.client : authCtx.client}
         </h3>
         <div className="clientinfo">
           {/* {authCtx.admin && ( */}

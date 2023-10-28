@@ -6,6 +6,8 @@ import Billing from "./Billing";
 
 
 const Admin = () => {
+console.log("Admin page")
+
   const [users, setUsers] = useState([]);
   const [billingPage, setBillingPage] = useState(false);
   const [back, setBack] = useState(false);
@@ -45,7 +47,8 @@ const Admin = () => {
           onClick={() => {
             setUserid(user.id);
             authCtx.setClientId(user.id);
-            // let body = { id: user.id };
+            let body = { id: user.id };
+            console.log("body", body)
             axios
             // .post("/api/billing", body)
             .post("/api/billing", {id: user.id})

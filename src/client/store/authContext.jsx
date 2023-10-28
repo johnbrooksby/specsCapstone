@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import axios from "axios";
 
 let logoutTimer;
@@ -60,8 +60,6 @@ const getLocalData = () => {
     return null;
   }
 
-  console.log()
-
   return {
     token: storedToken,
     duration: remainingTime,
@@ -106,6 +104,30 @@ export const AuthContextProvider = (props) => {
   const [zip, setZip] = useState(null)
   const [refered, setRefered] = useState(null)
 
+  
+  const login = (token, exp, userId, admin) => {
+    setToken(token);
+    setUserId(userId);
+    setAdmin(admin)
+    localStorage.setItem("token", token);
+    localStorage.setItem("exp", exp);
+    localStorage.setItem("userId", userId);
+    localStorage.setItem("admin", admin);
+    localStorage.setItem("client", client);
+    localStorage.setItem("clientId", clientId);
+    localStorage.setItem("bills", bills);
+    localStorage.setItem("email", email);
+    localStorage.setItem("street", street);
+    localStorage.setItem("city", city);
+    localStorage.setItem("state", state);
+    localStorage.setItem("zip", zip);
+    // localStorage.setItem("refered", refered);
+    
+    const remainingTime = calculateRemainingTime(exp);
+    
+    logoutTimer = setTimeout(logout, remainingTime);
+  };
+  
   const logout = (logoutTimer) => {
     setToken(null);
     setUserId(null);
@@ -135,30 +157,7 @@ export const AuthContextProvider = (props) => {
     clearTimeout(logoutTimer);
     axios.put("/api/logout");
   };
-
-  const login = (token, exp, userId, admin) => {
-    setToken(token);
-    setUserId(userId);
-    setAdmin(admin)
-    localStorage.setItem("token", token);
-    localStorage.setItem("exp", exp);
-    localStorage.setItem("userId", userId);
-    localStorage.setItem("admin", admin);
-    localStorage.setItem("client", client);
-    localStorage.setItem("clientId", clientId);
-    localStorage.setItem("bills", bills);
-    localStorage.setItem("email", email);
-    localStorage.setItem("street", street);
-    localStorage.setItem("city", city);
-    localStorage.setItem("state", state);
-    localStorage.setItem("zip", zip);
-    // localStorage.setItem("refered", refered);
-    
-    const remainingTime = calculateRemainingTime(exp);
-
-    logoutTimer = setTimeout(logout, remainingTime);
-  };
-
+  
   const contextValue = {
     token,
     login,

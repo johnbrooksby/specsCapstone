@@ -1,4 +1,4 @@
-// const ViteExpress = require("vite-express");
+const ViteExpress = require("vite-express");
 const express = require('express');
 require('dotenv').config()
 // const path = require('path')
@@ -18,7 +18,7 @@ app.use(cors())
 // This is a public sample test API key.
 // Don’t submit any personally identifiable information in requests made with this key.
 // Sign in to see your own test API key embedded in code samples.
-app.use(express.static('dist'));
+// app.use(express.static('dist'));
 
 const YOUR_DOMAIN = 'http://localhost:5556';
 
@@ -68,7 +68,7 @@ app.put('/api/editUser', editUser)
 // sequelize.sync({force:true})
 sequelize.sync()
 
-app.listen(PORT, () =>
-// ViteExpress.listen(app, PORT, () =>
+// app.listen(PORT, () =>
+ViteExpress.listen(app, PORT, () =>
   console.log(`Server is listening on port ${PORT}...`)
 );

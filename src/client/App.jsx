@@ -22,7 +22,7 @@ function App() {
     authCtx.setAdmin(localStorage.getItem("admin"));
   }, [authCtx.token]);
 
-  let profile = authCtx.admin && authCtx.refered ? authCtx.clientId : authCtx.userId
+  let profile = authCtx.admin && (authCtx.refered ? authCtx.clientId : authCtx.userId)
 
   return (
     <div className="App">
