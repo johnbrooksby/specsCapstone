@@ -62,14 +62,14 @@ const Login = () => {
         authCtx.setCity(res.data.city);
         authCtx.setState(res.data.state);
         authCtx.setZip(res.data.zip);
-        // {!!res.data.admin && 
-        //   localStorage.setItem("adminUser", res.data.name)
-        //   localStorage.setItem("adminEmail", res.data.email_address)
-        //   localStorage.setItem("adminStreet", res.data.street_address)
-        //   localStorage.setItem("adminCity", res.data.city)
-        //   localStorage.setItem("adminState", res.data.state)
-        //   localStorage.setItem("adminZip", res.data.zip)
-        // }
+        {!!res.data.admin && 
+          localStorage.setItem("adminUser", res.data.name)
+          localStorage.setItem("adminEmail", res.data.email_address)
+          localStorage.setItem("adminStreet", res.data.street_address)
+          localStorage.setItem("adminCity", res.data.city)
+          localStorage.setItem("adminState", res.data.state)
+          localStorage.setItem("adminZip", res.data.zip)
+        }
         setUsername("");
         setPassword("");
       })

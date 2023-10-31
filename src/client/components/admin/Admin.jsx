@@ -48,7 +48,7 @@ console.log("Admin page")
             setUserid(user.id);
             authCtx.setClientId(user.id);
             let body = { id: user.id };
-            console.log("body", body)
+            // console.log("body", body)
             axios
             // .post("/api/billing", body)
             .post("/api/billing", {id: user.id})

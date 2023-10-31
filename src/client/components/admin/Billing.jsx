@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Billing = (props) => {
   const authCtx = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   let totalDue = 0;
   let totalPaid = 0;
@@ -139,7 +139,7 @@ const Billing = (props) => {
         </h3>
         <div className="clientinfo">
           {/* {authCtx.admin && ( */}
-            <NavLink to="/clientprofile/client" className="clientinfolink">
+            <NavLink to="/admin/clientprofile/client" className="clientinfolink">
               Edit {authCtx.admin ? "Client" : "User"} Information
             </NavLink>
           {/* )} */}

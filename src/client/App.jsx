@@ -46,7 +46,7 @@ function App() {
           }
         />
         <Route
-          path="billing"
+          path="admin/billing"
           element={
             authCtx.admin || localStorage.getItem("admin") ? (
               <Billing />
@@ -57,13 +57,14 @@ function App() {
         />
 
         <Route
-          path="clientprofile/client"
+          path="admin/clientprofile/client"
           element={
             !authCtx.token ? (
               <Login />
             ) : (
               <ClientProfile 
-                id={profile} />
+                id={profile}
+                 />
             )
           }
         />

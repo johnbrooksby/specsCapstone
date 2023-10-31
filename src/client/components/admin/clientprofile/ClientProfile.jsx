@@ -27,10 +27,11 @@ const ClientProfile = (props) => {
       >
         <h2 className="fourPar">
           {authCtx.admin ? "Client" : "User"} Profile for{" "}
-          {/* {authCtx.admin && !refered */}
-          {authCtx.admin
+          {authCtx.admin && !refered
+          // {/* {authCtx.admin */}
             ? localStorage.getItem("adminUser")
             : localStorage.getItem("client")}
+            {/* {props.name} */}
         </h2>
         <form className="editValuesForm">
           <input
