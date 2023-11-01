@@ -236,9 +236,9 @@ const Billing = (props) => {
       <a onClick={() => setClientPage(false)} className={authCtx.admin ? "backbtn topBack" : "backbtn topBack lowerTopBack"}>
         &#x3c;&#x3c;Back
       </a>
-      <a onClick={() => setClientPage(false)} className="backbtn bottomBack">
+      {/* <a onClick={() => setClientPage(false)} className="backbtn bottomBack">
         &#x3c;&#x3c;Back
-      </a>
+      </a> */}
     </div>
   );
 };
