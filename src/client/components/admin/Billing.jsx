@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../../store/authContext";
-// import ClientProfile from "./clientprofile/ClientProfile";
+import ClientProfile from "./clientprofile/ClientProfile";
 import axios from "axios";
 
 const Billing = (props) => {
@@ -14,26 +14,32 @@ const Billing = (props) => {
   let total = 0;
   let accountBillList = [];
   let billList = [];
-  
 
   const [modal, setModal] = useState(false);
 
   const [markaspaid, setMarkaspaid] = useState(true);
   const [addedBill, setAddedBill] = useState(false);
-  // let addedBill = useState(false);
+  const [clientPage, setClientPage] = useState(false);
   const [refreshPage, setRefreshPage] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [editClient, setEditClient] = useState({email: "", street: "", city: "", state: "", zip: ""});
+  const [editClient, setEditClient] = useState({
+    email: "",
+    street: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
   // console.log("Billing line 27", authCtx.userId)
-
 
   useEffect(() => {
     if (authCtx.admin) {
-      let body = { id: props.userid };
+      console.log("props.userid", props.userid )
+      console.log("!props.userid", authCtx.userid )
+      // let body = { id: props.userid };
       axios
-        .post("/api/billing", {id: props.userid})
+        .post("/api/billing", { id: props.userid ? props.userid : authCtx.userId })
         .then((res) => {
-          props.setBills(res.data[0].billinginfos);
+          {props.setBills && props.setBills(res.data[0].billinginfos)};
           authCtx.setBills(res.data[0].billinginfos);
           setRefreshPage(!refreshPage);
         })
@@ -72,12 +78,16 @@ const Billing = (props) => {
                 id: charge.id,
                 paid: !charge.paid,
               };
-              axios.put("/api/markaspaid", body).then((res) => {
-                setMarkaspaid(markaspaid ? false : true);
-              }).catch(err => {
-                console.error(err)
-                 console.log("Error marking bill paid");
-                 console.log("Billing.jsx, line 74")});
+              axios
+                .put("/api/markaspaid", body)
+                .then((res) => {
+                  setMarkaspaid(markaspaid ? false : true);
+                })
+                .catch((err) => {
+                  console.error(err);
+                  console.log("Error marking bill paid");
+                  console.log("Billing.jsx, line 74");
+                });
             }}
           >
             {charge.paid ? "Unpaid" : "Paid"}
@@ -113,7 +123,7 @@ const Billing = (props) => {
     );
   });
 
-  return (
+  return !clientPage ? (
     <div>
       {modal && (
         <AddBillModal
@@ -135,13 +145,18 @@ const Billing = (props) => {
         }
       >
         <h3 className="billPageHeader">
-          Billing Info for {authCtx.admin && props.client ? props.client : authCtx.client}
+          Billing Info for{" "}
+          {authCtx.admin && props.client ? props.client : authCtx.client}
         </h3>
         <div className="clientinfo">
           {/* {authCtx.admin && ( */}
-            <NavLink to="/admin/clientprofile/client" className="clientinfolink">
-              Edit {authCtx.admin ? "Client" : "User"} Information
-            </NavLink>
+          {/* <NavLink to="/admin/clientprofile/client" className="clientinfolink"> */}
+          <a className="clientinfolink" onClick={() => setClientPage(true)}>
+            
+            {/* Edit {authCtx.admin ? "Client" : "User"} Information{" "} */}
+            Edit {props.user} Information
+          </a>
+          {/* </NavLink> */}
           {/* )} */}
         </div>
 
@@ -214,6 +229,16 @@ const Billing = (props) => {
           </a>
         )}
       </div>
+    </div>
+  ) : (
+    <div className="clientProfileSection">
+      <ClientProfile />
+      <a onClick={() => setClientPage(false)} className={authCtx.admin ? "backbtn topBack" : "backbtn topBack lowerTopBack"}>
+        &#x3c;&#x3c;Back
+      </a>
+      <a onClick={() => setClientPage(false)} className="backbtn bottomBack">
+        &#x3c;&#x3c;Back
+      </a>
     </div>
   );
 };

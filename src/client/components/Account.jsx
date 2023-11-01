@@ -38,7 +38,7 @@ const Account = () => {
       });
   }, [authCtx.userId]);
 
-  return <Billing client={client} bills={bills} />;
+  return <Billing client={client} bills={bills} user={"User"} />;
 };
 
 export default Account;

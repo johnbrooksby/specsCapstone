@@ -6,7 +6,7 @@ import Billing from "./Billing";
 
 
 const Admin = () => {
-console.log("Admin page")
+// console.log("Admin page")
 
   const [users, setUsers] = useState([]);
   const [billingPage, setBillingPage] = useState(false);
@@ -91,6 +91,7 @@ console.log("Admin page")
       userid={userid}
       bills={bills}
       setBills={setBills}
+      user={"Client"}
     />
   );
 };
