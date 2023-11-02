@@ -47,7 +47,7 @@ const Admin = () => {
           onClick={() => {
             setUserid(user.id);
             authCtx.setClientId(user.id);
-            let body = { id: user.id };
+            // let body = { id: user.id };
             // console.log("body", body)
             axios
             // .post("/api/billing", body)
@@ -92,6 +92,7 @@ const Admin = () => {
       bills={bills}
       setBills={setBills}
       user={"Client"}
+      email={localStorage.getItem("email")}
     />
   );
 };

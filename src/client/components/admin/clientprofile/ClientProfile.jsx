@@ -27,11 +27,11 @@ const ClientProfile = (props) => {
       >
         <h2 className="fourPar">
           {authCtx.admin ? "Client" : "User"} Profile for{" "}
-          {authCtx.admin && !refered
+          {/* {authCtx.admin && !refered
           // {/* {authCtx.admin */}
-            ? localStorage.getItem("adminUser")
-            : localStorage.getItem("client")}
-            {/* {props.name} */}
+            {/* ? localStorage.getItem("adminUser") */}
+            {/* : localStorage.getItem("client")} */}
+            {props.name}
         </h2>
         <form className="editValuesForm">
           <input
@@ -39,9 +39,10 @@ const ClientProfile = (props) => {
             id="client"
             defaultValue={
               // authCtx.admin && !refered
-              authCtx.admin
-                ? localStorage.getItem("adminUser")
-                : localStorage.getItem("client")
+              // authCtx.admin
+                
+              authCtx.admin && props.client ? props.client : authCtx.client
+                // : localStorage.getItem("client")
             }
             disabled={inactive}
           />
@@ -49,9 +50,10 @@ const ClientProfile = (props) => {
             className="editInput"
             id="email"
             defaultValue={
-              authCtx.admin && !refered
-                ? localStorage.getItem("adminEmail")
-                : localStorage.getItem("email")
+              // authCtx.admin && !refered
+                //  localStorage.getItem("adminEmail")
+                // : localStorage.getItem("email")
+                authCtx.admin && props.client ? props.email : authCtx.email
             }
             disabled={inactive}
           />
@@ -103,7 +105,7 @@ const ClientProfile = (props) => {
               setInactive(!inactive);
 
               let body = {
-                id: props.id,
+                id: authCtx.admin ? props.id : localStorage.getItem("userId"),
                 client: client.value,
                 email: email.value,
                 street: street.value,
@@ -127,19 +129,19 @@ const ClientProfile = (props) => {
                   axios
                     .put("/api/editUser", body)
                     .then((res) => {
-                      authCtx.admin && !refered
-                        ? localStorage.setItem("adminState", res.data.state)
+                      authCtx.admin ?
+                          localStorage.setItem("adminState", res.data.state)
                         : localStorage.setItem("state", res.data.state);
-                      console.log("--res.data--", res.data);
-                      console.log("--localstorageAdmin--", localStorage.getItem("adminState"));
-                      console.log("--localstorage--", localStorage.getItem("state"));
-                      console.log("success");
+                      // console.log("--res.data--", res.data);
+                      // console.log("--localstorageAdmin--", localStorage.getItem("adminState"));
+                      // console.log("--localstorage--", localStorage.getItem("state"));
+                      // console.log("success");
                     })
                     .catch((err) => console.error(err));
               }
 
-              console.log("refered", refered);
-              console.log("admin", authCtx.admin);
+              // console.log("refered", refered);
+              // console.log("admin", authCtx.admin);
             }}
           >
             {inactive ? "Edit" : "Save"}

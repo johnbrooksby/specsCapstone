@@ -33,13 +33,17 @@ const Billing = (props) => {
 
   useEffect(() => {
     if (authCtx.admin) {
-      console.log("props.userid", props.userid )
-      console.log("!props.userid", authCtx.userid )
+      // console.log("props.userid", props.userid )
+      // console.log("!props.userid", authCtx.userId )
       // let body = { id: props.userid };
       axios
-        .post("/api/billing", { id: props.userid ? props.userid : authCtx.userId })
+        .post("/api/billing", {
+          id: props.userid ? props.userid : authCtx.userId,
+        })
         .then((res) => {
-          {props.setBills && props.setBills(res.data[0].billinginfos)};
+          {
+            props.setBills && props.setBills(res.data[0].billinginfos);
+          }
           authCtx.setBills(res.data[0].billinginfos);
           setRefreshPage(!refreshPage);
         })
@@ -123,6 +127,8 @@ const Billing = (props) => {
     );
   });
 
+  console.log("props", props)
+
   return !clientPage ? (
     <div>
       {modal && (
@@ -152,7 +158,6 @@ const Billing = (props) => {
           {/* {authCtx.admin && ( */}
           {/* <NavLink to="/admin/clientprofile/client" className="clientinfolink"> */}
           <a className="clientinfolink" onClick={() => setClientPage(true)}>
-            
             {/* Edit {authCtx.admin ? "Client" : "User"} Information{" "} */}
             Edit {props.user} Information
           </a>
@@ -232,8 +237,17 @@ const Billing = (props) => {
     </div>
   ) : (
     <div className="clientProfileSection">
-      <ClientProfile />
-      <a onClick={() => setClientPage(false)} className={authCtx.admin ? "backbtn topBack" : "backbtn topBack lowerTopBack"}>
+      <ClientProfile
+        name={authCtx.admin && props.client ? props.client : authCtx.client}
+        id={authCtx.admin && props.client ? props.userid : authCtx.userId}
+        email={authCtx.admin && props.email ? props.email : authCtx.adminEmail}
+      />
+      <a
+        onClick={() => setClientPage(false)}
+        className={
+          authCtx.admin ? "backbtn topBack" : "backbtn topBack lowerTopBack"
+        }
+      >
         &#x3c;&#x3c;Back
       </a>
       {/* <a onClick={() => setClientPage(false)} className="backbtn bottomBack">
