@@ -127,7 +127,7 @@ const Billing = (props) => {
     );
   });
 
-  console.log("props", props)
+  // console.log("props", props)
 
   return !clientPage ? (
     <div>
@@ -155,14 +155,9 @@ const Billing = (props) => {
           {authCtx.admin && props.client ? props.client : authCtx.client}
         </h3>
         <div className="clientinfo">
-          {/* {authCtx.admin && ( */}
-          {/* <NavLink to="/admin/clientprofile/client" className="clientinfolink"> */}
           <a className="clientinfolink" onClick={() => setClientPage(true)}>
-            {/* Edit {authCtx.admin ? "Client" : "User"} Information{" "} */}
             Edit {props.user} Information
           </a>
-          {/* </NavLink> */}
-          {/* )} */}
         </div>
 
         <br></br>
@@ -239,8 +234,12 @@ const Billing = (props) => {
     <div className="clientProfileSection">
       <ClientProfile
         name={authCtx.admin && props.client ? props.client : authCtx.client}
-        id={authCtx.admin && props.client ? props.userid : authCtx.userId}
+        id={authCtx.admin && props.userid ? props.userid : authCtx.userId}
         email={authCtx.admin && props.email ? props.email : authCtx.adminEmail}
+        street={authCtx.admin && props.street ? props.street : authCtx.adminStreet}
+        city={authCtx.admin && props.city ? props.city : authCtx.adminCity}
+        state={authCtx.admin && props.state ? props.state : authCtx.adminState}
+        zip={authCtx.admin && props.zip ? props.zip : authCtx.adminZip}
       />
       <a
         onClick={() => setClientPage(false)}

@@ -93,6 +93,10 @@ const Admin = () => {
       setBills={setBills}
       user={"Client"}
       email={localStorage.getItem("email")}
+      street={localStorage.getItem("street")}
+      city={localStorage.getItem("city")}
+      state={localStorage.getItem("state")}
+      zip={localStorage.getItem("zip")}
     />
   );
 };

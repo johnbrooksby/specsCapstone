@@ -9,7 +9,7 @@ const ClientProfile = (props) => {
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
   const [inactive, setInactive] = useState(true);
-  const [refered, setRefered] = useState(false)
+  // const [refered, setRefered] = useState(false)
   
   return (
     <div>
@@ -27,22 +27,14 @@ const ClientProfile = (props) => {
       >
         <h2 className="fourPar">
           {authCtx.admin ? "Client" : "User"} Profile for{" "}
-          {/* {authCtx.admin && !refered
-          // {/* {authCtx.admin */}
-            {/* ? localStorage.getItem("adminUser") */}
-            {/* : localStorage.getItem("client")} */}
             {props.name}
         </h2>
         <form className="editValuesForm">
           <input
             className="editInput"
             id="client"
-            defaultValue={
-              // authCtx.admin && !refered
-              // authCtx.admin
-                
+            defaultValue={                
               authCtx.admin && props.client ? props.client : authCtx.client
-                // : localStorage.getItem("client")
             }
             disabled={inactive}
           />
@@ -50,10 +42,7 @@ const ClientProfile = (props) => {
             className="editInput"
             id="email"
             defaultValue={
-              // authCtx.admin && !refered
-                //  localStorage.getItem("adminEmail")
-                // : localStorage.getItem("email")
-                authCtx.admin && props.client ? props.email : authCtx.email
+                authCtx.admin && props.email ? props.email : authCtx.email
             }
             disabled={inactive}
           />
@@ -61,9 +50,7 @@ const ClientProfile = (props) => {
             className="editInput"
             id="street"
             defaultValue={
-              authCtx.admin && !refered
-                ? localStorage.getItem("adminStreet")
-                : localStorage.getItem("street")
+              authCtx.admin && props.street ? props.street : authCtx.street
             }
             disabled={inactive}
           />
@@ -71,9 +58,7 @@ const ClientProfile = (props) => {
             className="editInput"
             id="city"
             defaultValue={
-              authCtx.admin && !refered
-                ? localStorage.getItem("adminCity")
-                : localStorage.getItem("city")
+              authCtx.admin && props.city ? props.city : authCtx.city
             }
             disabled={inactive}
           />
@@ -82,9 +67,7 @@ const ClientProfile = (props) => {
             id="state"
             // defaultValue={authCtx.state}
             defaultValue={
-              authCtx.admin && !refered
-                ? localStorage.getItem("adminState")
-                : localStorage.getItem("state")
+              authCtx.admin && props.state ? props.state : authCtx.state
             }
             disabled={inactive}
           />
@@ -93,9 +76,7 @@ const ClientProfile = (props) => {
             id="zip"
             // defaultValue={authCtx.zip}
             defaultValue={
-              authCtx.admin && !refered
-                ? localStorage.getItem("adminZip")
-                : localStorage.getItem("zip")
+              authCtx.admin && props.zip ? props.zip : authCtx.zip
             }
             disabled={inactive}
           />
@@ -105,7 +86,7 @@ const ClientProfile = (props) => {
               setInactive(!inactive);
 
               let body = {
-                id: authCtx.admin ? props.id : localStorage.getItem("userId"),
+                id: props.id ? props.id : localStorage.getItem("userId"),
                 client: client.value,
                 email: email.value,
                 street: street.value,
@@ -122,6 +103,7 @@ const ClientProfile = (props) => {
                 //   state: state.value,
                 //   zip: zip.value,
               };
+              // console.log("body", body, "props.id", props.id, "authCtx.admin", authCtx.admin)
 
               // To comment back in when testing is ready to continue
               {
@@ -140,8 +122,6 @@ const ClientProfile = (props) => {
                     .catch((err) => console.error(err));
               }
 
-              // console.log("refered", refered);
-              // console.log("admin", authCtx.admin);
             }}
           >
             {inactive ? "Edit" : "Save"}
