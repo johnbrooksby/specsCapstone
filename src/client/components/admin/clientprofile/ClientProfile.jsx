@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import AuthContext from "../../../store/authContext";
 import DeleteClientModal from "./DeleteClientModal";
 import axios from "axios";
@@ -7,9 +6,7 @@ import axios from "axios";
 const ClientProfile = (props) => {
   const [modal, setModal] = useState(false);
   const authCtx = useContext(AuthContext);
-  const navigate = useNavigate();
   const [inactive, setInactive] = useState(true);
-  // const [refered, setRefered] = useState(false)
   
   return (
     <div>
@@ -65,7 +62,6 @@ const ClientProfile = (props) => {
           <input
             className="editInput"
             id="state"
-            // defaultValue={authCtx.state}
             defaultValue={
               authCtx.admin && props.state ? props.state : authCtx.state
             }
@@ -74,7 +70,6 @@ const ClientProfile = (props) => {
           <input
             className="editInput"
             id="zip"
-            // defaultValue={authCtx.zip}
             defaultValue={
               authCtx.admin && props.zip ? props.zip : authCtx.zip
             }
@@ -93,19 +88,8 @@ const ClientProfile = (props) => {
                 city: city.value,
                 state: state.value,
                 zip: zip.value,
-                // let ID = authCtx.admin ? authCtx.clientId : authCtx.userId
-                // let body = {
-                //   id: ID,
-                //   client: client.value,
-                //   email: email.value,
-                //   street: street.value,
-                //   city: city.value,
-                //   state: state.value,
-                //   zip: zip.value,
               };
-              // console.log("body", body, "props.id", props.id, "authCtx.admin", authCtx.admin)
 
-              // To comment back in when testing is ready to continue
               {
                 !inactive &&
                   axios
@@ -114,10 +98,6 @@ const ClientProfile = (props) => {
                       authCtx.admin ?
                           localStorage.setItem("adminState", res.data.state)
                         : localStorage.setItem("state", res.data.state);
-                      // console.log("--res.data--", res.data);
-                      // console.log("--localstorageAdmin--", localStorage.getItem("adminState"));
-                      // console.log("--localstorage--", localStorage.getItem("state"));
-                      // console.log("success");
                     })
                     .catch((err) => console.error(err));
               }

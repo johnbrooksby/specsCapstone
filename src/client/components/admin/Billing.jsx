@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import AddBillModal from "./AddBillModal";
 import AuthContext from "../../store/authContext";
 import ClientProfile from "./clientprofile/ClientProfile";
@@ -7,7 +6,6 @@ import axios from "axios";
 
 const Billing = (props) => {
   const authCtx = useContext(AuthContext);
-  const navigate = useNavigate();
 
   let totalDue = 0;
   let totalPaid = 0;
@@ -22,20 +20,9 @@ const Billing = (props) => {
   const [clientPage, setClientPage] = useState(false);
   const [refreshPage, setRefreshPage] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [editClient, setEditClient] = useState({
-    email: "",
-    street: "",
-    city: "",
-    state: "",
-    zip: "",
-  });
-  // console.log("Billing line 27", authCtx.userId)
 
   useEffect(() => {
     if (authCtx.admin) {
-      // console.log("props.userid", props.userid )
-      // console.log("!props.userid", authCtx.userId )
-      // let body = { id: props.userid };
       axios
         .post("/api/billing", {
           id: props.userid ? props.userid : authCtx.userId,
@@ -126,8 +113,6 @@ const Billing = (props) => {
       </tr>
     );
   });
-
-  // console.log("props", props)
 
   return !clientPage ? (
     <div>

@@ -31,7 +31,6 @@ const Account = () => {
         authCtx.setCity(res.data.city);
         authCtx.setState(res.data.state);
         authCtx.setZip(res.data.zip);
-        // console.log("Account.jsx 34", ":auth client", authCtx.client, authCtx.email, authCtx.street, authCtx.city)
       })
       .catch((err) => {
         console.error(err);
