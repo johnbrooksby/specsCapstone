@@ -23,7 +23,7 @@ app.use(cors())
 const YOUR_DOMAIN = 'http://localhost:5556';
 
 
-app.use(express.static(path.resolve(__dirname, "../dist")))
+// app.use(express.static(path.resolve(__dirname, "../dist")))
 
 User.hasMany(BillingInfo)
 BillingInfo.belongsTo(User)
@@ -68,7 +68,7 @@ app.put('/api/editUser', editUser)
 // sequelize.sync({force:true})
 sequelize.sync()
 
-app.listen(PORT, () =>
-// ViteExpress.listen(app, PORT, () =>
+// app.listen(PORT, () =>
+ViteExpress.listen(app, PORT, () =>
   console.log(`Server is listening on port ${PORT}...`)
 );
