@@ -23,7 +23,7 @@ app.use(cors())
 const YOUR_DOMAIN = 'http://localhost:5556';
 
 
-// app.use(express.static(path.resolve(__dirname, "../dist")))
+app.use(express.static(path.resolve(__dirname, "../dist")))
 
 User.hasMany(BillingInfo)
 BillingInfo.belongsTo(User)
