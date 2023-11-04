@@ -68,7 +68,7 @@ app.put('/api/editUser', editUser)
 // sequelize.sync({force:true})
 sequelize.sync()
 
-// app.listen(PORT, () =>
-ViteExpress.listen(app, PORT, () =>
+app.listen(PORT, () =>
+// ViteExpress.listen(app, PORT, () =>
   console.log(`Server is listening on port ${PORT}...`)
 );
