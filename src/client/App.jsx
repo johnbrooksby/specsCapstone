@@ -22,7 +22,7 @@ function App() {
     authCtx.setAdmin(localStorage.getItem("admin"));
   }, [authCtx.token]);
 
-  let profile = authCtx.admin && (authCtx.refered ? authCtx.clientId : authCtx.userId)
+  // let profile = authCtx.admin && (authCtx.refered ? authCtx.clientId : authCtx.userId)
 
   return (
     <div className="App">
@@ -63,16 +63,16 @@ function App() {
               <Login />
             ) : (
               <ClientProfile 
-                id={profile}
+                // id={profile}
                  />
             )
           }
         />
         {/* <Route path="clientinfo/userprofile" element={<ClientProfile />} /> */}
-        <Route
+        {/* <Route
           path="clientinfo/adminUser"
           element={!authCtx.token ? <Login /> : <Billing />}
-        />
+        /> */}
         {/* <Route path="clientinfo" element={authCtx.admin ? <ClientProfile /> : <Navigate to='/' />} /> */}
         <Route
           path="account"

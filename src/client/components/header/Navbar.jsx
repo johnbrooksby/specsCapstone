@@ -27,11 +27,9 @@ const Navbar = () => {
               <NavLink to="testimonials">Testimonials</NavLink>
             </li>
             <li className="li">
-              {/* {authCtx.admin ? <NavLink to="clientinfo/adminUser">Account</NavLink> : <NavLink to="account">Account</NavLink>} */}
               <NavLink to="account">Account</NavLink>
             </li>
             {authCtx.admin && <li className="li">
-              {/* {authCtx.admin ? <NavLink to="admin">Admin</NavLink> : <NavLink to="account">Account</NavLink>} */}
               <NavLink to="admin">Admin</NavLink>
             </li>}
             <li className="li">
@@ -54,7 +52,6 @@ const Navbar = () => {
               <NavLink to="testimonials">Testimonials</NavLink>
             </li>
             <li className="li">
-              {/* <NavLink to="login">Login or Sign Up</NavLink> */}
               <NavLink to="login">Login / Register</NavLink>
             </li>
           </ul>

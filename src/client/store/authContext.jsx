@@ -26,8 +26,8 @@ const AuthContext = createContext({
   setState: () => {},
   zip: "",
   setZip: () => {},
-  refered: false,
-  setRefered: () => {},
+  // refered: false,
+  // setRefered: () => {},
 });
 
 const calculateRemainingTime = (exp) => {
@@ -102,7 +102,7 @@ export const AuthContextProvider = (props) => {
   const [city, setCity] = useState(null)
   const [state, setState] = useState(null)
   const [zip, setZip] = useState(null)
-  const [refered, setRefered] = useState(null)
+  // const [refered, setRefered] = useState(null)
 
   
   const login = (token, exp, userId, admin) => {
@@ -140,7 +140,7 @@ export const AuthContextProvider = (props) => {
     setCity(null);
     setState(null);
     setZip(null);
-    setRefered(null);
+    // setRefered(null);
     localStorage.removeItem("token");
     localStorage.removeItem("exp");
     localStorage.removeItem("userId");
@@ -153,7 +153,7 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("city");
     localStorage.removeItem("state");
     localStorage.removeItem("zip");
-    localStorage.removeItem("refered");
+    // localStorage.removeItem("refered");
     clearTimeout(logoutTimer);
     axios.put("/api/logout");
   };
@@ -181,8 +181,8 @@ export const AuthContextProvider = (props) => {
     setState,
     zip,
     setZip,
-    refered,
-    setRefered,
+    // refered,
+    // setRefered,
   };
 
   return (

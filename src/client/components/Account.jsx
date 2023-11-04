@@ -9,7 +9,6 @@ const Account = () => {
 
   const [client, setClient] = useState("");
   const [bills, setBills] = useState([]);
-  authCtx.setRefered(false);
 
   useEffect(() => {
     let body = { userId: authCtx.userId };
@@ -17,6 +16,7 @@ const Account = () => {
     axios
       .post("/api/account", body)
       .then((res) => {
+        console.log(res.data)
         setClient(res.data.name);
         setBills(res.data.billinginfos);
         localStorage.setItem("client", res.data.name);
@@ -25,6 +25,7 @@ const Account = () => {
         localStorage.setItem("city", res.data.city);
         localStorage.setItem("state", res.data.state);
         localStorage.setItem("zip", res.data.zip);
+        localStorage.setItem("clientId", res.data.id);
         authCtx.setClient(res.data.name);
         authCtx.setEmail(res.data.email_address);
         authCtx.setStreet(res.data.street_address);

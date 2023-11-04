@@ -71,7 +71,7 @@ const Billing = (props) => {
               };
               axios
                 .put("/api/markaspaid", body)
-                .then((res) => {
+                .then(() => {
                   setMarkaspaid(markaspaid ? false : true);
                 })
                 .catch((err) => {
@@ -197,7 +197,7 @@ const Billing = (props) => {
           </div>
         )}
 
-        {authCtx.admin && (
+        {(authCtx.admin && (localStorage.getItem("userId") !== localStorage.getItem("clientId"))) && (
           <a
             onClick={() => props.setBack(!props.back)}
             className="backbtn topBack"
@@ -205,7 +205,7 @@ const Billing = (props) => {
             &#x3c;&#x3c;Back
           </a>
         )}
-        {authCtx.admin && (
+        {(authCtx.admin && (localStorage.getItem("userId") !== localStorage.getItem("clientId"))) && (
           <a
             onClick={() => props.setBack(!props.back)}
             className="backbtn bottomBack"

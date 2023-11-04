@@ -101,7 +101,6 @@ const ClientProfile = (props) => {
                     })
                     .catch((err) => console.error(err));
               }
-
             }}
           >
             {inactive ? "Edit" : "Save"}
