@@ -7,7 +7,7 @@ const ClientProfile = (props) => {
   const [modal, setModal] = useState(false);
   const authCtx = useContext(AuthContext);
   const [inactive, setInactive] = useState(true);
-  
+
   return (
     <div>
       {modal && (
@@ -23,14 +23,13 @@ const ClientProfile = (props) => {
         }
       >
         <h2 className="fourPar">
-          {authCtx.admin ? "Client" : "User"} Profile for{" "}
-            {props.name}
+          {authCtx.admin ? "Client" : "User"} Profile for {props.name}
         </h2>
         <form className="editValuesForm">
           <input
             className="editInput"
             id="client"
-            defaultValue={                
+            defaultValue={
               authCtx.admin && props.client ? props.client : authCtx.client
             }
             disabled={inactive}
@@ -39,7 +38,7 @@ const ClientProfile = (props) => {
             className="editInput"
             id="email"
             defaultValue={
-                authCtx.admin && props.email ? props.email : authCtx.email
+              authCtx.admin && props.email ? props.email : authCtx.email
             }
             disabled={inactive}
           />
@@ -70,9 +69,7 @@ const ClientProfile = (props) => {
           <input
             className="editInput"
             id="zip"
-            defaultValue={
-              authCtx.admin && props.zip ? props.zip : authCtx.zip
-            }
+            defaultValue={authCtx.admin && props.zip ? props.zip : authCtx.zip}
             disabled={inactive}
           />
           <a
@@ -95,8 +92,8 @@ const ClientProfile = (props) => {
                   axios
                     .put("/api/editUser", body)
                     .then((res) => {
-                      authCtx.admin ?
-                          localStorage.setItem("adminState", res.data.state)
+                      authCtx.admin
+                        ? localStorage.setItem("adminState", res.data.state)
                         : localStorage.setItem("state", res.data.state);
                     })
                     .catch((err) => console.error(err));
@@ -106,18 +103,20 @@ const ClientProfile = (props) => {
             {inactive ? "Edit" : "Save"}
           </a>
         </form>
-        {authCtx.admin && (
-          <div className="Centered margin-top">
-            <a
-              className="orange"
-              onClick={() => {
-                setModal(true);
-              }}
-            >
-              Delete User
-            </a>
-          </div>
-        )}
+        {authCtx.admin &&
+          localStorage.getItem("userId") !==
+            localStorage.getItem("clientId") && (
+            <div className="Centered margin-top">
+              <a
+                className="orange"
+                onClick={() => {
+                  setModal(true);
+                }}
+              >
+                Delete User
+              </a>
+            </div>
+          )}
       </div>
     </div>
   );

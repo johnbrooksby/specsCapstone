@@ -4,12 +4,15 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // server:{proxy:{'/api':{target: "http://localhost:5550", changeOrigin:true, secure:false }}},
-  // server:{proxy:{'/api':"http://localhost:5550"}},
-  server: {
-    hmr: {
-        host: "localhost",
-        protocol: "ws",
-    },
-},
+
+  //Dev settings:
+  server:{proxy:{'/api':"http://localhost:5550"}},
+
+  //Deployment settings:
+//   server: {
+//     hmr: {
+//         host: "localhost",
+//         protocol: "ws",
+//     },
+//   },
 });

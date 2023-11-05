@@ -20,6 +20,12 @@ const Billing = (props) => {
   const [clientPage, setClientPage] = useState(false);
   const [refreshPage, setRefreshPage] = useState(false);
   const [edit, setEdit] = useState(false);
+  
+  useEffect(() => {
+    authCtx.admin &&
+    localStorage.getItem("userId") === localStorage.getItem("clientId") &&
+    setClientPage(true);
+  })
 
   useEffect(() => {
     if (authCtx.admin) {
@@ -65,12 +71,8 @@ const Billing = (props) => {
             className={edit ? "paid_save_btn" : "paid_save_btn disabled"}
             disabled={!edit ? true : false}
             onClick={() => {
-              let body = {
-                id: charge.id,
-                paid: !charge.paid,
-              };
               axios
-                .put("/api/markaspaid", body)
+                .put("/api/markaspaid", { id: charge.id, paid: !charge.paid })
                 .then(() => {
                   setMarkaspaid(markaspaid ? false : true);
                 })
@@ -197,22 +199,26 @@ const Billing = (props) => {
           </div>
         )}
 
-        {(authCtx.admin && (localStorage.getItem("userId") !== localStorage.getItem("clientId"))) && (
-          <a
-            onClick={() => props.setBack(!props.back)}
-            className="backbtn topBack"
-          >
-            &#x3c;&#x3c;Back
-          </a>
-        )}
-        {(authCtx.admin && (localStorage.getItem("userId") !== localStorage.getItem("clientId"))) && (
-          <a
-            onClick={() => props.setBack(!props.back)}
-            className="backbtn bottomBack"
-          >
-            &#x3c;&#x3c;Back
-          </a>
-        )}
+        {authCtx.admin &&
+          localStorage.getItem("userId") !==
+            localStorage.getItem("clientId") && (
+            <a
+              onClick={() => props.setBack(!props.back)}
+              className="backbtn topBack"
+            >
+              &#x3c;&#x3c;Back
+            </a>
+          )}
+        {authCtx.admin &&
+          localStorage.getItem("userId") !==
+            localStorage.getItem("clientId") && (
+            <a
+              onClick={() => props.setBack(!props.back)}
+              className="backbtn bottomBack"
+            >
+              &#x3c;&#x3c;Back
+            </a>
+          )}
       </div>
     </div>
   ) : (
@@ -221,19 +227,24 @@ const Billing = (props) => {
         name={authCtx.admin && props.client ? props.client : authCtx.client}
         id={authCtx.admin && props.userid ? props.userid : authCtx.userId}
         email={authCtx.admin && props.email ? props.email : authCtx.adminEmail}
-        street={authCtx.admin && props.street ? props.street : authCtx.adminStreet}
+        street={
+          authCtx.admin && props.street ? props.street : authCtx.adminStreet
+        }
         city={authCtx.admin && props.city ? props.city : authCtx.adminCity}
         state={authCtx.admin && props.state ? props.state : authCtx.adminState}
         zip={authCtx.admin && props.zip ? props.zip : authCtx.adminZip}
       />
-      <a
-        onClick={() => setClientPage(false)}
-        className={
-          authCtx.admin ? "backbtn topBack" : "backbtn topBack lowerTopBack"
-        }
-      >
-        &#x3c;&#x3c;Back
-      </a>
+      {authCtx.admin &&
+        localStorage.getItem("userId") !== localStorage.getItem("clientId") ? (
+          <a
+            onClick={() => setClientPage(false)}
+            className={
+              authCtx.admin ? "backbtn topBack" : "backbtn topBack lowerTopBack"
+            }
+          >
+            &#x3c;&#x3c;Back
+          </a>
+        ):null}
       {/* <a onClick={() => setClientPage(false)} className="backbtn bottomBack">
         &#x3c;&#x3c;Back
       </a> */}

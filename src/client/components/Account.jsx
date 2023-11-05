@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Billing from "./admin/Billing";
 import AuthContext from "../store/authContext";
 import axios from "axios";
+import ClientProfile from "./admin/clientprofile/ClientProfile";
 // import StripePayment from './Stripe'
 
 const Account = () => {
@@ -16,7 +17,7 @@ const Account = () => {
     axios
       .post("/api/account", body)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setClient(res.data.name);
         setBills(res.data.billinginfos);
         localStorage.setItem("client", res.data.name);
@@ -37,6 +38,7 @@ const Account = () => {
         console.error(err);
       });
   }, [authCtx.userId]);
+  // console.log(authCtx.client, authCtx.userId, authCtx.email, authCtx.street, authCtx.city, authCtx.state, authCtx.zip)
 
   return <Billing client={client} bills={bills} user={"User"} />;
 };
