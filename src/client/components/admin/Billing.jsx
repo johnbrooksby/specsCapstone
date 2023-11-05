@@ -234,8 +234,8 @@ const Billing = (props) => {
         state={authCtx.admin && props.state ? props.state : authCtx.adminState}
         zip={authCtx.admin && props.zip ? props.zip : authCtx.adminZip}
       />
-      {authCtx.admin &&
-        localStorage.getItem("userId") !== localStorage.getItem("clientId") ? (
+      {((authCtx.admin &&
+        (localStorage.getItem("userId") !== localStorage.getItem("clientId"))) || !authCtx.admin) ? (
           <a
             onClick={() => setClientPage(false)}
             className={
