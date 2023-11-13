@@ -6,6 +6,8 @@ const cors = require("cors")
 const {sequelize} = require('./util/database')
 const {User} = require('./models/user')
 const {BillingInfo} = require('./models/billing')
+const {UserBackup} = require('./models/userBackup')
+const {BillingInfoBackup} = require('./models/billingBackup')
 const {PORT} = process.env
 const {register, login, usersAdmin, logout, billing, addbill, account, markaspaid, deleteuser, editUser} = require("./controllers/Auth")
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -27,6 +29,8 @@ const YOUR_DOMAIN = 'http://localhost:5556';
 
 User.hasMany(BillingInfo)
 BillingInfo.belongsTo(User)
+UserBackup.hasMany(BillingInfoBackup)
+BillingInfoBackup.belongsTo(UserBackup)
 
 app.post('/api/register', register)
 app.post('/api/login', login)

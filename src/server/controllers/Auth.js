@@ -2,6 +2,8 @@ require("dotenv").config();
 const { SECRET } = process.env;
 const { User } = require("../models/user");
 const { BillingInfo } = require("../models/billing");
+const { UserBackup } = require("../models/userBackup");
+const { BillingInfoBackup } = require("../models/billingBackup");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -59,8 +61,25 @@ module.exports = {
           amount_due: 0,
           paid: true,
         });
-        console.log(newUser);
-        console.log(newBill);
+        const newUserBackup = await UserBackup.create({
+          username: username,
+          hashedPass: hash,
+          name: name,
+          admin: false,
+          email_address: email_address,
+          street_address: street_address,
+          city: city,
+          state: state,
+          zip: zip,
+        });
+        const newBillBackup = await BillingInfoBackup.create({
+          userId: newUser.id,
+          charge_explanation: "Initial Consultation",
+          amount_due: 0,
+          paid: true,
+        });
+        // console.log(newUser);
+        // console.log(newBill);
         const token = createToken(
           newUser.dataValues.username,
           newUser.dataValues.id
@@ -222,6 +241,12 @@ module.exports = {
         amount_due: amount_due,
         paid: false,
       });
+      let newBillBackup = await BillingInfoBackup.create({
+        userId: userid,
+        charge_explanation: charge_explanation,
+        amount_due: amount_due,
+        paid: false,
+      });
       res.status(200).send(newBill);
     } catch (error) {
       console.log("Error posting new billing information");
@@ -234,6 +259,10 @@ module.exports = {
     try {
       const { id, paid } = req.body;
       let markBillAsPaid = await BillingInfo.upsert({
+        id: id,
+        paid: paid,
+      })
+      let markBillAsPaidBackup = await BillingInfoBackup.upsert({
         id: id,
         paid: paid,
       })
@@ -250,6 +279,16 @@ module.exports = {
       const {id, client, email, street, city, state, zip} = req.body
       console.log("Before axios", id, client, email, street, city, state, zip)
       let editUser = await User.update(
+        {
+          name: client,
+          email_address: email,
+          street_address: street,
+          city: city,
+          state: state,
+          zip: zip,
+        },
+        {where: { id: id }})
+      let editUserBackup = await UserBackup.update(
         {
           name: client,
           email_address: email,

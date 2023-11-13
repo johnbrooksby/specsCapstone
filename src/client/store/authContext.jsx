@@ -40,17 +40,20 @@ const calculateRemainingTime = (exp) => {
 const getLocalData = () => {
   const storedToken = localStorage.getItem("token");
   const storedExp = localStorage.getItem("exp");
-  const storeId = localStorage.getItem("userId");
-  const storedAdmin = localStorage.getItem("admin");
+  const storeId = +localStorage.getItem("userId");
+  let storedAdmin = localStorage.getItem("admin");
+  storedAdmin === "true" ? storedAdmin = true : storedAdmin = false;
   const storedClient = localStorage.getItem("client");
-  const storedClientId = localStorage.getItem("clientId");
+  const storedClientId = +localStorage.getItem("clientId");
   const storedBills = localStorage.getItem("bills");
   const storedEmail = localStorage.getItem("email");
   const storedStreet = localStorage.getItem("street");
   const storedCity = localStorage.getItem("city");
   const storedState = localStorage.getItem("state");
-  const storedZip = localStorage.getItem("zip");
+  const storedZip = +localStorage.getItem("zip");
   const remainingTime = calculateRemainingTime(storedExp);
+
+  console.log(typeof localStorage.getItem("admin"))
 
   if (remainingTime <= 60 * 60 * 24 * 14) {
     localStorage.removeItem("token");
