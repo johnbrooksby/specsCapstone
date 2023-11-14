@@ -73,7 +73,7 @@ module.exports = {
           zip: zip,
         });
         const newBillBackup = await BillingInfoBackup.create({
-          userId: newUser.id,
+          userBackupId: newUser.id,
           charge_explanation: "Initial Consultation",
           amount_due: 0,
           paid: true,
@@ -242,7 +242,7 @@ module.exports = {
         paid: false,
       });
       let newBillBackup = await BillingInfoBackup.create({
-        userId: userid,
+        userBackupId: userid,
         charge_explanation: charge_explanation,
         amount_due: amount_due,
         paid: false,
