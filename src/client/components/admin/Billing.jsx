@@ -55,6 +55,7 @@ const Billing = (props) => {
 
     return (
       <tr key={charge.id}>
+        <td className="bills_detail">{charge.createdAt}</td>
         <td className="bills_detail">{charge.charge_explanation}</td>
         <td className="bills_detail amount">${charge.amount_due}</td>
         <td
@@ -101,6 +102,8 @@ const Billing = (props) => {
 
     return (
       <tr key={charge.id}>
+        {/* <td className="bills_detail">{charge.createdAt.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td> */}
+        <td className="bills_detail">{charge.createdAt}</td>
         <td className="bills_detail">{charge.charge_explanation}</td>
         <td className="bills_detail amount">${charge.amount_due}</td>
         <td
@@ -152,6 +155,7 @@ const Billing = (props) => {
           <table className="bills_detail_table">
             <thead>
               <tr>
+                <td className="bills_detail_head">Bill Date:</td>
                 <td className="bills_detail_head">Explanation:</td>
                 <td className="bills_detail_head">Amount Due:</td>
                 <td className="bills_detail_head">Paid?</td>
@@ -173,14 +177,17 @@ const Billing = (props) => {
             <tfoot>
               <tr>
                 <td className="bills_detail_foot">Total:</td>
+                <td className="bills_detail_foot"></td>
                 <td className="bills_detail_foot">${total / 2}</td>
               </tr>
               <tr>
                 <td className="bills_detail_foot">Total Amount Paid:</td>
+                <td className="bills_detail_foot"></td>
                 <td className="bills_detail_foot">${totalPaid / 2}</td>
               </tr>
               <tr>
                 <td className="bills_detail_foottwo">Amount Due:</td>
+                <td className="bills_detail_foot"></td>
                 <td className="bills_detail_foottwo">${totalDue / 2}</td>
               </tr>
             </tfoot>

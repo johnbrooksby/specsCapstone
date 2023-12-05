@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
 import AuthContext from "./store/authContext";
-
 import Header from "./components/header/Header";
 import Navbar from "./components/header/Navbar";
 import Home from "./components/homeScreen/Home";
@@ -68,12 +67,6 @@ function App() {
             )
           }
         />
-        {/* <Route path="clientinfo/userprofile" element={<ClientProfile />} /> */}
-        {/* <Route
-          path="clientinfo/adminUser"
-          element={!authCtx.token ? <Login /> : <Billing />}
-        /> */}
-        {/* <Route path="clientinfo" element={authCtx.admin ? <ClientProfile /> : <Navigate to='/' />} /> */}
         <Route
           path="account"
           element={authCtx.token ? <Account /> : <Navigate to="/" />}

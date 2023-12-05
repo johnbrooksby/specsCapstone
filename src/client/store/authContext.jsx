@@ -53,8 +53,6 @@ const getLocalData = () => {
   const storedZip = +localStorage.getItem("zip");
   const remainingTime = calculateRemainingTime(storedExp);
 
-  console.log(typeof localStorage.getItem("admin"))
-
   if (remainingTime <= 60 * 60 * 24 * 14) {
     localStorage.removeItem("token");
     localStorage.removeItem("exp");

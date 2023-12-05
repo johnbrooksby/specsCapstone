@@ -46,7 +46,7 @@ const DeleteClientModal = (props) => {
                 console.error(err);
               });
             props.setModal(false);
-            setTimeout(() => navigate("/admin"), 100);
+            setTimeout(() => navigate("/admin"), 150);
           }}
         >
           Delete Client
