@@ -733,3 +733,7 @@ table {
   background-color: #a5a5a5;
   color:#b5b5b5;
 }
+
+.noBorder {
+  border: none;
+}

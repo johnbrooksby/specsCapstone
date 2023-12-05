@@ -53,9 +53,15 @@ const Billing = (props) => {
       totalDue += +charge.amount_due;
     }
 
+    let parts = (charge.createdAt).split('-');
+    let parts2 =  parts[2].split("T")
+    parts[2] = parts2[0]
+    let mydate = new Date(parts[0], parts[1] - 1, parts[2]); 
+
     return (
       <tr key={charge.id}>
-        <td className="bills_detail">{charge.createdAt}</td>
+        <td className="bills_detail">{mydate.toLocaleDateString()}</td>
+        {/* <td className="bills_detail">{charge.createdAt}</td> */}
         <td className="bills_detail">{charge.charge_explanation}</td>
         <td className="bills_detail amount">${charge.amount_due}</td>
         <td
@@ -99,11 +105,15 @@ const Billing = (props) => {
     if (!charge.paid) {
       totalDue += +charge.amount_due;
     }
+    
+    let parts = (charge.createdAt).split('-');
+    let parts2 =  parts[2].split("T")
+    parts[2] = parts2[0]
+    let mydate = new Date(parts[0], parts[1] - 1, parts[2]); 
 
     return (
       <tr key={charge.id}>
-        {/* <td className="bills_detail">{charge.createdAt.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td> */}
-        <td className="bills_detail">{charge.createdAt}</td>
+        <td className="bills_detail">{mydate.toLocaleDateString()}</td>
         <td className="bills_detail">{charge.charge_explanation}</td>
         <td className="bills_detail amount">${charge.amount_due}</td>
         <td
@@ -176,18 +186,18 @@ const Billing = (props) => {
             <tbody>{authCtx.admin ? billList : accountBillList}</tbody>
             <tfoot>
               <tr>
+                <td className="bills_detail_foot noBorder"></td>
                 <td className="bills_detail_foot">Total:</td>
-                <td className="bills_detail_foot"></td>
                 <td className="bills_detail_foot">${total / 2}</td>
               </tr>
               <tr>
+                <td className="bills_detail_foot noBorder"></td>
                 <td className="bills_detail_foot">Total Amount Paid:</td>
-                <td className="bills_detail_foot"></td>
                 <td className="bills_detail_foot">${totalPaid / 2}</td>
               </tr>
               <tr>
+                <td className="bills_detail_foot noBorder "></td>
                 <td className="bills_detail_foottwo">Amount Due:</td>
-                <td className="bills_detail_foot"></td>
                 <td className="bills_detail_foottwo">${totalDue / 2}</td>
               </tr>
             </tfoot>
