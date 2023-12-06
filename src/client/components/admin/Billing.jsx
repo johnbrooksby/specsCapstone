@@ -61,15 +61,15 @@ const Billing = (props) => {
     return (
       <tr key={charge.id}>
         <td className="bills_detail">{mydate.toLocaleDateString()}</td>
-        {/* <td className="bills_detail">{charge.createdAt}</td> */}
         <td className="bills_detail">{charge.charge_explanation}</td>
         <td className="bills_detail amount">${charge.amount_due}</td>
         <td
           className={
             charge.paid
-              ? "bills_detail paid amount"
-              : "bills_detail unpaid amount"
+              ? "bills_detail paid"
+              : "bills_detail unpaid"
           }
+          style={{width: 80}}
         >
           {charge.paid ? "Yes" : "No"}
         </td>

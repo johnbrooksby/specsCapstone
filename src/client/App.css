@@ -543,27 +543,28 @@ table {
 }
 
 .bills_detail_table, .bills_detail, .bills_detail_head, .bills_detail_foot, .bills_detail_foottwo {
-  border: 1px solid #818181;
+  border: 1px solid #364a60;
   padding: 10px;
 }
 
 .bills_detail_head {
-  border-bottom: 3px solid #818181;
+  border-bottom: 3px solid #364a60;
   font-weight: bolder;
+  width: auto;
 }
 
 .bills_detail {
-  width: 250px;
+  width: auto;
   height: 20px;
 }
 
 .bills_detail_foot {
-  border: 3px double #818181;
+  border: 3px double #364a60;
   font-weight: bolder;
 }
 
 .bills_detail_foottwo {
-  border: 4px double #818181;
+  border: 4px double #364a60;
   font-weight: bolder;
 }
 
