@@ -53,10 +53,8 @@ const Billing = (props) => {
       totalDue += +charge.amount_due;
     }
 
-    let parts = (charge.createdAt).split('-');
-    let parts2 =  parts[2].split("T")
-    parts[2] = parts2[0]
-    let mydate = new Date(parts[0], parts[1] - 1, parts[2]); 
+    let parts = (charge.createdAt).replace("T", "-").split("-");
+    let mydate = new Date(parts[0], parts[1] - 1, parts[2]);
 
     return (
       <tr key={charge.id}>
@@ -106,10 +104,8 @@ const Billing = (props) => {
       totalDue += +charge.amount_due;
     }
     
-    let parts = (charge.createdAt).split('-');
-    let parts2 =  parts[2].split("T")
-    parts[2] = parts2[0]
-    let mydate = new Date(parts[0], parts[1] - 1, parts[2]); 
+    let parts = (charge.createdAt).replace("T", "-").split("-");
+    let mydate = new Date(parts[0], parts[1] - 1, parts[2]);
 
     return (
       <tr key={charge.id}>
