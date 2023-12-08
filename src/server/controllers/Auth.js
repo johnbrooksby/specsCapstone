@@ -29,7 +29,7 @@ module.exports = {
   register: async (req, res) => {
     try {
       const {
-        username,
+        user,
         name,
         password,
         email_address,
@@ -38,14 +38,14 @@ module.exports = {
         state,
         zip,
       } = req.body;
-      let foundUser = await User.findOne({ where: { username: username } });
+      let foundUser = await User.findOne({ where: { username: user } });
       if (foundUser) {
         res.status(400).send("That username is already in use");
       } else {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
         const newUser = await User.create({
-          username: username,
+          username: user,
           hashedPass: hash,
           name: name,
           admin: false,
@@ -62,7 +62,7 @@ module.exports = {
           paid: true,
         });
         const newUserBackup = await UserBackup.create({
-          username: username,
+          username: user,
           hashedPass: hash,
           name: name,
           admin: false,
@@ -81,12 +81,12 @@ module.exports = {
         // console.log(newUser);
         // console.log(newBill);
         const token = createToken(
-          newUser.dataValues.username,
+          newUser.dataValues.user,
           newUser.dataValues.id
         );
         const exp = Date.now() + 1000 * 60 * 60 * 24 * 14;
         res.status(200).send({
-          username: newUser.dataValues.username,
+          username: newUser.dataValues.user,
           userId: newUser.dataValues.id,
           token,
           admin,
@@ -102,8 +102,8 @@ module.exports = {
 
   login: async (req, res) => {
     try {
-      const { username, password } = req.body;
-      let foundUser = await User.findOne({ where: { username } });
+      const { user, password } = req.body;
+      let foundUser = await User.findOne({ where: { username: user } });
       if (foundUser) {
         const isAuthenticated = bcrypt.compareSync(
           password,
@@ -118,7 +118,7 @@ module.exports = {
           admin = foundUser.dataValues.admin;
           const exp = Date.now() + 1000 * 60 * 60 * 24 * 14;
           res.status(200).send({
-            username: foundUser.dataValues.username,
+            username: foundUser.dataValues.user,
             name: foundUser.dataValues.name,
             userId: foundUser.dataValues.id,
             email_address: foundUser.dataValues.email_address,

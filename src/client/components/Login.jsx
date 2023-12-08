@@ -29,13 +29,16 @@ const Login = () => {
       return;
     }
 
+    let user = username.toLowerCase()
+    
     const Body = {
-      username,
+      user,
       password,
     };
-
+    
+    console.log(Body)
     const RegBody = {
-      username,
+      user,
       name,
       password,
       street_address,
