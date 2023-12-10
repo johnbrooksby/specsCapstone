@@ -588,17 +588,6 @@ table {
   justify-content: center;
   align-items: flex-start;
 }
-/* 
-.greyBox {
-  width: 30vw;
-  height: 40vh;
-  background-color: #a5a5a5;
-  z-index: 99;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: space-around;
-} */
 
 .add_charge_form {
   display: flex;
@@ -665,7 +654,6 @@ table {
 }
 
 .clientProfileSection {
-  /* height: 72vh; */
   margin-bottom: 0px;
 }
 

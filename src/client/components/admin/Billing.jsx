@@ -58,7 +58,7 @@ const Billing = (props) => {
 
     return (
       <tr key={charge.id}>
-        <td className="bills_detail">{mydate.toLocaleDateString()}</td>
+        <td className="bills_detail">{mydate.toLocaleDateString("en-US", {year: "numeric", month: "short", day: "numeric"})}</td>
         <td className="bills_detail">{charge.charge_explanation}</td>
         <td className="bills_detail amount">${charge.amount_due}</td>
         <td
@@ -109,7 +109,7 @@ const Billing = (props) => {
 
     return (
       <tr key={charge.id}>
-        <td className="bills_detail">{mydate.toLocaleDateString()}</td>
+        <td className="bills_detail">{mydate.toLocaleDateString("en-US", {year: "numeric", month: "short", day: "numeric"})}</td>
         <td className="bills_detail">{charge.charge_explanation}</td>
         <td className="bills_detail amount">${charge.amount_due}</td>
         <td
@@ -124,6 +124,8 @@ const Billing = (props) => {
       </tr>
     );
   });
+
+  console.log("clientpage", clientPage)
 
   return !clientPage ? (
     <div>
@@ -152,7 +154,7 @@ const Billing = (props) => {
         </h3>
         <div className="clientinfo">
           <a className="clientinfolink" onClick={() => setClientPage(true)}>
-            Edit {props.user} Information
+            Edit {props.user} Profile
           </a>
         </div>
 
@@ -258,9 +260,6 @@ const Billing = (props) => {
             &#x3c;&#x3c;Back
           </a>
         ):null}
-      {/* <a onClick={() => setClientPage(false)} className="backbtn bottomBack">
-        &#x3c;&#x3c;Back
-      </a> */}
     </div>
   );
 };
