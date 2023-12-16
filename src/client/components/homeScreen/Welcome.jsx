@@ -13,7 +13,7 @@ const Welcome = () => {
       <div></div>
       <h2>Let’s work together to bring back that spark into your life!</h2>
       <a
-        className="orange-btn"
+        className="orange-btn orange-welcome-button"
         href="https://calendly.com/suresparkcoaching/30min?month=2023-05"
         target="_blank"
       >
