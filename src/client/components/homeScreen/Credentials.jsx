@@ -4,7 +4,7 @@ const Credentials = () => {
   return (
     <div className="credential">
       <div className="credImg">
-        <img src="/creds.png" alt="credentials" />
+        <img className="credentialImage" src="/creds.png" alt="credentials" />
       </div>
       {/* <img src="https://drive.google.com/uc?export=view&id=1matIyytarpRr6zHdUHONaxJLxkyZj6TC" alt='cred' /> */}
     </div>
