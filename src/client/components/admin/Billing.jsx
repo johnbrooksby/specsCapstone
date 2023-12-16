@@ -54,6 +54,7 @@ const Billing = (props) => {
     }
 
     let parts = (charge.createdAt).replace("T", "-").split("-");
+    // let parts = (charge.createdAt).split();
     let mydate = new Date(parts[0], parts[1] - 1, parts[2]);
 
     return (
