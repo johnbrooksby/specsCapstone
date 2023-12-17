@@ -8,7 +8,7 @@ const DeleteClientModal = (props) => {
   const authCtx = useContext(AuthContext);
 
   return (
-    <div>
+    <div className="modalParentDiv">
       <div className="modalDiv"></div>
       <a
         className="closeModal"
@@ -28,7 +28,7 @@ const DeleteClientModal = (props) => {
           </h3>
         </div>
         <button
-          className="blue-btn"
+          className="blue-btn delete-user-button"
           onClick={() => {
             props.setModal(false);
           }}
@@ -36,7 +36,7 @@ const DeleteClientModal = (props) => {
           Cancel
         </button>
         <button
-          className="orange-btn"
+          className="orange-btn delete-user-button"
           onClick={() => {
             alert("User delete successful");
             axios

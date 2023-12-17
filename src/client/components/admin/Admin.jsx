@@ -41,7 +41,7 @@ const Admin = () => {
           Address: {user.street_address} {user.city}, {user.state} {user.zip}
         </p>
         <a
-          className="blue-btn"
+          className="blue-btn billing-card-btn"
           onClick={() => {
             setUserid(user.id);
             authCtx.setClientId(user.id);

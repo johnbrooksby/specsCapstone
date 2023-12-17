@@ -9,7 +9,7 @@ const AddBillModal = (props) => {
   const authCtx = useContext(AuthContext);
 
   return (
-    <div>
+    <div className="modalParentDiv">
       <div className="modalDiv"></div>
       {/* <div> */}
         <a

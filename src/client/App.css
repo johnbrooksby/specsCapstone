@@ -295,7 +295,8 @@
   }
   @media (max-width: 431px) {
     width: 100%;
-    justify-content: center;
+    justify-content: space-evenly;
+    gap: 0px;
   }
 }
 
@@ -329,6 +330,15 @@ h3 {
 
 .whiteText {
   color:#b5b5b5;
+  @media (max-width: 1440px){
+    width: 90%;
+  }
+}
+
+.delete-user-button {
+  @media (max-width: 1330px){
+    width: 90%;
+  }
 }
 
 .billPageHeader {
@@ -608,7 +618,10 @@ li:hover {
 .editInput {
   height: 25px;
   /* background-color: #818181; */
-  width: 40%;
+  width: 40vw;
+  @media (max-width: 1000px){
+    width: 75vw;
+  }
 }
 
 .userCard {
@@ -623,6 +636,12 @@ li:hover {
   align-items: center;
   gap: 5px;
   background-color: #cad1ce;
+  @media (max-width:1140px){
+    width: 75vw;
+  }
+  @media (max-width:475px){
+    scale: 80%;
+  }
 }
 
 .billing {
@@ -633,6 +652,12 @@ li:hover {
   align-items: center;
   justify-content: space-evenly;
 
+}
+
+.billing-card-btn {
+  @media (max-width: 360px){
+    width: 90%;
+  }
 }
 
 .billscontainer {
@@ -683,6 +708,7 @@ li:hover {
   position: relative;
   left: 10px;
   bottom: 5vh;
+  z-index: 3;
 }
 
 .billdetail {
@@ -767,6 +793,13 @@ table {
   align-items: flex-start;
 }
 
+.modalParentDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: )
+}
+
 .add_charge_form {
   display: flex;
   flex-direction: column;
@@ -780,9 +813,14 @@ table {
   margin-top: 22vh;
   position: fixed;
   z-index: 10;
-  margin-left: 36vw;
-  margin-right: auto;
+  /* margin-left: 36vw; */
+  /* margin-right: auto; */
   bottom: 40vh;
+  @media (max-width:1220px){
+    position: absolute;
+    margin-left: 0px;
+    gap: 5%;
+  }
 }
 
 .modalContainer {
