@@ -107,7 +107,7 @@ const Login = () => {
           {!login && (
             <p className="badlogin">Username and/or password incorrect</p>
           )}
-          <button className="orange-btn">
+          <button className="orange-btn authform-button">
             {register ? "Create Account" : "Login"}{" "}
           </button>
         </form>
@@ -180,7 +180,7 @@ const Login = () => {
             className="reg-form-input email"
           />
           <div>
-            <button className="orange-btn" disabled={clicked ? true : false}>
+            <button className="orange-btn authform-button" disabled={clicked ? true : false}>
               {register ? "Create Account" : "Login"}{" "}
             </button>
           </div>
