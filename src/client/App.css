@@ -347,8 +347,10 @@ h3 {
   margin-top: 2vh;
   @media (max-width: 800px){
     scale: 75%;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
 }
 
