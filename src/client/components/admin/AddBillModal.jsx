@@ -12,61 +12,61 @@ const AddBillModal = (props) => {
     <div className="modalParentDiv">
       <div className="modalDiv"></div>
       {/* <div> */}
-        <a
-          className="closeModal"
-          onClick={() => {
-            props.setModal(false);
-            setReason("");
-            setAmount("");
+      <a
+        className="closeModal"
+        onClick={() => {
+          props.setModal(false);
+          setReason("");
+          setAmount("");
+        }}
+      >
+        X
+      </a>
+      <form
+        className="add_charge_form"
+        onSubmit={(e) => {
+          e.preventDefault();
+
+          const body = {
+            userid: props.userid,
+            charge_explanation: reason,
+            amount_due: amount,
+          };
+
+          axios
+            .post("/api/addbill", body)
+            .then((res) => {
+              setReason("");
+              setAmount("");
+              authCtx.setBills(...authCtx.bills, res.data);
+            })
+            .catch((err) => console.error(err));
+
+          window.scrollTo(0, 0);
+          props.setModal(false);
+          props.setAddedBill(!props.addedBill);
+          // props.addedBill[1](!props.addedBill);
+        }}
+      >
+        <input
+          placeholder="Reason"
+          className="form-input"
+          autoFocus
+          value={reason}
+          onChange={(e) => {
+            setReason(e.target.value);
           }}
-        >
-          X
-        </a>
-        <form
-          className="add_charge_form"
-          onSubmit={(e) => {
-            e.preventDefault();
-
-            const body = {
-              userid: props.userid,
-              charge_explanation: reason,
-              amount_due: amount,
-            };
-
-            axios
-              .post("/api/addbill", body)
-              .then((res) => {
-                setReason("");
-                setAmount("");
-                authCtx.setBills(...authCtx.bills, res.data);
-              })
-              .catch((err) => console.error(err));
-
-            window.scrollTo(0, 0);
-            props.setModal(false);
-            props.setAddedBill(!props.addedBill);
-            // props.addedBill[1](!props.addedBill);
+        />
+        <input
+          placeholder="Amount (e.g. 50)"
+          className="form-input"
+          value={amount}
+          onChange={(e) => {
+            setAmount(e.target.value);
           }}
-        >
-          <input
-            placeholder="Reason"
-            className="form-input"
-            autoFocus
-            value={reason}
-            onChange={(e) => {
-              setReason(e.target.value);
-            }}
-          />
-          <input
-            placeholder="Amount (e.g. 50)"
-            className="form-input"
-            value={amount}
-            onChange={(e) => {
-              setAmount(e.target.value);
-            }}
-          />
-          <button className="orange-btn">Add Charge</button>
-        </form>
+        />
+        <button className="orange-btn">Add Charge</button>
+      </form>
       {/* </div> */}
     </div>
   );
