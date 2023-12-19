@@ -126,8 +126,6 @@ const Billing = (props) => {
     );
   });
 
-  console.log("clientpage", clientPage)
-
   return !clientPage ? (
     <div>
       {modal && (

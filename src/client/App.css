@@ -57,12 +57,12 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  @media (max-width:350px){
-    scale: 55%;
-  }
   @media (max-width: 520px){
     text-align: right;
     padding-left: 10px;
+  }
+  @media (max-width:350px){
+    scale: 55%;
   }
 }
 
@@ -190,7 +190,7 @@
     align-items: center;
   }
   @media (max-width: 800px){
-    width: 90%
+    width: 90%;
   }
 }
 
@@ -202,7 +202,7 @@
   /* padding-top: 50px; */
   padding-bottom: 50px;
   @media (max-width:1115px){
-    width: 100%
+    width: 100%;
   }
   @media (max-width:875px){
     width: 90%;
@@ -251,7 +251,7 @@
   @media (max-width:1050px){
   };
   @media (max-width:875px){
-    scale: 75%
+    scale: 75%;
   }
   @media (max-width:740px){
     margin-top: 0px;
@@ -345,6 +345,11 @@ h3 {
   color:#cad1ce;
   font-size: 20pt;
   margin-top: 2vh;
+  @media (max-width: 800px){
+    scale: 75%;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 }
 
 .hierarchy {
@@ -570,7 +575,7 @@ li:hover {
 }
 
 .two {
-  color:#1e2b3a
+  color:#1e2b3a;
 }
 
 .accountPage {
@@ -697,7 +702,10 @@ li:hover {
 .topBack {
   top: 10vh;
   left: 10px;
-  z-index: 3;
+  z-index: 2;
+  @media (max-width: 830px){
+    
+  }
 }
 
 .lowerTopBack {
@@ -744,11 +752,30 @@ table {
   background-color: #cad1ce;
   padding: 100px;
   border-radius: 3px;
+  @media (max-width: 630px){
+    padding: 0px;
+  }
 }
 
 .bills_detail_table, .bills_detail, .bills_detail_head, .bills_detail_foot, .bills_detail_foottwo {
   border: 1px solid #364a60;
   padding: 10px;
+}
+
+.bills_detail_table {
+  @media (max-width: 800px){
+    scale: 75%;
+    margin-top: -30px;
+    margin-bottom: -50px;
+  }
+  @media (max-width: 630px){
+    /* scale: 40%; */
+    width: 90vw;
+    margin-top: -60px;
+    margin-bottom: -60px;
+    /* margin-left: 0px;
+    margin-right: 0px; */
+  }
 }
 
 .bills_detail_head {
@@ -797,7 +824,7 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: )
+  /* @media (max-width: ){} */
 }
 
 .add_charge_form {
@@ -806,13 +833,17 @@ table {
   justify-content: center;
   align-items: center;
   gap: 10%;
-  min-width: 28vw;
-  min-height: 40vh;
+  /* min-width: 28vw; */
+  min-width: 430px;
+  /* min-height: 40vh; */
+  min-height: 190px;
   border-radius: 10px;
   background-color:#364a60;
   margin-top: 22vh;
   position: fixed;
   z-index: 10;
+  padding-top: 10px;
+  padding-bottom: 10px;
   /* margin-left: 36vw; */
   /* margin-right: auto; */
   bottom: 40vh;
@@ -928,7 +959,7 @@ table {
 }
 
 .footerLinks:hover {
-  scale:1.03;
+  scale: 1.03;
 }
 
 .spacer {
