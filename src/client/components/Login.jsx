@@ -36,7 +36,6 @@ const Login = () => {
       password,
     };
     
-    console.log(Body)
     const RegBody = {
       user,
       name,

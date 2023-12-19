@@ -857,7 +857,7 @@ table {
     margin-left: 0px;
     gap: 5%;
     margin-top: 0px;
-    bottom: 65vh;
+    bottom: 55vh;
   }
 }
 
@@ -869,10 +869,6 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 1000px){
-    align-items: flex-start;
-    margin-top: 10vh;
-  }
 }
 
 .amount {
