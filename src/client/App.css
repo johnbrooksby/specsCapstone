@@ -315,6 +315,10 @@
 .fourPar {
   margin-top: 15px;
   text-align: center;
+  @media (max-width: 730px){
+    margin-left: 50px;
+    margin-right: 50px;
+  }
 }
 
 h3 {
