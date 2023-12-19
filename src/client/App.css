@@ -859,6 +859,12 @@ table {
     margin-top: 0px;
     bottom: 55vh;
   }
+  @media (max-height: 500px){
+    bottom: 40vh;
+  }
+  @media (max-height: 350px){
+    bottom: 30vh;
+  }
 }
 
 .modalContainer {
