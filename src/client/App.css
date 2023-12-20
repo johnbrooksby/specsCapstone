@@ -260,7 +260,7 @@
 
 .credential {
   min-height: 40vh;
-  padding-left: 15px;
+  padding-left: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -294,8 +294,8 @@
     padding-right: 0px;
   }
   @media (max-width: 431px) {
-    width: 100%;
-    justify-content: space-evenly;
+    width: 90%;
+    justify-content: space-around;
     gap: 0px;
   }
 }
@@ -399,6 +399,7 @@ h1 {
   align-items: center;
   @media (max-width:1050px){
     width: 100vw;
+    padding-left: 0px;
   }
 }
 
