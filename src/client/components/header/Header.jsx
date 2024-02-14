@@ -15,7 +15,7 @@ const Header = () => {
             href="https://calendly.com/suresparkcoaching/30min?month=2023-05"
             target="_blank"
           >
-            Schedule a Call to Learn More
+            Schedule a Call
           </a>
       </div>
     </div>
