@@ -41,28 +41,32 @@
   justify-content: space-between;
   padding-right: 5px;
   min-height: 66px;
-  @media only screen and (max-width: 320px){
-    
-  }
 }
 
 .head-spacer {
   width: 350px;
-  @media (max-width: 1200px){
+}
+@media (max-width: 1200px){
+  .head-spacer {
     width: 0px;
   }
+
 }
 
 .header-text {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  @media (max-width: 520px){
+}
+@media (max-width: 520px){
+  .header-text {
     text-align: right;
     padding-left: 10px;
   }
-  @media (max-width:350px){
-    scale: 55%;
+}
+@media (max-width:350px){
+  .header-text {
+  scale: 55%;
   }
 }
 
@@ -79,8 +83,10 @@
   text-decoration: none;
   color:#364a60;
   z-index: 3;
-  @media (max-width: 800px){
-    scale:75%;
+}
+@media (max-width: 800px){
+  .blue-btn, .orange-btn, .btn  {
+  scale:75%;
   }
 }
 
@@ -99,8 +105,8 @@
   text-align: center;
 }
 
+@media (max-width: 300px){
 .orange-welcome-button {
-  @media (max-width: 300px){
     margin-left: 10vw;
     margin-right: 10vw;
     width: auto;
@@ -142,7 +148,9 @@
 
 .welcome_img {
   min-height: 550px;
-  @media (max-width: 1150px){
+}
+@media (max-width: 1150px){
+  .welcome_img {
     width: 100vw;
     min-height: auto;
   }
@@ -447,12 +455,15 @@ h3 {
   flex-wrap: wrap;
   justify-content: space-evenly;
   @media (max-width: 1200px){
+    .reg-form {
     width: 90%;
+    }
   }
   @media (max-width:480px){
     flex-direction: column;
   }
 }
+
 
 .form-input, .reg-form-input {
   min-height: 30px;
