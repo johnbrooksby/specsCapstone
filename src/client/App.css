@@ -330,10 +330,12 @@
 .fourPar {
   margin-top: 15px;
   text-align: center;
-  @media (max-width: 730px){
-    margin-left: 50px;
-    margin-right: 50px;
-    /* scale: 80%; */
+}
+@media (max-width: 730px){
+  .fourPar {
+  margin-left: 50px;
+  margin-right: 50px;
+  /* scale: 80%; */
   }
 }
 
@@ -348,8 +350,8 @@
   }
 }
 
+@media (max-width: 1330px){
 .delete-user-button {
-  @media (max-width: 1330px){
     width: 90%;
   }
 }
@@ -358,13 +360,15 @@
   color:#cad1ce;
   font-size: 20pt;
   margin-top: 2vh;
-  @media (max-width: 800px){
-    scale: 75%;
-    margin-left: 50px;
-    margin-right: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
-    font-weight: bold;
+}
+@media (max-width: 800px){
+  .billPageHeader {
+  scale: 75%;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-weight: bold;
   }
 }
 
