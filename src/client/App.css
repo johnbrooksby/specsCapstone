@@ -835,8 +835,10 @@ table {
   background-color: #cad1ce;
   padding: 100px;
   border-radius: 3px;
-  @media (max-width: 630px){
-    padding: 0px;
+}
+@media (max-width: 630px){
+  table {
+  padding: 0px;
   }
 }
 
