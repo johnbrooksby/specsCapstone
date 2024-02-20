@@ -70,7 +70,7 @@ const Billing = (props) => {
           }
           style={{width: 80}}
         >
-          {charge.paid ? "Yes" : "No"}
+          {charge.paid ? "Paid" : "Unpaid"}
         </td>
         <td className="bills_detail checkbox">
           <button
