@@ -1,12 +1,16 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import AuthContext from "../../store/authContext";
 
 const Header = () => {
   const authCtx = useContext(AuthContext);
+  let headerScroll = false
 
   return (
     !authCtx.admin && (
-    <div className="header">
+    <div className="header"
+        onScroll={() => {headerScroll = true}}>
+          {console.log(headerScroll)}
+          
       <div className="sub-header">
         <div className="head-spacer"></div>
         <div className="header-text">Let's Chat!</div>
