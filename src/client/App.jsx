@@ -25,54 +25,56 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="login"
-          element={!authCtx.token ? <Login /> : <Navigate to="/" />}
-        />
-        <Route path="testimonials" element={<Testimonials />} />
-        <Route
-          path="admin"
-          element={
-            authCtx.admin || localStorage.getItem("admin") ? (
-              <Admin />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
-        <Route
-          path="admin/billing"
-          element={
-            authCtx.admin || localStorage.getItem("admin") ? (
-              <Billing />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+      <div className="header-container">
+        <Header />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="login"
+            element={!authCtx.token ? <Login /> : <Navigate to="/" />}
+          />
+          <Route path="testimonials" element={<Testimonials />} />
+          <Route
+            path="admin"
+            element={
+              authCtx.admin || localStorage.getItem("admin") ? (
+                <Admin />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="admin/billing"
+            element={
+              authCtx.admin || localStorage.getItem("admin") ? (
+                <Billing />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
 
-        <Route
-          path="admin/clientprofile/client"
-          element={
-            !authCtx.token ? (
-              <Login />
-            ) : (
-              <ClientProfile 
+          <Route
+            path="admin/clientprofile/client"
+            element={
+              !authCtx.token ? (
+                <Login />
+              ) : (
+                <ClientProfile
                 // id={profile}
-                 />
-            )
-          }
-        />
-        <Route
-          path="account"
-          element={authCtx.token ? <Account /> : <Navigate to="/" />}
-        />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+                />
+              )
+            }
+          />
+          <Route
+            path="account"
+            element={authCtx.token ? <Account /> : <Navigate to="/" />}
+          />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );
