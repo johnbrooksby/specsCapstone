@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
@@ -16,6 +16,7 @@ import Billing from "./components/admin/Billing";
 
 function App() {
   const authCtx = useContext(AuthContext);
+  const [headerScroll, setHeaderScroll] = useState(false);
 
   useEffect(() => {
     authCtx.setAdmin(localStorage.getItem("admin"));
@@ -25,9 +26,12 @@ function App() {
 
   return (
     <div className="App">
-      <div className="header-container">
-        <Header />
-        <Navbar />
+    window.onScroll={(event) => {setHeaderScroll(true)}}
+      <div className={headerScroll ? "header-container header-container-light" : "header-container"}>
+      {console.log(headerScroll)}
+        <Header headerScroll={headerScroll} />
+        <Navbar headerScroll={headerScroll} />
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -44,7 +48,7 @@ function App() {
                 <Navigate to="/" />
               )
             }
-          />
+            />
           <Route
             path="admin/billing"
             element={
@@ -74,7 +78,6 @@ function App() {
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </div>
       <Footer />
     </div>
   );
