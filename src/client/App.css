@@ -23,31 +23,33 @@
 
 .header-container {
   width: 100vw;
+  /* min-height: 13vh; */
   min-height: 24vh;
-  position: fixed;
+  /* position: fixed; */
+  /* position:absolute; */
   top: 0px;
   z-index: 7;
   background-color: #364a60;
+  /* border: 2px, solid, red; */
 }
 
-.header-container:hover {
+/* .header-container:hover {
   background-color: #293a4c;
-}
+} */
 
 .header {
   min-height: 13vh;
   width: 100%;
-  /* background-color: #cad1ce; */
-  /* background-color: #364a60; */
+  background-color: #cad1ce;
   top: 0px;
   font-size: 22pt;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
   padding-bottom: 5px;
-  /* z-index: 8; */
+  z-index: 8;
   /* position: fixed; */
-  /* padding-bottom: -10px; */
+  padding-bottom: -10px;
 }
 
 .header-light{
@@ -61,7 +63,7 @@
   min-height: 6vh;
   justify-content: center;
   /* position: fixed; */
-  /* top: 13vh; */
+  top: 13vh;
 }
 
 .navUl {
@@ -83,9 +85,9 @@
 }
 @media (max-width: 431px) {
   .navUl {
-  width: 90%;
-  justify-content: space-around;
-  gap: 0px;
+    width: 90%;
+    justify-content: space-around;
+    gap: 0px;
   }
 }
 
@@ -118,7 +120,6 @@
   .head-spacer {
     width: 0px;
   }
-
 }
 
 .header-text {
@@ -206,7 +207,7 @@
   flex-direction: column;
   color: #cad1ce;
   /* padding-top: 50px; */
-  margin-top: 15vh;
+  /* margin-top: 15vh; */
   padding-bottom: 50px;
   gap: 20px;
 }
@@ -578,21 +579,23 @@ h3 {
 
 a {
   text-decoration: none;
+  color: #cad1ce
+
 }
 
 a:hover {
-  scale: 1.01;
+  /* scale: 1.01; */
   cursor: pointer;
   z-index: 6;
 }
 
-a:active {
+/* a:active {
   scale: 1;
-}
+} */
 
 li:hover {
   margin-bottom: -1px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #cad1ce;
   /* scale: 1; */
 }
 
@@ -727,6 +730,7 @@ li:hover {
   height: 25px;
   /* background-color: #818181; */
   width: 40vw;
+  padding-left: 6px;
 }
 @media (max-width: 1000px){
   .editInput {

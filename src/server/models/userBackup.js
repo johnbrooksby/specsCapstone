@@ -38,7 +38,7 @@ module.exports = {
             allowNull: false
         },
         zip: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.STRING,
             allowNull: false
         }
     })

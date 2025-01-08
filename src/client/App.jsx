@@ -26,11 +26,13 @@ function App() {
 
   return (
     <div className="App">
-    window.onScroll={(event) => {setHeaderScroll(true)}}
-      <div className={headerScroll ? "header-container header-container-light" : "header-container"}>
-      {console.log(headerScroll)}
-        <Header headerScroll={headerScroll} />
-        <Navbar headerScroll={headerScroll} />
+    {/* window.onScroll={(event) => {setHeaderScroll(true)}} */}
+      <div className={headerScroll ? "header-container header-light" : "header-container"}>
+      {/* {console.log(headerScroll)} */}
+        {/* <Header headerScroll={headerScroll} />
+        <Navbar headerScroll={headerScroll} /> */}
+        <Header />
+        <Navbar />
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
