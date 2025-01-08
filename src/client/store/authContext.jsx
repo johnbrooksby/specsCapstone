@@ -50,7 +50,7 @@ const getLocalData = () => {
   const storedStreet = localStorage.getItem("street");
   const storedCity = localStorage.getItem("city");
   const storedState = localStorage.getItem("state");
-  const storedZip = +localStorage.getItem("zip");
+  const storedZip = localStorage.getItem("zip");
   const remainingTime = calculateRemainingTime(storedExp);
 
   if (remainingTime <= 60 * 60 * 24 * 14) {
